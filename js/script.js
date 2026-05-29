@@ -1,289 +1,288 @@
 // Dados das galerias
 const galleryData = {
   galaxias: {
-    title: "GALÁXIAS",
+    title: "CATEGORIA UM",
     images: [
       {
-        src: "./assets/img_g1f1.svg",
+        src: "./assets/imagem1.svg",
         caption:
-          "VIA LÁCTEA, CONCEPÇÃO ARTÍSTICA DA GALÁXIA EM QUE ESTAMOS. ELA TEM FORMATO ESPIRAL COM DOIS BRAÇOS PRINCIPAIS E OUTROS BRAÇOS MENORES.",
-        credit: "NASA/JPL-Caltech",
+          "IMAGEM GENÉRICA DE EXEMPLO, REPRESENTAÇÃO ILUSTRATIVA DO OBJETO EM DESTAQUE. ELA TEM FORMATO CARACTERÍSTICO COM DOIS ELEMENTOS PRINCIPAIS E OUTROS COMPONENTES MENORES.",
+        credit: "Instituição A / Organização B",
       },
       {
-        src: "./assets/img_g1f2.svg",
+        src: "./assets/imagem2.svg",
         caption:
-          "A GALÁXIA DE ANDRÔMEDA É A MAIS MASSIVA DO GRUPO DE GALÁXIAS QUE INCLUI A VIA LÁCTEA. EM ESPIRAL, ESTÁ A 2,5 MILHÕES DE ANOS-LUZ DA TERRA.",
-        credit: "NASA/JPL/California Institute of Technology",
+          "O OBJETO APRESENTADO É O MAIS REPRESENTATIVO DO GRUPO DE ELEMENTOS QUE INCLUI ESTA COLEÇÃO. EM FORMA DEFINIDA, ESTÁ A DETERMINADA DISTÂNCIA DO PONTO DE REFERÊNCIA.",
+        credit: "Instituição A / Organização B / Centro de Pesquisa",
       },
       {
-        src: "./assets/img_g1f3.svg",
+        src: "./assets/imagem3.svg",
         caption:
-          "GALÁXIA DO SOMBREIRO, TAMBÉM POSSUI FORMA ESPIRAL E ESTÁ A 30 MILHÕES DE ANOS-LUZ DE DISTÂNCIA DA TERRA.",
-        credit: "NASA, ESA, CSA, STScI / Flickr",
+          "OBJETO DE EXEMPLO, TAMBÉM POSSUI FORMA CARACTERÍSTICA E ESTÁ A DETERMINADA DISTÂNCIA DO PONTO DE REFERÊNCIA PRINCIPAL.",
+        credit: "Organização A, Organização B / Acervo Digital",
       },
       {
-        src: "./assets/img_g1f4.svg",
+        src: "./assets/imagem4.svg",
         caption:
-          "A NGC 2865 É UMA GALÁXIA ELÍPTICA LOCALIZADA A 100 MILHÕES DE ANOS-LUZ DE DISTÂNCIA DA TERRA.",
-        credit: "ESA/Hubble & NASA",
+          "O ELEMENTO REPRESENTADO É DO TIPO ILUSTRATIVO LOCALIZADO A DETERMINADA DISTÂNCIA DO PONTO DE REFERÊNCIA.",
+        credit: "Organização A / Organização B",
       },
       {
-        src: "./assets/img_g1f5.svg",
-        caption: "A GALÁXIA ANÃ NGC 1705 É PEQUENA E DE FORMATO IRREGULAR.",
-        credit: "ESA/Hubble & NASA, R. Chandar",
+        src: "./assets/imagem5.svg",
+        caption: "O OBJETO DE EXEMPLO É PEQUENO E DE FORMATO IRREGULAR.",
+        credit: "Organização A / Organização B, Pesquisador C",
       },
       {
-        src: "./assets/img_g1f6.svg",
+        src: "./assets/imagem6.svg",
         caption:
-          "DUAS GALÁXIAS SE ENCONTRAM: IC 2163, A MENOR, E A GALÁXIA MAIOR, NGC 2207. ESSA IMAGEM FOI GERADA COM DADOS DO TELESCÓPIO ESPACIAL JAMES WEBB E DO TELESCÓPIO ESPACIAL HUBBLE.",
-        credit: "NASA, ESA, CSA, STScI / Flickr",
+          "DOIS ELEMENTOS SE ENCONTRAM: O MENOR E O MAIOR. ESSA IMAGEM FOI GERADA COM DADOS DE INSTRUMENTO DIGITAL E DE EQUIPAMENTO DE CAPTURA.",
+        credit: "Organização A, Organização B, Organização C / Acervo Digital",
       },
     ],
   },
   estrelas: {
-    title: "ESTRELAS",
+    title: "CATEGORIA DOIS",
     images: [
       {
-        src: "./assets/img_g2f1.svg",
+        src: "./assets/imagem7.svg",
         caption:
-          "O SOL É A ESTRELA CENTRAL DO SISTEMA SOLAR. ESTA IMAGEM MOSTRA A LUZ BRILHANTE DE UMA ERUPÇÃO SOLAR.",
-        credit: "NASA/Goddard/SDO",
+          "O ELEMENTO CENTRAL DO GRUPO PRINCIPAL. ESTA IMAGEM MOSTRA A LUZ BRILHANTE DE UMA OCORRÊNCIA REGISTRADA.",
+        credit: "Organização A / Departamento B / Instrumento C",
       },
       {
-        src: "./assets/img_g2f2.svg",
+        src: "./assets/imagem8.svg",
         caption:
-          "A IMAGEM MOSTRA UMA FUTURA ESTRELA: UMA PROTOESTRELA. COM APENAS CERCA DE 100 MIL ANOS, ESTE JOVEM OBJETO ESTÁ EM MEIO A UMA NUVEM DE GÁS E POEIRA EM FORMA DE AMPULHETA.",
-        credit: "NASA, ESA, CSA, STScI / Flickr",
+          "A IMAGEM MOSTRA UM OBJETO EM FORMAÇÃO. COM APENAS CERCA DE DETERMINADO TEMPO, ESTE JOVEM ELEMENTO ESTÁ EM MEIO A UMA REGIÃO DE COMPOSIÇÃO VARIADA EM FORMA DE AMPULHETA.",
+        credit: "Organização A, Organização B, Organização C / Acervo Digital",
       },
       {
-        src: "./assets/img_g2f3.svg",
+        src: "./assets/imagem9.svg",
         caption:
-          "PRÓXIMA CENTAURI É A ESTRELA MAIS PRÓXIMA DO SOL, A POUCO MAIS DE 4 ANOS-LUZ DE DISTÂNCIA. É UMA ANÃ VERMELHA E ESTÁ NA CONSTELAÇÃO DO CENTAURO, QUE É VISÍVEL NO CÉU DO HEMISFÉRIO SUL TERRESTRE.",
-        credit: "ESA/Hubble & NASA",
+          "ELEMENTO DE REFERÊNCIA É O MAIS PRÓXIMO DO PRINCIPAL, A POUCO MAIS DE DETERMINADA DISTÂNCIA. É DO TIPO MENOR E ESTÁ NA REGIÃO ESPECÍFICA, QUE É VISÍVEL NO HEMISFÉRIO INDICADO.",
+        credit: "Organização A / Organização B",
       },
       {
-        src: "./assets/img_g2f4.svg",
+        src: "./assets/imagem10.svg",
         caption:
-          "CASSIOPEIA A É UM EXEMPLO DE ESTRELA QUE MORREU EM UMA EXPLOSÃO DE SUPERNOVA. ELA ESTÁ LOCALIZADA A 10 MIL ANOS-LUZ DE DISTÂNCIA, NA CONSTELAÇÃO DE CASSIOPEIA.",
+          "OBJETO DE REFERÊNCIA É UM EXEMPLO DE ELEMENTO QUE PASSOU POR TRANSFORMAÇÃO. ELE ESTÁ LOCALIZADO A DETERMINADA DISTÂNCIA, NA REGIÃO ESPECÍFICA.",
         credit:
-          "Raio -X: NASA/CXC/SAO; Infravermelho: NASA/ESA/CSA/STScI/D. Milisavljevic (Purdue Univ.), I. De Looze (UGent), T. Temim (Princeton Univ.); Processamento de Imagem: NASA/CXC/SAO/J. Major, J. Schmidt and K. Arcand",
+          "Tipo A: Organização A / Departamento B; Tipo B: Organização A / Organização B / Organização C / Pesquisador D (Instituição A), Pesquisador E (Instituição B), Pesquisador F (Instituição C); Processamento: Organização A / Departamento B / Setor C",
       },
       {
-        src: "./assets/img_g2f5.svg",
+        src: "./assets/imagem11.svg",
         caption:
-          "OUTRO FIM POSSÍVEL PARA UMA ESTRELA É SE TORNAR UM BURACO NEGRO. TEMOS UMA ILUSTRAÇÃO DE UM BURACO NEGRO SUPERMASSIVO COM REDEMOINHOS CÔNICOS E PÁLIDOS.",
-        credit: "NASA/Aurore Simonnet (Sonoma State University)",
+          "OUTRO RESULTADO POSSÍVEL PARA UM ELEMENTO É SE TORNAR UM TIPO DIFERENTE. TEMOS UMA ILUSTRAÇÃO DE UM OBJETO COM CARACTERÍSTICAS ESPECÍFICAS.",
+        credit: "Organização A / Pesquisador B (Instituição C)",
       },
     ],
   },
   sistemas: {
-    title: "SISTEMAS PLANETÁRIOS",
+    title: "CATEGORIA TRÊS",
     images: [
       {
-        src: "./assets/img_g3f1.svg",
+        src: "./assets/imagem12.svg",
         caption:
-          "NESTA ILUSTRAÇÃO, OS PLANETAS SÃO RETRATADOS MUITO MAIS PRÓXIMOS DO QUE REALMENTE ESTÃO.",
-        credit: "NASA/JPL",
+          "NESTA ILUSTRAÇÃO, OS ELEMENTOS SÃO RETRATADOS MUITO MAIS PRÓXIMOS DO QUE REALMENTE ESTÃO.",
+        credit: "Organização A / Departamento B",
       },
       {
-        src: "./assets/img_g3f2.svg",
+        src: "./assets/imagem13.svg",
         caption:
-          "CONCEITO ARTÍSTICO DO SISTEMA KEPLER-90. UM SISTEMA COM UMA ESTRELA SEMELHANTE AO SOL, CHAMADA DE KEPLER-90, E COM OITO PLANETAS EM SUA ÓRBITA. ESTÁ A CERCA DE 2.500 ANOS-LUZ.",
-        credit: "NASA/Ames Research Center/Wendy Stenzel ",
+          "CONCEITO ILUSTRATIVO DO CONJUNTO REFERENCIADO. UM GRUPO COM UM ELEMENTO SEMELHANTE AO PRINCIPAL, E COM OUTROS COMPONENTES EM SUA ÓRBITA. ESTÁ A CERCA DE DETERMINADA DISTÂNCIA.",
+        credit: "Organização A / Centro de Pesquisa B / Pesquisador C",
       },
     ],
   },
   planetas: {
-    title: "PLANETAS",
+    title: "CATEGORIA QUATRO",
     images: [
       {
-        src: "./assets/img_g4f1.svg",
+        src: "./assets/imagem14.svg",
         caption:
-          "IMAGEM DA TERRA, TERCEIRO PLANETA EM DISTÂNCIA DO SOL, TIRADA PELO SATÉLITE GOES-8 (GEOSTATIONARY OPERATIONAL ENVIRONMENTAL SATELLITE - 8).",
-        credit: "GOES-8 / NASA",
+          "IMAGEM DO OBJETO PRINCIPAL, TERCEIRO ELEMENTO EM DISTÂNCIA DO CENTRO, CAPTURADA PELO INSTRUMENTO DE REFERÊNCIA.",
+        credit: "Instrumento A / Organização B",
       },
       {
-        src: "./assets/img_g4f2.svg",
+        src: "./assets/imagem15.svg",
         caption:
-          "IMAGEM DE MERCÚRIO, O PLANETA MAIS PRÓXIMO DO SOL, CAPTURADA PELA SONDA ESPACIAL MESSENGER DA NASA.",
+          "IMAGEM DO OBJETO SECUNDÁRIO, O ELEMENTO MAIS PRÓXIMO DO CENTRO, CAPTURADA PELA SONDA ESPACIAL DE REFERÊNCIA.",
         credit:
-          "NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington",
+          "Organização A / Instituição de Pesquisa B / Instituição C",
       },
       {
-        src: "./assets/img_g4f3.svg",
+        src: "./assets/imagem16.svg",
         caption:
-          "IMAGEM DE VÊNUS, CAPTURADA PELA SONDA ESPACIAL MARINER 10. MAS, AO CONTRÁRIO DE SUA APARÊNCIA SERENA, VÊNUS É TOMADO POR CALOR INTENSO, PRESSÃO ATMOSFÉRICA AVASSALADORA E NUVENS DE ÁCIDO CORROSIVO.",
-        credit: "NASA/JPL-Caltech",
+          "IMAGEM DO TERCEIRO OBJETO, CAPTURADA PELA SONDA ESPACIAL DE REFERÊNCIA. MAS, AO CONTRÁRIO DE SUA APARÊNCIA SERENA, O ELEMENTO É TOMADO POR CONDIÇÕES EXTREMAS E CARACTERÍSTICAS PARTICULARES.",
+        credit: "Organização A / Departamento B",
       },
       {
-        src: "./assets/img_g4f4.svg",
+        src: "./assets/imagem17.svg",
         caption:
-          "NOSSO VIZINHO MARTE, EM IMAGEM CAPTURADA PELO TELESCÓPIO ESPACIAL HUBBLE.",
+          "OBJETO VIZINHO, EM IMAGEM CAPTURADA PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
         credit:
-          "NASA / The Hubble Heritage Team (STScI/AURA) / J. Bell (Cornell U.), P. James (U. Toledo), M. Wolff (SSI), A. Lubenow (STScI), J. Neubert (MIT/Cornell)",
+          "Organização A / Equipe de Pesquisa B / Pesquisador C, Pesquisador D, Pesquisador E, Pesquisador F, Pesquisador G",
       },
       {
-        src: "./assets/img_g4f5.svg",
+        src: "./assets/imagem18.svg",
         caption:
-          "JÚPITER, O MAIOR PLANETA DO SISTEMA SOLAR. IMAGEM CAPTADA PELO TELESCÓPIO ESPACIAL JAMES WEBB.",
+          "OBJETO DE GRANDE PORTE, O MAIOR DO GRUPO PRINCIPAL. IMAGEM CAPTADA PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
         credit:
-          "NASA, ESA, CSA, STScI, R. Hueso (University of the Basque Country), I. de Pater (University of California, Berkeley), T. Fouchet (Observatory of Paris), L. Fletcher (University of Leicester), M. Wong (University of California, Berkeley), J. DePasquale (STScI)",
+          "Organização A, Organização B, Organização C, Organização D, Pesquisador E (Instituição F), Pesquisador G (Instituição H), Pesquisador I (Instituição J), Pesquisador K (Instituição L), Pesquisador M (Instituição N)",
       },
       {
-        src: "./assets/img_g4f6.svg",
+        src: "./assets/imagem19.svg",
         caption:
-          "SATURNO E SEUS ANÉIS, COM IMAGENS CAPTURADAS PELO TELESCÓPIO ESPACIAL JAMES WEBB.",
+          "OBJETO COM ESTRUTURA CARACTERÍSTICA, COM IMAGENS CAPTURADAS PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
         credit:
-          "NASA, ESA, CSA, STScI, Matt Tiscareno (SETI Institute), Matt Hedman (University of Idaho), Maryame El Moutamid (Cornell University), Mark Showalter (SETI Institute), Leigh Fletcher (University of Leicester), Heidi Hammel (AURA). Processamento de Imagem: J. DePasquale (STSci) / Flickr",
+          "Organização A, Organização B, Organização C, Organização D, Pesquisador E (Instituição F), Pesquisador G (Instituição H), Pesquisador I (Instituição J), Pesquisador K (Instituição L), Pesquisador M (Instituição N). Processamento: Pesquisador N / Acervo Digital",
       },
       {
-        src: "./assets/img_g4f7.svg",
+        src: "./assets/imagem20.svg",
         caption:
-          "URANO É FRIO E VENTOSO. O GIGANTE GELADO É CERCADO POR 13 ANÉIS E 28 PEQUENAS LUAS. IMAGEM CAPTURADA PELO TELESCÓPIO ESPACIAL JAMES WEBB.",
+          "OBJETO DE BAIXA TEMPERATURA. O TIPO GELADO É CERCADO POR ELEMENTOS MENORES E COMPONENTES NATURAIS. IMAGEM CAPTURADA PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
         credit:
-          "NASA, ESA, CSA, STScI / Processamento de imagem: Joseph DePasquale (STSci)",
+          "Organização A, Organização B, Organização C, Organização D / Processamento: Pesquisador E (Instituição F)",
       },
       {
-        src: "./assets/img_g4f8.svg",
+        src: "./assets/imagem21.svg",
         caption:
-          "O PLANETA NETUNO ESTÁ 30 VEZES MAIS DISTANTE DO SOL DO QUE A TERRA. IMAGEM CAPTURADA PELO TELESCÓPIO ESPACIAL JAMES WEBB.",
-        credit: "NASA, ESA, CSA, STScI / Flickr",
+          "O OBJETO REFERENCIADO ESTÁ A DETERMINADO NÚMERO DE VEZES MAIS DISTANTE DO CENTRO DO QUE O PONTO DE PARTIDA. IMAGEM CAPTURADA PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
+        credit: "Organização A, Organização B, Organização C / Acervo Digital",
       },
       {
-        src: "./assets/img_g4f9.svg",
+        src: "./assets/imagem22.svg",
         caption:
-          "PLUTÃO JÁ FOI CONSIDERADO O NONO PLANETA DE NOSSO SISTEMA E EM 2006 FOI RECLASSIFICADO COMO UM PLANETA-ANÃO, APÓS DESCOBRIREM OUTROS PLANETAS NA MESMA REGIÃO.",
-        credit: "NASA/JHUAPL/SwRI",
+          "OBJETO RECLASSIFICADO QUE ANTES ERA CONSIDERADO O NONO DO GRUPO E EM DATA ESPECÍFICA FOI REDEFINIDO COMO DO TIPO MENOR, APÓS DESCOBRIREM OUTROS ELEMENTOS NA MESMA REGIÃO.",
+        credit: "Organização A / Departamento B / Equipe C",
       },
       {
-        src: "./assets/img_g4f10.svg",
+        src: "./assets/imagem23.svg",
         caption:
-          "CERES É O ÚNICO PLANETA-ANÃO QUE ESTÁ NO SISTEMA SOLAR INTERNO. ELE FICA LOCALIZADO NO CINTURÃO DE ASTEROIDES ENTRE MARTE E JÚPITER.",
-        credit: "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA",
+          "ELEMENTO ÚNICO DO TIPO MENOR QUE ESTÁ NO GRUPO INTERNO. ELE FICA LOCALIZADO NA REGIÃO INTERMEDIÁRIA ENTRE DOIS OBJETOS PRINCIPAIS.",
+        credit: "Organização A / Departamento B / Equipe C / Setor D",
       },
       {
-        src: "./assets/img_g4f11.svg",
+        src: "./assets/imagem24.svg",
         caption:
-          "O EXOPLANETA GJ 504B TEM CERCA DE QUATRO VEZES A MASSA DE JÚPITER, SUA ESTRELA É PARECIDA COM O SOL E ESTÁ A 57 ANOS-LUZ DE DISTÂNCIA DA TERRA.",
-        credit: "NASA/Goddard/S. Wiessinger",
+          "O OBJETO EXTERNO TEM CERCA DE DETERMINADO NÚMERO DE VEZES A MASSA DO ELEMENTO DE REFERÊNCIA, SUA ESTRELA É PARECIDA COM O TIPO COMUM E ESTÁ A DETERMINADA DISTÂNCIA.",
+        credit: "Organização A / Departamento B / Pesquisador C",
       },
       {
-        src: "./assets/img_g4f12.svg",
+        src: "./assets/imagem25.svg",
         caption:
-          "O EXOPLANETA SUPER-TERRA 55 CANCRI E, REPRESENTADO COM SUA ESTRELA NESTA CONCEPÇÃO ARTÍSTICA, PROVAVELMENTE TEM UMA ATMOSFERA MAIS ESPESSA QUE A DA TERRA, DE ACORDO COM UM ESTUDO DE 2017.",
-        credit: "NASA/JPL-Caltech",
+          "O OBJETO DO TIPO AMPLIADO, REPRESENTADO COM SUA ESTRELA NESTA CONCEPÇÃO ILUSTRATIVA, PROVAVELMENTE TEM UMA CAMADA MAIS ESPESSA QUE A DO ELEMENTO DE REFERÊNCIA, DE ACORDO COM UM ESTUDO PUBLICADO.",
+        credit: "Organização A / Departamento B",
       },
     ],
   },
   satelites: {
-    title: "SATÉLITES NATURAIS",
+    title: "CATEGORIA CINCO",
     images: [
       {
-        src: "./assets/img_g5f1.svg",
+        src: "./assets/imagem26.svg",
         caption:
-          "A LUA É O ÚNICO SATÉLITE NATURAL DA TERRA E EXERCE INFLUÊNCIA SOBRE O NOSSO PLANETA, COMO A REGULAÇÃO DAS MARÉS.",
+          "O ELEMENTO É O ÚNICO COMPONENTE NATURAL DO OBJETO PRINCIPAL E EXERCE INFLUÊNCIA SOBRE ELE, COMO A REGULAÇÃO DE FENÔMENOS PERIÓDICOS.",
         credit:
-          "NASA/Johns Hopkins University Applied Physics Laboratory/Carnegie Institution of Washington",
+          "Organização A / Instituição de Pesquisa B / Instituição C",
       },
       {
-        src: "./assets/img_g5f2.svg",
+        src: "./assets/imagem27.svg",
         caption:
-          "FOBOS É A MAIOR DAS DUAS LUAS DE MARTE. ELA ORBITA O PLANETA VERMELHO TRÊS VEZES POR DIA.",
-        credit: "NASA/JPL-Caltech/University of Arizona",
+          "OBJETO SECUNDÁRIO É O MAIOR DOS DOIS COMPONENTES DO ELEMENTO DE REFERÊNCIA. ELE ORBITA O ELEMENTO PRINCIPAL TRÊS VEZES POR PERÍODO.",
+        credit: "Organização A / Departamento B / Instituição C",
       },
       {
-        src: "./assets/img_g5f3.svg",
+        src: "./assets/imagem28.svg",
         caption:
-          "EUROPA É A QUARTA MAIOR DAS 95 LUAS DE JÚPITER. E É CONSIDERADA UM DOS LUGARES MAIS PROMISSORES DO NOSSO SISTEMA SOLAR PARA ENCONTRAR AMBIENTES ADEQUADOS PARA FORMAS DE VIDA FORA DA TERRA.",
+          "ELEMENTO ESPECÍFICO É O QUARTO MAIOR DOS COMPONENTES DO OBJETO PRINCIPAL. E É CONSIDERADO UM DOS LUGARES MAIS PROMISSORES DO NOSSO GRUPO PARA ENCONTRAR AMBIENTES ADEQUADOS PARA DIFERENTES CONDIÇÕES.",
         credit:
-          "Dados da imagem: NASA/JPL-Caltech/SwRI/MSSS Processamento de imagem: Kevin M. Gill CC BY 3.0",
+          "Dados: Organização A / Departamento B / Equipe C Processamento: Pesquisador D",
       },
       {
-        src: "./assets/img_g5f4.svg",
+        src: "./assets/imagem29.svg",
         caption:
-          "ENCÉLADO É UMA DAS LUAS DE SATURNO E A SUPERFÍCIE MAIS BRANCA E REFLEXIVA DO SISTEMA SOLAR. COMO REFLETE MUITA LUZ SOLAR, A TEMPERATURA DA SUPERFÍCIE É EXTREMAMENTE FRIA, CERCA DE -201 GRAUS CELSIUS.",
-        credit: "NASA/JPL/Space Science Institute",
+          "COMPONENTE ESPECÍFICO É UM DOS SATÉLITES DO OBJETO PRINCIPAL E POSSUI A SUPERFÍCIE MAIS CARACTERÍSTICA DO GRUPO. COMO REFLETE DETERMINADA QUANTIDADE DE LUZ, A TEMPERATURA DA SUPERFÍCIE É EXTREMAMENTE BAIXA.",
+        credit: "Organização A / Departamento B / Instrumento C",
       },
       {
-        src: "./assets/img_g5f5.svg",
+        src: "./assets/imagem30.svg",
         caption:
-          "ARIEL É UMA DAS MAIORES LUAS DE URANO, ACREDITA-SE QUE É FORMADA POR GELO DE ÁGUA, SILICATO E DIÓXIDO DE CARBONO.",
-        credit: "NASA/JPL",
+          "ELEMENTO ESPECÍFICO É UMA DAS MAIORES PARTES DO OBJETO DE REFERÊNCIA, ACREDITA-SE QUE É FORMADO POR DIFERENTES COMPOSTOS E MATERIAIS.",
+        credit: "Organização A / Departamento B",
       },
       {
-        src: "./assets/img_g5f6.svg",
+        src: "./assets/imagem31.svg",
         caption:
-          "TRITÃO É A MAIOR DAS 13 LUAS DE NETUNO. É INCOMUM PORQUE É A ÚNICA GRANDE LUA DO NOSSO SISTEMA SOLAR QUE ORBITA NA DIREÇÃO OPOSTA À ROTAÇÃO DO SEU PLANETA.",
-        credit: "NASA/JPL",
+          "COMPONENTE ESPECÍFICO É O MAIOR DOS ELEMENTOS DO OBJETO DE REFERÊNCIA. É INCOMUM PORQUE É O ÚNICO GRANDE COMPONENTE DO NOSSO GRUPO QUE ORBITA NA DIREÇÃO OPOSTA À ROTAÇÃO DO SEU OBJETO PRINCIPAL.",
+        credit: "Organização A / Departamento B",
       },
     ],
   },
   corpos: {
-    title: "OUTROS CORPOS CELESTES",
+    title: "CATEGORIA SEIS",
     images: [
       {
-        src: "./assets/img_g6f1.svg",
+        src: "./assets/imagem32.svg",
         caption:
-          "IMAGEM DO COMETA ISON PASSANDO PELA CONSTELAÇÃO DE VIRGEM. NO MOMENTO DESTA IMAGEM, O COMETA ISON ESTAVA A 156 MILHÕES DE QUILÔMETROS DA TERRA.",
-        credit: "NASA Goddard",
+          "IMAGEM DO OBJETO DE REFERÊNCIA PASSANDO PELA REGIÃO ESPECÍFICA. NO MOMENTO DESTA IMAGEM, O ELEMENTO ESTAVA A DETERMINADA DISTÂNCIA DO PONTO DE REFERÊNCIA.",
+        credit: "Organização A / Departamento B",
       },
       {
-        src: "./assets/img_g6f2.svg",
+        src: "./assets/imagem33.svg",
         caption:
-          "IMAGEM DO COMETA SIDING SPRING PASSANDO PRÓXIMO AO PLANETA MARTE, EM IMAGEM CAPTURADA PELO TELESCÓPIO ESPACIAL HUBBLE.",
-        credit: "NASA, ESA, PSI, JHU/APL, STScI/AURA",
+          "IMAGEM DO SEGUNDO OBJETO DE REFERÊNCIA PASSANDO PRÓXIMO AO ELEMENTO PRINCIPAL, EM IMAGEM CAPTURADA PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
+        credit: "Organização A, Organização B, Organização C, Organização D, Organização E",
       },
       {
-        src: "./assets/img_g6f3.svg",
+        src: "./assets/imagem34.svg",
         caption:
-          "IMAGEM DE VESTA, UM ASTEROIDE GIGANTE DE NOSSO SISTEMA. ÀS VEZES CHAMADOS DE PLANETAS MENORES, OS ASTEROIDES SÃO REMANESCENTES ROCHOSOS E SEM AR DA FORMAÇÃO INICIAL DO SISTEMA SOLAR.",
-        credit: "NASA/JPL-Caltech/UCLA/MPS/DLR/IDA",
+          "IMAGEM DE OBJETO DO TIPO ROCHOSO DO NOSSO GRUPO PRINCIPAL. ÀS VEZES CHAMADOS DE ELEMENTOS MENORES, SÃO REMANESCENTES ROCHOSOS E SEM COMPOSIÇÃO DEFINIDA DA FORMAÇÃO INICIAL DO SISTEMA.",
+        credit: "Organização A / Departamento B / Equipe C / Setor D",
       },
     ],
   },
   exploracao: {
-    title: "OBSERVAÇÃO E EXPLORAÇÃO",
+    title: "CATEGORIA SETE",
     images: [
       {
-        src: "./assets/img_g7f1.svg",
+        src: "./assets/imagem35.svg",
         caption:
-          "EM 2019, A SONDA CHINESA CHANG'E 4 FOI A PRIMEIRA SONDA A POUSAR NO LADO OCULTO DA LUA.",
-        credit: "CSNA/Siyu Zhang/Kevin M. Gill",
+          "EM DATA ESPECÍFICA, A SONDA DE REFERÊNCIA FOI A PRIMEIRA A POUSAR NA REGIÃO INDICADA DO OBJETO PRINCIPAL.",
+        credit: "Organização A / Pesquisador B / Pesquisador C",
       },
       {
-        src: "./assets/img_g7f2.svg",
+        src: "./assets/imagem36.svg",
         caption:
-          "O TELESCÓPIO ESPACIAL HUBBLE, EM ÓRBITA AO REDOR DA TERRA DESDE 1990, MUDOU A COMPREENSÃO DA HUMANIDADE SOBRE O UNIVERSO. TRAZENDO INFORMAÇÕES DESDE A COMPOSIÇÃO ATMOSFÉRICA DE PLANETAS À DESCOBERTA DA ENERGIA ESCURA.",
-        credit: "NASA/JPL",
+          "O INSTRUMENTO ESPACIAL DE REFERÊNCIA, EM ÓRBITA AO REDOR DO OBJETO PRINCIPAL DESDE DATA ESPECÍFICA, MUDOU A COMPREENSÃO DA HUMANIDADE SOBRE O TEMA. TRAZENDO INFORMAÇÕES DESDE A COMPOSIÇÃO DE ELEMENTOS À DESCOBERTA DE FENÔMENOS.",
+        credit: "Organização A / Departamento B",
       },
       {
-        src: "./assets/img_g7f3.svg",
+        src: "./assets/imagem37.svg",
         caption:
-          "TESTES DA VOYAGER, NO ANO DE 1976. OS PRINCIPAIS OBJETIVOS DA MISSÃO VOYAGER SÃO CARACTERIZAR O AMBIENTE EXTERNO DO SISTEMA SOLAR E ESTUDAR O ESPAÇO INTERESTELAR.",
-        credit: "NASA/JPL-Caltech",
+          "TESTES DO EQUIPAMENTO DE REFERÊNCIA, NO ANO ESPECÍFICO. OS PRINCIPAIS OBJETIVOS DA MISSÃO SÃO CARACTERIZAR O AMBIENTE DO SISTEMA E ESTUDAR O ESPAÇO CORRESPONDENTE.",
+        credit: "Organização A / Departamento B",
       },
       {
-        src: "./assets/img_g7f4.svg",
+        src: "./assets/imagem38.svg",
         caption:
-          "O ROVER PERSEVERANCE DA NASA ESTÁ EM MARTE E BUSCA SINAIS DE VIDA ANTIGA E COLETA AMOSTRAS DE ROCHAS PARA POSSÍVEL RETORNO À TERRA.",
-        credit: "NASA/JPL-Caltech/MSSS",
+          "O VEÍCULO DE EXPLORAÇÃO DE REFERÊNCIA ESTÁ NO OBJETO INDICADO E BUSCA SINAIS DE CONDIÇÕES ANTERIORES E COLETA AMOSTRAS DE MATERIAIS PARA POSSÍVEL ANÁLISE.",
+        credit: "Organização A / Departamento B / Equipe C",
       },
       {
-        src: "./assets/img_g7f5.svg",
+        src: "./assets/imagem39.svg",
         caption:
-          "NA IMAGEM, A SONDA ESPACIAL OSIRIS-REX ESTÁ SENDO IÇADA PARA TESTES AMBIENTAIS. A OSIRIS-REX É A PRIMEIRA MISSÃO DOS ESTADOS UNIDOS A COLETAR UMA AMOSTRA DE UM ASTEROIDE.",
-        credit: "Marina Behabetz / NASA",
+          "NA IMAGEM, A SONDA ESPACIAL DE REFERÊNCIA ESTÁ SENDO PREPARADA PARA TESTES DE VERIFICAÇÃO. A MISSÃO É A PRIMEIRA DO TIPO A COLETAR UMA AMOSTRA DE UM ELEMENTO ESPECÍFICO.",
+        credit: "Pesquisador A / Organização B",
       },
       {
-        src: "./assets/img_g7f6.svg",
+        src: "./assets/imagem40.svg",
         caption:
-          "O TELESCÓPIO ESPACIAL JAMES WEBB ESTUDA TODAS AS FASES DA HISTÓRIA DO NOSSO UNIVERSO E FOI LANÇADO EM 2021. SUA ÓRBITA É AO REDOR DO SOL.",
-        credit: "NASA Goddard",
+          "O INSTRUMENTO ESPACIAL DE REFERÊNCIA ESTUDA TODAS AS FASES DA HISTÓRIA DO NOSSO GRUPO E FOI LANÇADO EM DATA ESPECÍFICA. SUA ÓRBITA É AO REDOR DO ELEMENTO CENTRAL.",
+        credit: "Organização A / Departamento B",
       },
     ],
   },
 };
-
 /* =========================================================
    ESTADO
 ========================================================= */
@@ -304,7 +303,7 @@ function preloadAdjacentImages(theme, index) {
 }
 
 /* =========================================================
-   UPDATE GALERIA (ADAPTADO)
+   UPDATE GALERIA (ACESSÍVEL)
 ========================================================= */
 function updateGallery() {
   if (!currentTheme) return;
@@ -316,7 +315,12 @@ function updateGallery() {
   /* ===== IMAGEM ===== */
   const img = document.getElementById("galleryImage");
   img.src = item.src;
-  img.alt = item.caption?.split(".")[0] || themeData.title;
+
+  // 🔊 ALT acessível
+  img.alt =
+    item.alt ||
+    item.caption?.split(".")[0] ||
+    `${themeData.title}, imagem ${currentIndex + 1} de ${totalImages}`;
 
   /* ===== MODAL (classe dinâmica por imagem) ===== */
   const modal = document.getElementById("galleryModal");
@@ -339,7 +343,7 @@ function updateGallery() {
   if (wordCount >= 2) titleWrapper.classList.add("long-title");
   if (wordCount >= 3) titleWrapper.classList.add("extra-long-title");
 
-  /* ===== DESCRIÇÃO ===== */
+  /* ===== DESCRIÇÃO (aria-live já cuida da leitura) ===== */
   const caption = document.getElementById("galleryCaption");
   caption.textContent = item.caption || "";
 
@@ -382,6 +386,12 @@ function updateGallery() {
     right.style.display = currentIndex === totalImages - 1 ? "none" : "flex";
   }
 
+  /* 🔊 Anúncio leve de navegação */
+  caption.setAttribute(
+    "aria-label",
+    `Imagem ${currentIndex + 1} de ${totalImages}. ${item.caption || ""}`
+  );
+
   preloadAdjacentImages(currentTheme, currentIndex);
 }
 
@@ -404,7 +414,7 @@ function goNext() {
 }
 
 /* =========================================================
-   ABERTURA DO MODAL
+   ABERTURA DO MODAL (FOCO ACESSÍVEL)
 ========================================================= */
 document.querySelectorAll(".open-gallery").forEach(card => {
   card.addEventListener("click", () => {
@@ -419,6 +429,9 @@ document.querySelectorAll(".open-gallery").forEach(card => {
     let modal = bootstrap.Modal.getInstance(modalEl);
     if (!modal) modal = new bootstrap.Modal(modalEl);
     modal.show();
+
+    // 🔊 move foco para o modal
+    setTimeout(() => modalEl.focus(), 300);
   });
 });
 
@@ -440,101 +453,44 @@ document.addEventListener("keydown", e => {
     bootstrap.Modal.getInstance(modal)?.hide();
   }
 });
-/* =========================================================
-   FULLSCREEN
-========================================================= */
-
-function toggleFullscreen() {
-  const modal = document.getElementById("galleryModal");
-
-  if (!document.fullscreenElement) {
-    modal.requestFullscreen?.();
-    modal.classList.add("is-fullscreen");
-  } else {
-    document.exitFullscreen?.();
-    modal.classList.remove("is-fullscreen");
-  }
-}
 
 /* =========================================================
-   FULLSCREEN (FIX DEFINITIVO)
+   FULLSCREEN (ACESSÍVEL)
 ========================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const btnFullscreen = document.getElementById("btnFullscreen");
+  if (!btnFullscreen) return;
 
-function toggleFullscreen() {
-  const stage = document.querySelector("#galleryModal .gallery-stage");
-  const modal = document.getElementById("galleryModal");
+  const iconPath = btnFullscreen.querySelector("path");
 
-  if (!stage) return;
+  const iconExpand =
+    "M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z";
+  const iconCompress =
+    "M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z";
 
-  if (!document.fullscreenElement) {
-    stage.requestFullscreen();
-    modal.classList.add("is-fullscreen");
-  } else {
-    document.exitFullscreen();
-    modal.classList.remove("is-fullscreen");
+  function updateIcon(state) {
+    if (iconPath)
+      iconPath.setAttribute("d", state ? iconCompress : iconExpand);
+
+    // 🔊 estado acessível
+    btnFullscreen.setAttribute("aria-pressed", state ? "true" : "false");
+    btnFullscreen.setAttribute(
+      "aria-label",
+      state ? "Sair da tela cheia" : "Ativar tela cheia"
+    );
   }
-}
 
-/* botão fullscreen */
- document.addEventListener('DOMContentLoaded', () => {
-            const btnFullscreen = document.getElementById('btnFullscreen');
-            const iconPath = btnFullscreen.querySelector('path');
+  btnFullscreen.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen?.();
+      updateIcon(true);
+    } else {
+      document.exitFullscreen?.();
+      updateIcon(false);
+    }
+  });
 
-            // Desenhos dos ícones (SVG paths)
-            const iconExpand = "M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z";
-            const iconCompress = "M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z";
-
-            function toggleFullScreen() {
-                if (!document.fullscreenElement &&    // Padrão W3C
-                    !document.mozFullScreenElement && // Firefox
-                    !document.webkitFullscreenElement && // Chrome, Safari e Opera
-                    !document.msFullscreenElement) {  // IE/Edge
-                    
-                    // Entrar em tela cheia
-                    if (document.documentElement.requestFullscreen) {
-                        document.documentElement.requestFullscreen();
-                    } else if (document.documentElement.msRequestFullscreen) {
-                        document.documentElement.msRequestFullscreen();
-                    } else if (document.documentElement.mozRequestFullScreen) {
-                        document.documentElement.mozRequestFullScreen();
-                    } else if (document.documentElement.webkitRequestFullscreen) {
-                        document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-                    }
-                    // Muda ícone para 'comprimir'
-                    if(iconPath) iconPath.setAttribute('d', iconCompress);
-
-                } else {
-                    // Sair de tela cheia
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    } else if (document.msExitFullscreen) {
-                        document.msExitFullscreen();
-                    } else if (document.mozCancelFullScreen) {
-                        document.mozCancelFullScreen();
-                    } else if (document.webkitExitFullscreen) {
-                        document.webkitExitFullscreen();
-                    }
-                    // Muda ícone para 'expandir'
-                    if(iconPath) iconPath.setAttribute('d', iconExpand);
-                }
-            }
-
-            // Atualiza o ícone caso o usuário saia com ESC
-            function updateIconOnStateChange() {
-                if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-                     if(iconPath) iconPath.setAttribute('d', iconExpand);
-                } else {
-                     if(iconPath) iconPath.setAttribute('d', iconCompress);
-                }
-            }
-
-            btnFullscreen.addEventListener('click', toggleFullScreen);
-            
-            // Listeners para detectar mudança de estado (ex: apertar ESC)
-            document.addEventListener('fullscreenchange', updateIconOnStateChange);
-            document.addEventListener('webkitfullscreenchange', updateIconOnStateChange);
-            document.addEventListener('mozfullscreenchange', updateIconOnStateChange);
-            document.addEventListener('MSFullscreenChange', updateIconOnStateChange);
-        });
-
-        
+  document.addEventListener("fullscreenchange", () =>
+    updateIcon(!!document.fullscreenElement)
+  );
+});
