@@ -1,12 +1,13 @@
-// Dados das galerias
+// =========================================================
+//  DADOS DAS GALERIAS
+// =========================================================
 const galleryData = {
   galaxias: {
     title: "CATEGORIA UM",
     images: [
       {
-        src: "./assets/imagem1.svg",
-        caption:
-          "IMAGEM GENÉRICA DE EXEMPLO, REPRESENTAÇÃO ILUSTRATIVA DO OBJETO EM DESTAQUE. ELA TEM FORMATO CARACTERÍSTICO COM DOIS ELEMENTOS PRINCIPAIS E OUTROS COMPONENTES MENORES.",
+        src: "./assets/imagem1.jpg",
+        caption: "IMAGEM GENÉRICA DE EXEMPLO, REPRESENTAÇÃO ILUSTRATIVA DO OBJETO EM DESTAQUE. ELA TEM FORMATO CARACTERÍSTICO COM DOIS ELEMENTOS PRINCIPAIS E OUTROS COMPONENTES MENORES.",
         credit: "Instituição A / Organização B",
       },
       {
@@ -283,214 +284,202 @@ const galleryData = {
     ],
   },
 };
-/* =========================================================
-   ESTADO
-========================================================= */
+
+// =========================================================
+//  ESTADO
+// =========================================================
 let currentTheme = null;
 let currentIndex = 0;
 
-/* =========================================================
-   PRELOAD
-========================================================= */
+// =========================================================
+//  PRELOAD (Antecipação de Imagens Adjacentes)
+// =========================================================
 function preloadAdjacentImages(theme, index) {
   if (!galleryData[theme]) return;
-
   const images = galleryData[theme].images;
   if (images.length <= 1) return;
-
   if (index + 1 < images.length) new Image().src = images[index + 1].src;
   if (index - 1 >= 0) new Image().src = images[index - 1].src;
 }
 
-/* =========================================================
-   UPDATE GALERIA (ACESSÍVEL)
-========================================================= */
+// =========================================================
+//  UPDATE GALERIA
+// =========================================================
 function updateGallery() {
-  if (!currentTheme) return;
+  if (!currentTheme || !galleryData[currentTheme]) return;
 
   const themeData = galleryData[currentTheme];
   const item = themeData.images[currentIndex];
   const totalImages = themeData.images.length;
 
-  /* ===== IMAGEM ===== */
+  // Imagem principal
   const img = document.getElementById("galleryImage");
-  img.src = item.src;
-
-  // 🔊 ALT acessível
-  img.alt =
-    item.alt ||
-    item.caption?.split(".")[0] ||
-    `${themeData.title}, imagem ${currentIndex + 1} de ${totalImages}`;
-
-  /* ===== MODAL (classe dinâmica por imagem) ===== */
-  const modal = document.getElementById("galleryModal");
-
-  [...modal.classList].forEach(c => {
-    if (c.startsWith("img_")) modal.classList.remove(c);
-  });
-
-  const match = item.src.match(/(img_g\d+f\d+)/i);
-  if (match) modal.classList.add(match[1]);
-
-  /* ===== TÍTULO ===== */
-  const title = document.getElementById("galleryTitle");
-  title.textContent = themeData.title;
-
-  const titleWrapper = title.closest(".card-title-wrapper");
-  titleWrapper.classList.remove("long-title", "extra-long-title");
-
-  const wordCount = themeData.title.trim().split(/\s+/).length;
-  if (wordCount >= 2) titleWrapper.classList.add("long-title");
-  if (wordCount >= 3) titleWrapper.classList.add("extra-long-title");
-
-  /* ===== DESCRIÇÃO (aria-live já cuida da leitura) ===== */
-  const caption = document.getElementById("galleryCaption");
-  caption.textContent = item.caption || "";
-
-  const descWrapper = caption.closest(".card-description-wrapper");
-  descWrapper.classList.remove(
-    "short-description",
-    "long-description",
-    "extra-long-description"
-  );
-
-  const len = item.caption?.length || 0;
-  if (len > 190) descWrapper.classList.add("extra-long-description");
-  else if (len > 150) descWrapper.classList.add("long-description");
-  else descWrapper.classList.add("short-description");
-
-  /* ===== CRÉDITO ===== */
-  const verticalLabel = modal.querySelector(".vertical-label");
-  verticalLabel.textContent = item.credit || "";
-
-  verticalLabel.classList.remove("long-credit", "extra-long-credit");
-
-  const creditLen = item.credit?.length || 0;
-  if (creditLen > 200) verticalLabel.classList.add("extra-long-credit");
-  else if (creditLen > 45) verticalLabel.classList.add("long-credit");
-
-  /* força repaint (mantém sua lógica antiga) */
-  verticalLabel.style.display = "none";
-  verticalLabel.offsetHeight;
-  verticalLabel.style.display = "block";
-
-  /* ===== SETAS ===== */
-  const left = modal.querySelector(".nav-arrow.left");
-  const right = modal.querySelector(".nav-arrow.right");
-
-  if (totalImages <= 1) {
-    left.style.display = "none";
-    right.style.display = "none";
-  } else {
-    left.style.display = currentIndex === 0 ? "none" : "flex";
-    right.style.display = currentIndex === totalImages - 1 ? "none" : "flex";
+  if (img) {
+    img.src = item.src;
+    img.alt =
+      item.alt ||
+      (item.caption ? item.caption.split(".")[0] : "") ||
+      `${themeData.title}, imagem ${currentIndex + 1} de ${totalImages}`;
   }
 
-  /* 🔊 Anúncio leve de navegação */
-  caption.setAttribute(
-    "aria-label",
-    `Imagem ${currentIndex + 1} de ${totalImages}. ${item.caption || ""}`
-  );
+  // Título da categoria
+  const title = document.getElementById("galleryTitle");
+  if (title) {
+    title.textContent = themeData.title;
+  }
 
+  // Legenda / descrição
+  const caption = document.getElementById("galleryCaption");
+  if (caption) {
+    caption.textContent = item.caption || "";
+    caption.setAttribute(
+      "aria-label",
+      `Imagem ${currentIndex + 1} de ${totalImages}. ${item.caption || ""}`
+    );
+  }
+
+  // Créditos da imagem
+  const credit = document.getElementById("galleryCredit");
+  if (credit) {
+    credit.textContent = item.credit || "";
+  }
+
+  // Controle de visibilidade das setas
+  const leftArrow = document.querySelector("#galleryModal .nav-arrow.left");
+  const rightArrow = document.querySelector("#galleryModal .nav-arrow.right");
+
+  if (leftArrow && rightArrow) {
+    if (totalImages <= 1) {
+      leftArrow.style.visibility = "hidden";
+      rightArrow.style.visibility = "hidden";
+    } else {
+      leftArrow.style.visibility = "visible";
+      rightArrow.style.visibility = "visible";
+    }
+  }
+
+  // Pré-carregamento em segundo plano
   preloadAdjacentImages(currentTheme, currentIndex);
 }
 
-/* =========================================================
-   NAVEGAÇÃO
-========================================================= */
+// =========================================================
+//  NAVEGAÇÃO
+// =========================================================
 function goPrev() {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateGallery();
-  }
+  if (!currentTheme || !galleryData[currentTheme]) return;
+  const total = galleryData[currentTheme].images.length;
+  currentIndex = (currentIndex - 1 + total) % total;
+  updateGallery();
 }
 
 function goNext() {
+  if (!currentTheme || !galleryData[currentTheme]) return;
   const total = galleryData[currentTheme].images.length;
-  if (currentIndex < total - 1) {
-    currentIndex++;
-    updateGallery();
-  }
+  currentIndex = (currentIndex + 1) % total;
+  updateGallery();
 }
 
-/* =========================================================
-   ABERTURA DO MODAL (FOCO ACESSÍVEL)
-========================================================= */
-document.querySelectorAll(".open-gallery").forEach(card => {
-  card.addEventListener("click", () => {
-    const theme = card.dataset.tema;
-    if (!galleryData[theme]) return;
+// =========================================================
+//  ABERTURA DO MODAL DA GALERIA
+// =========================================================
+document.addEventListener("DOMContentLoaded", () => {
 
-    currentTheme = theme;
-    currentIndex = 0;
-    updateGallery();
+  // Abertura por clique nos cards
+  document.querySelectorAll(".open-gallery").forEach(card => {
+    card.addEventListener("click", function (e) {
+      e.preventDefault();
+      const theme = this.dataset.tema || this.getAttribute("data-tema");
+      if (!galleryData[theme]) return;
 
-    const modalEl = document.getElementById("galleryModal");
-    let modal = bootstrap.Modal.getInstance(modalEl);
-    if (!modal) modal = new bootstrap.Modal(modalEl);
-    modal.show();
+      currentTheme = theme;
+      currentIndex = 0;
+      updateGallery();
 
-    // 🔊 move foco para o modal
-    setTimeout(() => modalEl.focus(), 300);
+      const modalEl = document.getElementById("galleryModal");
+      if (modalEl) {
+        let modalInstance = bootstrap.Modal.getInstance(modalEl);
+        if (!modalInstance) {
+          modalInstance = new bootstrap.Modal(modalEl, {
+            keyboard: true,
+            focus: true,
+          });
+        }
+        modalInstance.show();
+        setTimeout(() => modalEl.focus(), 150);
+      }
+    });
   });
+
+  // Botão fullscreen
+  const btnFullscreen = document.getElementById("btnFullscreen");
+  if (btnFullscreen) {
+    btnFullscreen.addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+        btnFullscreen.setAttribute("aria-pressed", "true");
+      } else {
+        document.exitFullscreen().catch(() => {});
+        btnFullscreen.setAttribute("aria-pressed", "false");
+      }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      const isFullscreen = !!document.fullscreenElement;
+      btnFullscreen.setAttribute("aria-pressed", String(isFullscreen));
+    });
+  }
 });
 
-/* =========================================================
-   EVENTOS
-========================================================= */
+// =========================================================
+//  EVENTOS GLOBAIS — Cliques e Teclado
+// =========================================================
 document.addEventListener("click", e => {
-  if (e.target.closest(".nav-arrow.left")) goPrev();
-  if (e.target.closest(".nav-arrow.right")) goNext();
+  const leftBtn = e.target.closest(".nav-arrow.left");
+  const rightBtn = e.target.closest(".nav-arrow.right");
+
+  if (leftBtn) {
+    e.stopPropagation();
+    goPrev();
+  }
+  if (rightBtn) {
+    e.stopPropagation();
+    goNext();
+  }
 });
 
 document.addEventListener("keydown", e => {
   const modal = document.getElementById("galleryModal");
-  if (!modal.classList.contains("show")) return;
+  if (!modal || !modal.classList.contains("show")) return;
 
-  if (e.key === "ArrowLeft") goPrev();
-  if (e.key === "ArrowRight") goNext();
+  if (e.key === "ArrowLeft") { e.preventDefault(); goPrev(); }
+  if (e.key === "ArrowRight") { e.preventDefault(); goNext(); }
   if (e.key === "Escape") {
-    bootstrap.Modal.getInstance(modal)?.hide();
+    const instance = bootstrap.Modal.getInstance(modal);
+    if (instance) instance.hide();
   }
 });
 
-/* =========================================================
-   FULLSCREEN (ACESSÍVEL)
-========================================================= */
-document.addEventListener("DOMContentLoaded", () => {
-  const btnFullscreen = document.getElementById("btnFullscreen");
-  if (!btnFullscreen) return;
+// Touch swipe na galeria
+(function initSwipe() {
+  let touchStartX = 0;
+  let touchStartY = 0;
 
-  const iconPath = btnFullscreen.querySelector("path");
+  document.addEventListener("touchstart", e => {
+    touchStartX = e.changedTouches[0].clientX;
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
 
-  const iconExpand =
-    "M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z";
-  const iconCompress =
-    "M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z";
+  document.addEventListener("touchend", e => {
+    const modal = document.getElementById("galleryModal");
+    if (!modal || !modal.classList.contains("show")) return;
 
-  function updateIcon(state) {
-    if (iconPath)
-      iconPath.setAttribute("d", state ? iconCompress : iconExpand);
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
 
-    // 🔊 estado acessível
-    btnFullscreen.setAttribute("aria-pressed", state ? "true" : "false");
-    btnFullscreen.setAttribute(
-      "aria-label",
-      state ? "Sair da tela cheia" : "Ativar tela cheia"
-    );
-  }
-
-  btnFullscreen.addEventListener("click", () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen?.();
-      updateIcon(true);
-    } else {
-      document.exitFullscreen?.();
-      updateIcon(false);
+    // Só dispara se for um swipe horizontal significativo
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      if (dx < 0) goNext();
+      else goPrev();
     }
-  });
-
-  document.addEventListener("fullscreenchange", () =>
-    updateIcon(!!document.fullscreenElement)
-  );
-});
+  }, { passive: true });
+})();
