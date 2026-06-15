@@ -344,19 +344,12 @@ function updateGallery() {
     credit.textContent = item.credit || "";
   }
 
-  // Controle de visibilidade das setas
+  // Controle de visibilidade das setas — some na primeira e na última
   const leftArrow = document.querySelector("#galleryModal .nav-arrow.left");
   const rightArrow = document.querySelector("#galleryModal .nav-arrow.right");
 
-  if (leftArrow && rightArrow) {
-    if (totalImages <= 1) {
-      leftArrow.style.visibility = "hidden";
-      rightArrow.style.visibility = "hidden";
-    } else {
-      leftArrow.style.visibility = "visible";
-      rightArrow.style.visibility = "visible";
-    }
-  }
+  if (leftArrow)  leftArrow.style.visibility  = currentIndex === 0               ? "hidden" : "visible";
+  if (rightArrow) rightArrow.style.visibility = currentIndex === totalImages - 1 ? "hidden" : "visible";
 
   // Pré-carregamento em segundo plano
   preloadAdjacentImages(currentTheme, currentIndex);
@@ -367,15 +360,16 @@ function updateGallery() {
 // =========================================================
 function goPrev() {
   if (!currentTheme || !galleryData[currentTheme]) return;
-  const total = galleryData[currentTheme].images.length;
-  currentIndex = (currentIndex - 1 + total) % total;
+  if (currentIndex === 0) return;
+  currentIndex--;
   updateGallery();
 }
 
 function goNext() {
   if (!currentTheme || !galleryData[currentTheme]) return;
   const total = galleryData[currentTheme].images.length;
-  currentIndex = (currentIndex + 1) % total;
+  if (currentIndex === total - 1) return;
+  currentIndex++;
   updateGallery();
 }
 

@@ -290,7 +290,6 @@ main {
   top: -30px; 
   left: 50%;
   transform: translateX(-50%);
-  border: 1px solid red;
   width: 65%;
   text-align: center;
   background: #ececf0;
@@ -331,6 +330,9 @@ main {
   padding: 15px;
   text-align: center;
   border-radius: 0 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #galleryModal .card-description-wrapper p {
@@ -341,11 +343,16 @@ main {
 }
 
 #galleryModal .vertical-label {
-  position: absolute;
-  font-size: 0.8rem;
+  display: block;
+  font-size: 0.75rem;
   color: #3e2c55;
-  bottom: 1.6rem;
-  right: 1.6rem;
+  text-align: center;
+  margin-top: 0.6rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(62, 44, 85, 0.2);
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.4;
 }
 
 #galleryModal .nav-arrow {
@@ -604,7 +611,7 @@ main {
   }
   #galleryModal .card-description-wrapper {
     margin-top: 10px;
-    padding: 10px;
+    padding: 18px 10px;
     border-radius: 0 0 14px 14px;
   }
   #galleryModal .card-description-wrapper p {
@@ -623,8 +630,6 @@ main {
   }
   #galleryModal .vertical-label {
     font-size: 0.7rem;
-    bottom: 1rem;
-    right: 1rem;
   }
   
   /* --- AJUSTE: Menu Modal 30% Menor no iPhone SE Horizontal --- */
@@ -736,7 +741,7 @@ main {
   }
   #galleryModal .card-title { font-size: 1.8rem; }
   #galleryModal .card-description-wrapper p { font-size: 1.4rem; }
-  #galleryModal .vertical-label { font-size: 1.1rem; bottom: 60px; right: 40px; }
+  #galleryModal .vertical-label { font-size: 1.1rem; }
 
   #menuModal .modal-dialog { max-width: none; width: 100%; margin: 0; }
   #menuModal .modal-content { width: 100%; }
@@ -813,7 +818,7 @@ main {
   }
   #galleryModal .card-description-wrapper {
     margin-top: 10px;
-    padding: 10px;
+    padding: 18px 10px;
     border-radius: 0 0 16px 16px;
   }
   #galleryModal .card-description-wrapper p {
@@ -832,8 +837,6 @@ main {
   }
   #galleryModal .vertical-label {
     font-size: 0.8rem;
-    bottom: 1.2rem;
-    right: 1.2rem;
   }
 
   /* --- AJUSTE: Menu Modal Reduzido em escala para o A51 Horizontal --- */
@@ -1112,7 +1115,7 @@ main {
 
   #galleryModal .card-description-wrapper {
     margin-top: 12px;             
-    padding: 12px;                
+    padding: 20px 12px;                
     border-radius: 0 0 12px 12px; 
   }
 
@@ -1126,8 +1129,8 @@ main {
   }
   
   #galleryModal .nav-arrow img {
-    width: 55px;                   /* Reduzido de 70px para 55px */
-    height: 55px;                  
+    width: 45px;                   /* Reduzido de 70px para 55px */
+    height: 45px;                  
     max-width: none; 
   }
   
@@ -1145,8 +1148,6 @@ main {
 
   #galleryModal .vertical-label {
     font-size: 0.75rem;
-    bottom: 1.1rem;
-    right: 1.1rem;
   }
 }
 
@@ -1235,7 +1236,7 @@ main {
 
   #galleryModal .card-description-wrapper {
     margin-top: 14px;             
-    padding: 14px;                
+    padding: 22px 14px;                
     border-radius: 0 0 16px 16px; 
   }
 
@@ -1249,8 +1250,8 @@ main {
   }
   
   #galleryModal .nav-arrow img {
-    width: 70px;                   /* Ajustado de 85px para 70px */
-    height: 70px;                  /* Ajustado de 85px para 70px */
+    width: 60px;                   /* Ajustado de 85px para 70px */
+    height: 60px;                  /* Ajustado de 85px para 70px */
     max-width: none; 
   }
   
@@ -1268,8 +1269,6 @@ main {
 
   #galleryModal .vertical-label {
     font-size: 0.85rem;
-    bottom: 1.4rem;
-    right: 1.4rem;
   }
 }
 
@@ -1357,12 +1356,8 @@ main {
 
   #galleryModal .card-description-wrapper {
     margin-top: 17px;             
-    padding: 17px;                
+    padding: 27px 17px;                
     border-radius: 0 0 20px 20px; 
-  }
-
-  #galleryModal .card-description-wrapper p {
-    font-size: 1.5rem;             /* Parágrafo ajustado */
   }
 
   /* SETAS DE NAVEGAÇÃO (Dimensões mantidas conforme seu padrão de 1800px) */
@@ -1371,8 +1366,8 @@ main {
   }
   
   #galleryModal .nav-arrow img {
-    width: 85px;                  /* Mantido seus 100px */
-    height: 85px;                 /* Mantido seus 100px */
+    width: 75px;                  /* Mantido seus 100px */
+    height: 75px;                 /* Mantido seus 100px */
     max-width: none; 
   }
   
@@ -1389,10 +1384,12 @@ main {
     height: 75px;                  /* Mantido seus 75px */
   }
 
+  #galleryModal .card-description-wrapper p {
+    font-size: 1.5rem;             /* Parágrafo ajustado */
+  }
+
   #galleryModal .vertical-label {
     font-size: 1rem;
-    bottom: 1.6rem;
-    right: 1.6rem;
   }
 }
 
@@ -1463,7 +1460,7 @@ main {
 
   #galleryModal .card-description-wrapper {
     margin-top: 17px;             /* Reduzido 30% */
-    padding: 17px;                /* Reduzido 30% */
+    padding: 27px 17px;           /* Reduzido 30% */
     border-radius: 0 0 20px 20px; /* Reduzido 30% */
   }
 
@@ -1477,10 +1474,11 @@ main {
   }
 
   #galleryModal .nav-arrow img {
-    width: 100px;                 /* Tamanho de 110px preservado */
+    width: 10px;                 /* Tamanho de 110px preservado */
     height: 100px;                /* Tamanho de 110px preservado */
     max-width: none;             
-    border: none;                 
+    border: none;       
+             
   }
 
   #galleryModal .nav-arrow.left {
@@ -1505,9 +1503,7 @@ main {
   }
 
   #galleryModal .vertical-label {
-    font-size: 1rem;              /* Reduzido 30% */
-    bottom: 2rem;
-    right: 2rem;
+    font-size: 1rem; /* Reduzido 30% */
   }
 
 }
