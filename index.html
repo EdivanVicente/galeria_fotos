@@ -88,14 +88,16 @@
     </div> 
 
     <!-- Modal Menu / Créditos -->
+    <!-- ESTRUTURA DO MODAL: igual ao modelo de referência (custom-popup-dialog sem modal-xl / modal-dialog-centered) -->
     <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="menuModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered custom-popup-dialog">
+        <div class="modal-dialog custom-popup-dialog">
+
             <div class="modal-content custom-popup-content">
-                <button type="button" class="btn-close-custom-styled" data-bs-dismiss="modal" aria-label="Close">
-                    <img src="./assets/icone_fechar.svg" alt="Fechar" />
-                </button>
                 <div class="modal-body popup-body">
                     <div class="popup-row">
+                        <button type="button" class="btn-close-custom-styled" data-bs-dismiss="modal" aria-label="Close">
+                            <img src="./assets/icone_fechar.svg" alt="Fechar" />
+                        </button>
                         <!-- COLUNA 1: CRÉDITOS -->
                         <div class="box-wrapper box-wrapper-creditos">
                             <h5 class="custom-popup-title">CRÉDITOS</h5>
@@ -133,75 +135,75 @@
         </div> <!-- .modal-dialog -->
     </div> <!-- #menuModal -->
 
-   <!-- MODAL GALERIA -->
-<!-- MODAL GALERIA -->
-<div class="modal fade"
-     id="galleryModal"
-     tabindex="-1"
-     role="dialog"
-     aria-modal="true"
-     aria-labelledby="galleryTitle">
+    <!-- MODAL GALERIA -->
+    <div class="modal fade"
+         id="galleryModal"
+         tabindex="-1"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="galleryTitle">
 
-    <div class="modal-dialog modal-fullscreen">
-        <div class="modal-content">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
 
-            <div class="gallery-frame">
+                <div class="gallery-frame">
 
-                <!-- BOTÃO FECHAR -->
-                <button class="close-btn"
-                        data-bs-dismiss="modal"
-                        aria-label="Fechar galeria">
-                    <img src="./assets/icone_fechar.svg" alt="Fechar">
-                </button>
-
-                <!-- TÍTULO -->
-                <div class="card-title-wrapper">
-                    <span class="card-title" id="galleryTitle"></span>
-                </div>
-
-                <!-- ÁREA DA IMAGEM -->
-                <div class="gallery-stage">
-
-                    <!-- SETA ESQUERDA -->
-                    <button type="button"
-                            class="nav-arrow left"
-                            aria-label="Imagem anterior">
-                        <img src="./assets/icone_anterior.svg"
-                             alt="Anterior">
+                    <!-- BOTÃO FECHAR -->
+                    <button class="close-btn"
+                            data-bs-dismiss="modal"
+                            aria-label="Fechar galeria">
+                        <img src="./assets/icone_fechar.svg" alt="Fechar">
                     </button>
 
-                    <!-- IMAGEM -->
-                    <div class="image-wrapper">
-                        <img id="galleryImage"
-                             alt=""
-                             loading="lazy">
+                    <!-- TÍTULO -->
+                    <div class="card-title-wrapper">
+                        <span class="card-title" id="galleryTitle"></span>
                     </div>
 
-                    <!-- SETA DIREITA -->
-                    <button type="button"
-                            class="nav-arrow right"
-                            aria-label="Próxima imagem">
-                        <img src="./assets/icone_prox.svg"
-                             alt="Próximo">
-                    </button>
+                    <!-- ÁREA DA IMAGEM -->
+                    <div class="gallery-stage">
 
-                </div>
+                        <!-- SETA ESQUERDA -->
+                        <button type="button"
+                                class="nav-arrow left"
+                                aria-label="Imagem anterior">
+                            <img src="./assets/icone_anterior.svg"
+                                 alt="Anterior">
+                        </button>
 
-                <!-- DESCRIÇÃO + CRÉDITO -->
-                <div class="card-description-wrapper">
-                    <p id="galleryCaption"
-                       aria-live="polite"></p>
-                    <div class="vertical-label"
-                         id="galleryCredit"
-                         aria-live="polite"></div>
+                        <!-- IMAGEM -->
+                        <div class="image-wrapper">
+                            <img id="galleryImage"
+                                 alt=""
+                                 loading="lazy">
+                        </div>
+
+                        <!-- SETA DIREITA -->
+                        <button type="button"
+                                class="nav-arrow right"
+                                aria-label="Próxima imagem">
+                            <img src="./assets/icone_prox.svg"
+                                 alt="Próximo">
+                        </button>
+
+                    </div>
+
+                    <!-- DESCRIÇÃO + CRÉDITO -->
+                    <div class="card-description-wrapper">
+                        <p id="galleryCaption"
+                           aria-live="polite"></p>
+                        <div class="vertical-label"
+                             id="galleryCredit"
+                             aria-live="polite"></div>
+                    </div>
+
                 </div>
 
             </div>
-
         </div>
+
     </div>
 
-</div>
     <img src="./assets/img_logo.png" alt="Logotipo" class="open-word-logo-global" onerror="this.style.display='none'"/>
 
     <script src="js/bootstrap.bundle.min.js"></script>

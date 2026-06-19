@@ -27,7 +27,7 @@ html {
   min-height: 100%;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
-  display: flex;         
+  display: flex;
   flex-direction: column;
 }
 
@@ -35,7 +35,7 @@ body {
   margin: 0;
   min-height: 100vh;
   width: 100%;
-  display: flex;         
+  display: flex;
   flex-direction: column;
   font-family: var(--font-primary);
   font-size: 1.6rem;
@@ -62,7 +62,7 @@ button {
 }
 
 .btn-fullscreen {
-  display: none; /* Oculto por padrão no mobile */
+  display: none;
   position: fixed;
   top: 1.2rem;
   right: 1.6rem;
@@ -94,13 +94,13 @@ button {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.6rem;
-  display: flex;         
+  display: flex;
   flex-direction: column;
 }
 
 main {
   flex: 1;
-  display: flex;         
+  display: flex;
   flex-direction: column;
   padding-bottom: 3rem;
 }
@@ -117,13 +117,13 @@ main {
   background: linear-gradient(
     to right,
     #8045dd 0%,
-    #8045dd 75%,
-    rgba(128, 69, 221, 0.85) 85%,
-    rgba(128, 69, 221, 0.4) 93%,
+    #8045dd 60%,
+    rgba(128, 69, 221, 0.75) 78%,
+    rgba(128, 69, 221, 0.3) 90%,
     rgba(128, 69, 221, 0) 100%
   );
   box-shadow: var(--shadow-sm);
-  border-radius: 1.2rem 0 0 1.2rem;
+  border-radius: 0 0 0 0;
   padding-left: 1.6rem;
   position: relative;
   z-index: 10;
@@ -141,7 +141,7 @@ main {
 .main-title {
   font-size: clamp(1.8rem, 4vw, 2.2rem);
   color: white;
-  text-shadow: 0.2rem 0.2rem 0 #00008b, 
+  text-shadow: 0.2rem 0.2rem 0 #00008b,
                0.3rem 0.3rem 0 #00008b,
                0.4rem 0.4rem 0.2rem rgba(0, 0, 139, 0.6);
   margin: 0;
@@ -159,41 +159,32 @@ main {
 /* ==========================================================================
    5. COMPONENTE: CARDS DE CATEGORIA (BASE MOBILE)
    ========================================================================== */
-
 .category-card {
-  /* Defina o tamanho exato em pixels ou unidades relativas */
-  width: 22rem;    /* Largura fixa que você deseja */
-  height: 21rem;   /* Altura fixa (aqui você controla o quanto ele é "esticado") */
-  
+  width: 22rem;
+  height: 22rem;
   position: relative;
   cursor: pointer;
   border-radius: 1.2rem;
   border: 0.3rem solid #fff;
   background: #111;
-  overflow: visible; 
+  overflow: visible;
   transition: transform 0.25s ease;
-  
-  /* Sombra para profundidade */
-  box-shadow: 
-    0 0.4rem 1.5rem rgba(0, 0, 0, 0.5), 
+  box-shadow:
+    0 0.4rem 1.5rem rgba(0, 0, 0, 0.5),
     inset 0 0 1.5rem rgba(0, 0, 0, 0.4);
 }
 
 .category-grid-item {
   width: 100%;
-  max-width: 24rem; /* Largura que definimos anteriormente */
-  
-  /* Aqui está a distância de 15px (1.5rem) no topo e embaixo */
+  max-width: 24rem;
   margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  
+  margin-bottom: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; /* Importante para manter o 'cinto' ancorado no card */
+  position: relative;
 }
 
-/* A imagem dentro do card */
 .category-card img {
   width: 100%;
   height: 100%;
@@ -202,12 +193,11 @@ main {
   border-radius: 0.9rem;
 }
 
-/* Adiciona um efeito de brilho em degradê por cima da foto (como se fosse um vidro protetor) */
 .category-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.15) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.15) 100%);
   pointer-events: none;
   z-index: 2;
 }
@@ -215,40 +205,38 @@ main {
 @media (hover: hover) {
   .category-card:hover {
     transform: translateY(-0.4rem) scale(1.04);
-    /* No hover, a moldura acende levemente com um brilho suave e a sombra externa aumenta */
     border-color: #fff;
-    box-shadow: 
-      0 0.8rem 2.5rem rgba(128, 69, 221, 0.4), /* Brilho sutil na cor primária arroxeada */
+    box-shadow:
+      0 0.8rem 2.5rem rgba(128, 69, 221, 0.4),
       inset 0 0 1rem rgba(128, 69, 221, 0.4);
   }
 }
+
 .category-title {
-  position: absolute; 
+  position: absolute;
   left: 50%;
-  bottom: -2.5rem; /* Ajuste este valor se quiser subir ou descer mais o título */
-  transform: translateX(-50%); 
-  
-  /* --- ESTILO COM A COR ROXA ORIGINAL --- */
-  background: var(--color-primary); /* Retomando a cor roxa definida no seu :root */
+  bottom: -3rem;
+  transform: translateX(-50%);
+  background: var(--color-primary);
   border: 0.2rem solid #fff;
   color: #fff;
-  padding: 0.6rem 2rem;
+  padding: 0.7rem 1.8rem;
   border-radius: 0.8rem;
-  
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   text-transform: uppercase;
   font-weight: bold;
-  white-space: nowrap; 
-  z-index: 10; 
- 
-  
-  /* Sombra leve para destacar o roxo sobre a foto */
+  white-space: nowrap;
+  z-index: 10;
   box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.4);
 }
 
 .category-title.long-title {
-  width: 80%;
+  width: 85%;
   font-size: 1.4rem;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.2;
+  bottom: -3.8rem;
 }
 
 /* ==========================================================================
@@ -265,7 +253,7 @@ main {
 
 #galleryModal .gallery-frame {
   position: relative;
-  width: min(450px, 85vw); /* Dimensões otimizadas para mobile */
+  width: min(450px, 85vw);
   min-height: 380px;
   margin: auto;
   background: linear-gradient(145deg, #e6e6ea, #b8b8c2);
@@ -287,7 +275,7 @@ main {
 
 #galleryModal .card-title-wrapper {
   position: absolute;
-  top: -30px; 
+  top: -30px;
   left: 50%;
   transform: translateX(-50%);
   width: 65%;
@@ -299,25 +287,25 @@ main {
 
 #galleryModal .card-title {
   color: #7d4ed6;
-  font-size: 1.2rem; /* Tamanho mobile */
+  font-size: 1.2rem;
   font-weight: 500;
   text-transform: uppercase;
 }
 
 #galleryModal .image-wrapper {
   width: 100%;
-  max-width: 574px; 
+  max-width: 574px;
   background: linear-gradient(145deg, #ffffff, #9fa1a8);
   padding: 10px;
-  border-radius: 20px; 
+  border-radius: 20px;
   box-shadow: inset 0 0 0 2px rgba(255,255,255,.6);
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 #galleryModal .image-wrapper img {
   width: 100%;
   display: block;
-  border-radius: 20px; 
+  border-radius: 20px;
   object-fit: contain;
   margin: 0 auto;
 }
@@ -325,7 +313,7 @@ main {
 #galleryModal .card-description-wrapper {
   margin-top: 14px;
   width: 100%;
-  max-width: 574px; 
+  max-width: 574px;
   background: #ececef;
   padding: 15px;
   text-align: center;
@@ -339,7 +327,7 @@ main {
   margin: 0;
   color: #3e2c55;
   font-weight: 500;
-  font-size: 1.2rem; /* Tamanho mobile */
+  font-size: 1.2rem;
 }
 
 #galleryModal .vertical-label {
@@ -359,11 +347,11 @@ main {
   position: absolute;
   top: 0;
   bottom: 0;
-  height: 100%; 
+  height: 100%;
   width: 50px;
   z-index: 50;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
 }
 
@@ -384,7 +372,7 @@ main {
 }
 
 /* ==========================================================================
-   7. COMPONENTE: #menuModal (BASE MOBILE)
+   7. COMPONENTE: #menuModal (BASE MOBILE / PORTRAIT)
    ========================================================================== */
 #menuModal {
   position: fixed;
@@ -408,13 +396,17 @@ main {
   background: transparent;
   border: none;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 #menuModal .custom-popup-content {
   width: 100%;
   max-width: 85rem;
   padding: 2.4rem;
-  padding-top: 18rem;              
+  padding-top: 18rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -423,11 +415,12 @@ main {
 .popup-row {
   display: flex;
   flex-direction: column;
-  gap: 4rem;                     
+  gap: 4rem;
+  position: relative;
 }
 
 .box-wrapper {
-  position: relative;            
+  position: relative;
 }
 
 .custom-popup-title,
@@ -438,7 +431,8 @@ main {
   width: 13rem;
   padding: 0.6rem 1rem;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.5px;
   text-align: center;
   color: #fff;
   background-color: #8a2be2;
@@ -446,6 +440,7 @@ main {
   border-bottom: none;
   border-radius: 1.5rem 1.5rem 0 0;
   z-index: 2;
+  white-space: nowrap;
 }
 
 .custom-popup-title-utilizar {
@@ -453,17 +448,16 @@ main {
 }
 
 .popup-caixa {
-  margin-top: 2.8rem;            
+  margin-top: 2.8rem;
   padding: 1.2rem;
-  background-color: #f2befa;
-  color: #6d3ba9;
+  background-color: rgba(255, 230, 255, 0.82);
+  color: #663399;
   border: 0.3rem solid #fff;
   border-top: none;
   border-radius: 0 1.5rem 1.5rem 1.5rem;
   font-size: 0.9rem;
   max-height: 50rem;
   overflow-y: auto;
-  opacity: 0.9;
   position: relative;
 }
 
@@ -474,7 +468,7 @@ main {
   right: 0;
   height: 0;
   border-top: 0.3rem solid #fff;
-  width: calc(100% - 12.4rem);      
+  width: calc(100% - 12.4rem);
 }
 
 #menuModal .btn-close-custom-styled {
@@ -489,6 +483,180 @@ main {
   height: 3.2rem;
 }
 
+.popup-item {
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+
+.popup-item.direitos-autorais {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.creditos-texto-formatado {
+  margin-bottom: 1.4rem;
+  line-height: 1.5;
+}
+
+.creditos-texto-formatado strong {
+  display: block;
+  font-size: 0.85em;
+  margin-bottom: 0.1rem;
+}
+
+.popup-subtitle {
+  font-weight: 700;
+  margin-top: 0.8rem;
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  font-size: 0.85em;
+}
+
+/* ==========================================================================
+   7B. LANDSCAPE PANEL — painel centralizado com borda branca (todas as telas landscape)
+   ========================================================================== */
+@media (orientation: landscape) and (min-width: 568px) {
+
+  #menuModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+
+  /* Painel principal: borda branca, cantos arredondados, fundo nebulosa */
+  #menuModal .custom-popup-content {
+    width: clamp(38rem, 46vw, 82rem);
+    max-width: none;
+    padding: 2.2rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.45rem solid #fff;
+    border-radius: 2.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 88svh;
+    overflow: hidden;
+  }
+
+  /* Linha das colunas */
+  .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.8rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Créditos: coluna maior (flex 1.5) */
+  .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Como utilizar: coluna menor (flex 1) */
+  .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Aba título estilo etiqueta encaixada */
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.4rem 1.4rem;
+    font-size: clamp(0.85rem, 1.1vw, 1.4rem);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.3rem solid #fff;
+    border-bottom: none;
+    border-radius: 1.5rem 1.5rem 0 0;
+    z-index: 2;
+    height: auto;
+  }
+
+  /* Caixa conteúdo */
+  .popup-caixa {
+    margin-top: 2.4rem;
+    padding: 1rem 1.4rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.3rem solid #fff;
+    border-top: none;
+    border-radius: 0 1.5rem 1.5rem 1.5rem;
+    font-size: clamp(0.75rem, 0.9vw, 1.15rem);
+    line-height: 1.5;
+    overflow-y: auto;
+    max-height: calc(88svh - 7rem);
+    position: relative;
+    flex: 1;
+  }
+
+  /* Linha branca que completa a borda superior */
+  .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.3rem solid #fff;
+  }
+  .popup-caixa-creditos::before  { width: calc(100% - 8rem); }
+  .popup-caixa-utilizar::before  { width: calc(100% - 13.5rem); }
+
+  /* Botão fechar: sobreposto no canto superior direito do PAINEL */
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -2.2rem;
+    right: -2.2rem;
+    z-index: 1200;
+    width: auto;
+    height: auto;
+  }
+
+  #menuModal .btn-close-custom-styled img {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  .creditos-texto-formatado { margin-bottom: 1.2rem; }
+  .popup-item { margin-bottom: 0.4rem; }
+}
+
 /* ==========================================================================
    8. MEDIA QUERIES: SMARTPHONES PORTRAIT LIGEIRAMENTE MAIORES (MIN-WIDTH: 376px)
    ========================================================================== */
@@ -499,17 +667,14 @@ main {
 }
 
 /* ==========================================================================
-   9. LAYOUT LANDSCAPE — BASE IPHONE SE (568px) → REPLICA PARA TODOS OS LANDSCAPES E DESKTOPS
-   Estratégia mobile-first: este bloco define a estrutura de duas linhas
-   (4 cards + 3 cards centralizados) que serve de fundação para todos os
-   breakpoints landscape e desktop acima dele.
+   9. LAYOUT LANDSCAPE — BASE IPHONE SE (568px)
+   iPhone SE landscape está correto e não é alterado.
    ========================================================================== */
 
-/* --- 9.1: iPhone SE landscape (568px) e qualquer landscape a partir daqui --- */
-@media (min-width: 568px) and (orientation: landscape) {
+/* --- 9.1: iPhone SE landscape (568px apenas, até 767px) — NÃO ALTERAR --- */
+@media (min-width: 568px) and (max-width: 767.98px) and (orientation: landscape) {
 
-  /* ESTRUTURA GERAL DAS LINHAS */
-  main {
+  .container main {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -517,31 +682,28 @@ main {
     padding: 0 2vw 0;
   }
 
-  /* LINHA 1: 4 cards em linha única */
-  .gallery-row-first {
-    display: flex !important;
+  .container main .gallery-row-first {
+    display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     gap: 2vw;
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
   }
 
-  /* LINHA 2: 3 cards centralizados */
-  .gallery-row-second {
-    display: flex !important;
+  .container main .gallery-row-second {
+    display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     gap: 2vw;
-    margin-top: 3vh !important;
+    margin-top: 3vh;
   }
 
-  /* Tamanho base do card: vw/vh para proporcionalidade uniforme */
-  .category-grid-item {
+  .container main .category-grid-item {
     flex: 0 0 auto;
     width: auto;
-    max-width: 20vw;
+    max-width: 14rem;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -552,8 +714,8 @@ main {
   }
 
   .category-title {
-    font-size: clamp(0.55rem, 1.4vw, 1rem);
-    bottom: -2rem;
+    font-size: 1.3rem;
+    bottom: -2.2rem;
     padding: 0.3rem 0.6rem;
     border-radius: 0.5rem;
     width: 90%;
@@ -563,180 +725,182 @@ main {
   }
 
   .category-title.long-title {
-    font-size: clamp(0.5rem, 1.2vw, 0.9rem);
-    bottom: -2.4rem;
-  }
-}
-
-/* --- 9.2 RETROCOMPATIBILIDADE: Mantém o bloco original (até 767px) --- */
-@media (min-width: 568px) and (max-width: 767.98px) and (orientation: landscape) {
-  .category-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.6rem;
-  }
-  .category-grid-item {
-    max-width: 14rem;
-  }
-  .category-title {
-    font-size: 1.3rem;   
-    bottom: -2.2rem;
-  } 
-  .category-title.long-title {
-    font-size: 1rem;    
+    font-size: 1rem;
     bottom: -2.2rem;
   }
 
-  /* --- AJUSTE: Gallery Modal 30% Menor no iPhone SE Horizontal --- */
+  /* Gallery Modal iPhone SE landscape */
   #galleryModal .gallery-frame {
-    width: min(315px, 80vw);   
-    min-height: 266px;         
-    padding: 32px 15px 12px;   
+    width: min(315px, 80vw);
+    min-height: 266px;
+    padding: 32px 15px 12px;
   }
   #galleryModal .image-wrapper {
-    max-height: 45vh;          
+    max-height: 45vh;
     border-radius: 14px;
   }
-  #galleryModal .image-wrapper img {
-    border-radius: 14px;
-  }
-  #galleryModal .card-title-wrapper {
-    top: -20px;                
-    padding: 4px;
-    width: 55%;
-  }
-  #galleryModal .card-title {
-    font-size: 1rem;           
-  }
-  #galleryModal .card-description-wrapper {
-    margin-top: 10px;
-    padding: 18px 10px;
-    border-radius: 0 0 14px 14px;
-  }
-  #galleryModal .card-description-wrapper p {
-    font-size: 1rem;           
-  }
-  #galleryModal .nav-arrow img {
-    width: 38px;               
-    height: 38px;
-  }
+  #galleryModal .image-wrapper img { border-radius: 14px; }
+  #galleryModal .card-title-wrapper { top: -20px; padding: 4px; width: 55%; }
+  #galleryModal .card-title { font-size: 1rem; }
+  #galleryModal .card-description-wrapper { margin-top: 10px; padding: 18px 10px; border-radius: 0 0 14px 14px; }
+  #galleryModal .card-description-wrapper p { font-size: 1rem; }
+  #galleryModal .nav-arrow img { width: 38px; height: 38px; }
   #galleryModal .nav-arrow.left { left: -100px; top: 20px; }
   #galleryModal .nav-arrow.right { right: -100px; top: 20px; }
   #galleryModal .close-btn { top: -16px; right: -17px; }
-  #galleryModal .close-btn img {
-    width: 35px;               
-    height: 35px;
-  }
-  #galleryModal .vertical-label {
-    font-size: 0.7rem;
-  }
-  
-  /* --- AJUSTE: Menu Modal 30% Menor no iPhone SE Horizontal --- */
+  #galleryModal .close-btn img { width: 35px; height: 35px; }
+  #galleryModal .vertical-label { font-size: 0.7rem; }
+
+  /* Menu Modal iPhone SE landscape — segue estrutura do bloco 7B */
   #menuModal { overflow: hidden; }
-  #menuModal .custom-popup-content {
-    width: min(95svw, 85rem);
-    min-height: 90svh;
-    margin: 1rem auto;
-    padding: 1.5rem;
-    padding-top: 3rem;
+  #menuModal .modal-dialog {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: scale(0.7);      
-    transform-origin: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+  #menuModal .custom-popup-content {
+    width: 90svw;
+    max-width: none;
+    padding: 1.8rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.35rem solid #fff;
+    border-radius: 1.8rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 86svh;
+    overflow: hidden;
+    transform: none;
+    min-height: unset;
+    margin: 0;
   }
   .popup-row {
     display: flex;
     flex-direction: row;
-    gap: 1.5rem;
-    width: 96%;             
-    margin: -2rem auto 0;
-    margin-left: clamp(4rem, 15vw, 24rem);
-    padding: 2rem;  
-    background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.5rem solid #fff;
-    border-radius: 1rem;
+    gap: 1.2rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
   }
-  .box-wrapper-creditos, .box-wrapper-utilizar {
+  .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .box-wrapper-utilizar {
     flex: 1;
     min-width: 0;
-    padding: 1rem;
-    max-height: calc(90svh - 8rem);
-    overflow: hidden;   
     position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
   }
-  .box-wrapper-utilizar { margin-left: 1.5rem; }
   .custom-popup-title, .custom-popup-title-utilizar {
     position: absolute;
-    top: 1.6rem;
-    left: 1rem;
+    top: 0;
+    left: 0;
     width: auto;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-align: center;
+    white-space: nowrap;
+    padding: 0.3rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
     color: #fff;
     background-color: #8a2be2;
-    border: 0.3rem solid #fff;
+    border: 0.25rem solid #fff;
     border-bottom: none;
-    border-radius: 1.5rem 1.5rem 0 0;
+    border-radius: 1rem 1rem 0 0;
     z-index: 2;
   }
-  .popup-caixa::before { width: calc(100% - 7rem); }
-  .popup-caixa-utilizar::before { width: calc(100% - 8.4rem); }
   .popup-caixa {
-    margin-top: 3.2rem;
-    padding: 1.2rem;
-    background-color: #f2befa;
-    color: #6d3ba9;
-    border: 0.3rem solid #fff;
+    margin-top: 2.2rem;
+    padding: 0.8rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.25rem solid #fff;
     border-top: none;
-    border-radius: 0 1.5rem 1.5rem 1.5rem;
-    font-size: 1rem;
+    border-radius: 0 1rem 1rem 1rem;
+    font-size: 0.72rem;
     line-height: 1.4;
-    max-height: calc(90svh - 12rem);
-    overflow-y: auto;   
+    overflow-y: auto;
+    max-height: calc(86svh - 7rem);
+    position: relative;
+    flex: 1;
   }
+  .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    height: 0;
+    border-top: 0.25rem solid #fff;
+  }
+  .popup-caixa-creditos::before  { width: calc(100% - 5.5rem); }
+  .popup-caixa-utilizar::before  { width: calc(100% - 9rem); }
   #menuModal .btn-close-custom-styled {
-    top: 0;
-    right: -7rem;
-    width: 3rem;
-    height: 3rem;
+    position: absolute;
+    top: -1.6rem;
+    right: -1.6rem;
+    z-index: 1200;
   }
-  #menuModal .btn-close-custom-styled img {
-    width: 5rem;
-    height: 5rem;
-  }
+  #menuModal .btn-close-custom-styled img { width: 3.8rem; height: 3.8rem; }
 }
 
 /* ==========================================================================
    10. MEDIA QUERIES: ECRÃS MÉDIOS / BASE GERAL TABLETS PORTRAIT (DE 768px EM DIANTE)
+   Aplica apenas em portrait (sem landscape override aqui)
    ========================================================================== */
 @media (min-width: 768px) {
-  .header-container { width: 60rem; height: 7rem; margin-left: 2.4rem; }
-  .main-title { font-size: 3.2rem; }
-  .btn-menu img { width: 4.2rem; height: 4.2rem; }
-  
+  .header-container {
+    width: 100%;
+    max-width: 100%;
+    height: 8rem;
+    margin-left: 0;
+    margin-top: 0;
+    border-radius: 0;
+  }
+  .main-title { font-size: 3.8rem; }
+  .btn-menu img { width: 4.8rem; height: 4.8rem; }
+
   .category-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.6rem;
     max-width: 88rem;
     padding: 4rem 4rem 0 4rem;
   }
-  .category-grid-item { max-width: 30rem; }
-  .category-title { font-size: 2.7rem; width: 85%; }
-  .category-title.long-title { font-size: 2.2rem; width: 85%; }
-  
+  .container main .category-grid-item { max-width: 32rem; }
+
+  /* iPad portrait: etiquetas grandes e proporcionais como na imagem */
+  .category-title { font-size: 1.8rem; width: 85%; white-space: normal; text-align: center; line-height: 1.2; padding: 0.7rem 1.8rem; bottom: -3rem; }
+  .category-title.long-title { font-size: 1.6rem; width: 85%; bottom: -3.8rem; }
+
   .gallery-row-second .category-grid-item:nth-child(3) {
     grid-column: 1 / -1;
     justify-self: center;
   }
 
   #galleryModal .gallery-frame {
-    width: min(700px, 63vw); 
-    min-height: 490px; 
+    width: min(700px, 63vw);
+    min-height: 490px;
     padding: 55px 30px 20px;
   }
   #galleryModal .card-title { font-size: 1.8rem; }
@@ -745,37 +909,14 @@ main {
 
   #menuModal .modal-dialog { max-width: none; width: 100%; margin: 0; }
   #menuModal .modal-content { width: 100%; }
-  #menuModal .custom-popup-content { width: min(95svw, 120rem); max-width: none; padding-top: 9rem; margin: 0 auto; }
-  #menuModal .popup-row { width: 100%; max-width: none; margin: 0 auto; }
-  #menuModal .box-wrapper-creditos, #menuModal .box-wrapper-utilizar { width: 100%; max-width: 96rem; margin: 0 auto; }
-  #menuModal .box-wrapper-creditos { max-width: 120rem; }
-  
-  .custom-popup-title, 
-  .custom-popup-title-utilizar {
-    position: absolute;
-    top: -0.5rem;
-    left: 0;
-    height: 5.5rem;
-    font-size: 2.7rem;
-    padding-top: 1rem;
-    border-radius: 1.5rem 1.5rem 0 0;
-  }
-  .custom-popup-title { width: 18rem; }
-  .custom-popup-title-utilizar { width: 25.8rem; }
-  
-  .popup-caixa { margin-top: 5rem; font-size: 1.6rem; text-align: center; }
-  .popup-caixa-creditos::before { width: calc(100% - 17.5rem); }
-  .popup-caixa-utilizar::before { width: calc(100% - 25.2rem); }
-  
-  #menuModal .btn-close-custom-styled { top: 9rem; right: -4rem; width: 9.2rem; height: 11.2rem; }
 }
 
 /* ==========================================================================
-   11. MEDIA QUERIES: AJUSTE MANUAL EXCLUSIVO - IPAD VERTICAL (768px ATÉ 1024px PORTRAIT)
+   11. IPAD VERTICAL (768px ATÉ 1024px PORTRAIT)
    ========================================================================== */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  /* Layout portrait: mantém o grid de 2 colunas herdado do bloco 768px.
-     Apenas ajustes de modal abaixo. */
+  .category-title { font-size: 1.8rem; width: 82%; white-space: normal; text-align: center; line-height: 1.2; padding: 0.7rem 1.6rem; bottom: -3rem; }
+  .category-title.long-title { font-size: 1.5rem; width: 86%; bottom: -3.8rem; }
 
   #galleryModal .nav-arrow img { width: 58px; height: 58px; }
   #galleryModal .nav-arrow.left { left: -100px; top: 20px; }
@@ -784,613 +925,410 @@ main {
   #galleryModal .close-btn img { width: 50px; height: 50px; }
 }
 
-
 /* ==========================================================================
-   12. MEDIA QUERIES: SMARTPHONES GRANDES LANDSCAPE / GALAXY A51 (812px ATÉ 991px)
+   12. LANDSCAPE GERAL: GALAXY A51 E SIMILARES (812px ATÉ 991px landscape)
+   Layout igual à foto de referência: 4+3, sem scroll, header 20px esquerda
    ========================================================================== */
 @media (min-width: 812px) and (max-width: 991.98px) and (orientation: landscape) {
-  /* Cards em vw/vh — mesma proporção visual que o iPhone SE landscape */
-  .category-grid-item { flex: 0 0 auto; width: auto; max-width: 20vw; }
-  .category-card { width: 18vw; height: 30vh; }
-  .category-title { font-size: clamp(0.55rem, 1.4vw, 1rem); bottom: -2rem; width: 90%; white-space: normal; text-align: center; line-height: 1.1; }
-  .category-title.long-title { font-size: clamp(0.5rem, 1.2vw, 0.9rem); bottom: -2.4rem; }
 
-  /* --- AJUSTE: Gallery Modal Otimizado para a Altura do A51 (412px) --- */
+  /* Header: da borda esquerda, wide como na imagem */
+  .header-container {
+    width: 100%;
+    max-width: 100%;
+    height: 6rem;
+    margin-left: 0;
+    margin-top: 0.8rem;
+    border-radius: 0;
+  }
+  .main-title { font-size: 2.6rem; }
+  .btn-menu img { width: 3.8rem; height: 3.8rem; }
+
+  /* Estrutura sem scroll: tudo cabe na viewport */
+  body { overflow: hidden; }
+
+  .container main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1vw;
+    height: calc(100vh - 7rem);
+    overflow: hidden;
+  }
+
+  .container main .gallery-row-first {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .container main .gallery-row-second {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    margin-top: 5vh;
+  }
+
+  .container main .category-grid-item {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Cards mais quadrados e proporcionais como na imagem */
+  .category-card { width: 19vw; height: 32vh; }
+
+  .category-title {
+    font-size: clamp(0.7rem, 1.6vw, 1.1rem);
+    bottom: -2.4rem;
+    width: 90%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.6rem;
+  }
+  .category-title.long-title { font-size: clamp(0.65rem, 1.4vw, 1rem); bottom: -3rem; }
+
+  /* Gallery Modal */
   #galleryModal .gallery-frame {
-    width: min(360px, 80vw);   
-    min-height: 290px;         
-    padding: 35px 15px 12px;   
+    width: min(360px, 80vw);
+    min-height: 290px;
+    padding: 35px 15px 12px;
   }
-  #galleryModal .image-wrapper { 
-    max-height: 50vh;          
-    border-radius: 16px;
-  }
-  #galleryModal .image-wrapper img {
-    border-radius: 16px;
-  }
-  #galleryModal .card-title-wrapper {
-    top: -20px;
-    padding: 5px;
-    width: 50%;
-  }
-  #galleryModal .card-title {
-    font-size: 1.1rem;
-  }
-  #galleryModal .card-description-wrapper {
-    margin-top: 10px;
-    padding: 18px 10px;
-    border-radius: 0 0 16px 16px;
-  }
-  #galleryModal .card-description-wrapper p {
-    font-size: 1.1rem;
-  }
-  #galleryModal .nav-arrow img {
-    width: 42px;
-    height: 42px;
-  }
+  #galleryModal .image-wrapper { max-height: 50vh; border-radius: 16px; }
+  #galleryModal .image-wrapper img { border-radius: 16px; }
+  #galleryModal .card-title-wrapper { top: -20px; padding: 5px; width: 50%; }
+  #galleryModal .card-title { font-size: 1.1rem; }
+  #galleryModal .card-description-wrapper { margin-top: 10px; padding: 18px 10px; border-radius: 0 0 16px 16px; }
+  #galleryModal .card-description-wrapper p { font-size: 1.1rem; }
+  #galleryModal .nav-arrow img { width: 42px; height: 42px; }
   #galleryModal .nav-arrow.left { left: -100px; top: 20px; }
   #galleryModal .nav-arrow.right { right: -100px; top: 20px; }
   #galleryModal .close-btn { top: -14px; right: -12px; }
-  #galleryModal .close-btn img {
-    width: 35px;
-    height: 35px;
-  }
-  #galleryModal .vertical-label {
-    font-size: 0.8rem;
-  }
+  #galleryModal .close-btn img { width: 35px; height: 35px; }
+  #galleryModal .vertical-label { font-size: 0.8rem; }
 
-  /* --- AJUSTE: Menu Modal Reduzido em escala para o A51 Horizontal --- */
+  /* Menu Modal — herdado do bloco 7B, ajuste apenas overflow */
   #menuModal { overflow: hidden; }
-  #menuModal .custom-popup-content {
-    width: min(95svw, 85rem);
-    min-height: 90svh;
-    margin: 1rem auto;
-    padding: 1.5rem 1.5rem 1.5rem 3rem;
+}
+
+/* ==========================================================================
+   13. IPAD LANDSCAPE (992px ATÉ 1199px landscape)
+   Layout 4+3, sem scroll, header 20px esquerda, créditos igual à foto
+   ========================================================================== */
+@media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
+
+  /* Header: da borda esquerda, wide como na imagem */
+  .header-container {
+    width: 100%;
+    max-width: 100%;
+    height: 6.5rem;
+    margin-left: 0;
+    margin-top: 0.8rem;
+    border-radius: 0;
+  }
+  .main-title { font-size: 2.8rem; }
+  .btn-menu img { width: 4.2rem; height: 4.2rem; }
+
+  /* Sem scroll: tudo visível */
+  body { overflow: hidden; }
+
+  .container main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: scale(0.78);     
-    transform-origin: center;
+    padding: 0 1vw;
+    height: calc(100vh - 8rem);
+    overflow: hidden;
   }
-  .popup-row {
+
+  .container main .gallery-row-first {
     display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
-    width: 96%;              
-    margin: -2rem auto 0;
-    padding: 2rem;           
-    background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.5rem solid #fff;
-    border-radius: 1rem;
-    transform: translateX(4rem); 
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    margin-bottom: 0;
+    margin-top: 0;
   }
-  .box-wrapper-creditos, .box-wrapper-utilizar {
-    flex: 1;
-    min-width: 0;
-    padding: 1rem;
-    max-height: calc(90svh - 8rem);
-    overflow: hidden;   
-    position: relative;
+
+  .container main .gallery-row-second {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    margin-top: 5vh;
   }
-  .box-wrapper-utilizar { margin-left: 1.5rem; }
-  .custom-popup-title, .custom-popup-title-utilizar {
-    position: absolute;
-    top: 1.6rem;
-    left: 1rem;
+
+  .container main .category-grid-item {
+    flex: 0 0 auto;
     width: auto;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-    background-color: #8a2be2;
-    border: 0.3rem solid #fff;
-    border-bottom: none;
-    border-radius: 1.5rem 1.5rem 0 0;
-    z-index: 2;
+    max-width: none;
+    padding: 0;
+    margin: 0;
   }
-  .popup-caixa::before { width: calc(100% - 7rem); }
-  .popup-caixa-utilizar::before { width: calc(100% - 8.4rem); }
-  .popup-caixa {
-    margin-top: 3.2rem;
-    padding: 1.2rem;
-    background-color: #f2befa;
-    color: #6d3ba9;
-    border: 0.3rem solid #fff;
-    border-top: none;
-    border-radius: 0 1.5rem 1.5rem 1.5rem;
-    font-size: 1rem;
-    line-height: 1.4;
-    max-height: calc(90svh - 12rem);
-    overflow-y: auto;   
+
+  .category-card { width: 19vw; height: 33vh; }
+
+  .category-title {
+    font-size: clamp(0.7rem, 1.5vw, 1.1rem);
+    bottom: -2.4rem;
+    width: 90%;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.2;
+    padding: 0.4rem 0.8rem;
   }
-  #menuModal .btn-close-custom-styled { 
-    top: 0; 
-    right: -13rem; 
-    width: 3rem; 
-    height: 3rem; 
-  }
-  #menuModal .btn-close-custom-styled img { width: 5rem; height: 5rem; }
+  .category-title.long-title { font-size: clamp(0.65rem, 1.3vw, 1rem); bottom: -3.2rem; }
+
+  /* Gallery Modal */
+  #galleryModal .nav-arrow img { width: 58px; height: 58px; }
+  #galleryModal .nav-arrow.left { left: -100px; top: 20px; }
+  #galleryModal .nav-arrow.right { right: -100px; top: 20px; }
+  #galleryModal .close-btn { top: -25px; right: -25px; }
+  #galleryModal .close-btn img { width: 50px; height: 50px; }
+
+  /* Menu Modal — herdado do bloco 7B */
+  #menuModal { overflow: hidden; }
 }
 
 /* ==========================================================================
-   13. MEDIA QUERIES: AJUSTE MANUAL EXCLUSIVO - IPAD / TABLETS LANDSCAPE (992px ATÉ 1199px)
+   14. LAPTOPS / DESKTOP MÉDIO (1200px EM DIANTE)
+   Layout 4+3, sem scroll, header 20px esquerda, créditos igual à foto
    ========================================================================== */
-@media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
-  /* iPad landscape 1024×768 — layout 4+3 idêntico à imagem de referência */
-  main {
+@media (min-width: 1200px) {
+  .container { max-width: 1140px; }
+
+  /* Header: da borda esquerda, wide como na imagem, sem border-radius */
+  .header-container {
+    width: 100%;
+    max-width: 100%;
+    height: 8rem;
+    margin-left: 0;
+    margin-top: 0;
+    border-radius: 0;
+  }
+  .main-title { font-size: 3.8rem; }
+  .btn-menu img { width: 5rem; height: 5rem; }
+
+  /* Sem scroll */
+  body { overflow: hidden; }
+
+  .container main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 0 2vw;
+    height: calc(100vh - 9rem);
+    overflow: hidden;
   }
-  .gallery-row-first {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    justify-content: center;
-    align-items: center;
-    gap: 2vw;
-    margin-bottom: 0 !important;
-  }
-  .gallery-row-second {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    justify-content: center;
-    align-items: center;
-    gap: 2vw;
-    margin-top: 3vh !important;
-  }
-  .category-grid-item {
-    flex: 0 0 auto !important;
-    width: auto !important;
-    max-width: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  .category-card { width: 18vw; height: 20vh; }
-  .category-title {
-    font-size: clamp(0.6rem, 1.3vw, 1rem);
-    bottom: -2rem;
-    width: 90%;
-    white-space: normal;
-    text-align: center;
-    line-height: 1.1;
-    padding: 0.35rem 0.7rem;
-  }
-  .category-title.long-title { font-size: clamp(0.55rem, 1.1vw, 0.9rem); bottom: -2.4rem; }
 
-  /* Altere as propriedades abaixo se desejar mudar o comportamento dos Modais no iPad Horizontal */
-  #menuModal { overflow: hidden; }
+  .container main .gallery-row-first {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5vw;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .container main .gallery-row-second {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5vw;
+    margin-top: 6vh;
+  }
+
+  .container main .category-grid-item { flex: 0 0 auto; width: auto; max-width: clamp(180px, 20vw, 260px); }
+  .category-card { width: clamp(170px, 19vw, 250px); height: clamp(160px, 26vh, 230px); }
+  .category-title { font-size: clamp(0.8rem, 1.3vw, 1.1rem); bottom: -2.4rem; width: 90%; white-space: normal; text-align: center; line-height: 1.2; padding: 0.5rem 0.8rem; }
+  .category-title.long-title { font-size: clamp(0.75rem, 1.15vw, 1rem); bottom: -3.2rem; }
+  .open-word-logo-global { width: 8.5rem; bottom: 2rem; right: 2rem; }
+
+  /* Menu Modal */
   #menuModal .custom-popup-content {
-    width: min(95svw, 85rem);
-    min-height: 90svh;
-    margin: 1rem auto;
-    padding: 1.5rem 1.5rem 1.5rem 3rem;
+    width: 100vw;
+    max-width: none;
+    padding: 2rem 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  .popup-row {
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
-    width: 96%;
-    margin: 2rem auto 0 clamp(4rem, 15vw, 24rem);
-    padding: 2rem;
-    background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.5rem solid #fff;
-    border-radius: 1rem;
-  }
-  .box-wrapper-creditos, .box-wrapper-utilizar {
-    flex: 1;
-    min-width: 0;
-    padding: 1rem;
-    max-height: calc(90svh - 8rem);
-    overflow-y: auto;
-    position: relative;
-  }
-  .box-wrapper-utilizar { margin-left: 1.5rem; }
-  .custom-popup-title, .custom-popup-title-utilizar {
-    position: absolute;
-    top: 1.2rem;
-    left: 1rem;
-    padding: 0.6rem 1.2rem;
-    font-size: 1.2rem;
-    background-color: #8a2be2;
-    border: 0.3rem solid #fff;
-    border-bottom: none;
-    border-radius: 1.5rem 1.5rem 0 0;
-    z-index: 2;
-  }
-  .popup-caixa {
-    margin-top: 3.2rem;
-    padding: 1.2rem;
-    background-color: #f2befa;
-    color: #6d3ba9;
-    border: 0.3rem solid #fff;
-    border-top: none;
-    border-radius: 0 1.5rem 1.5rem 1.5rem;
-    font-size: 1rem;
-    line-height: 1.4;
-    max-height: calc(90svh - 12rem);
-    overflow-y: auto;
-  }
-  #menuModal .btn-close-custom-styled { top: 3rem; right: -13rem; }
+  #menuModal { overflow: hidden; }
 
-      #galleryModal .nav-arrow img {
-    width: 58px;               
-    height: 58px;
-  }
-  #galleryModal .nav-arrow.left { left: -100px; top: 20px; }
-  #galleryModal .nav-arrow.right { right: -100px; top: 20px; }
+  /* Gallery Modal 1200px */
+  #galleryModal .gallery-frame { width: min(560px, 65vw); min-height: 380px; padding: 34px 18px 14px; border-radius: 16px; }
+  #galleryModal .card-title-wrapper { top: -22px; width: 65%; padding: 5px; }
+  #galleryModal .card-title { font-size: 1.6rem; }
+  #galleryModal .image-wrapper { max-width: 510px; padding: 10px; border-radius: 16px; }
+  #galleryModal .image-wrapper img { border-radius: 14px; }
+  #galleryModal .card-description-wrapper { margin-top: 12px; padding: 20px 14px; border-radius: 0 0 16px 16px; }
+  #galleryModal .card-description-wrapper p { font-size: 1.3rem; }
+  #galleryModal .nav-arrow { width: 100px; }
+  #galleryModal .nav-arrow img { width: 58px; height: 58px; max-width: none; }
+  #galleryModal .nav-arrow.left { left: -130px; top: 20px; }
+  #galleryModal .nav-arrow.right { right: -130px; top: 20px; }
   #galleryModal .close-btn { top: -25px; right: -25px; }
-  #galleryModal .close-btn img {
-    width: 50px;               
-    height: 50px;
-  }
+  #galleryModal .close-btn img { width: 50px; height: 50px; }
+  #galleryModal .vertical-label { font-size: 0.9rem; }
 }
 
 /* ==========================================================================
-   14. MEDIA QUERIES: LAPTOPS / DESKTOP MÉDIO (DE 1200px EM DIANTE)
+   15. LAPTOPS/DESKTOPS GRANDES (1400px ATÉ 1799px)
    ========================================================================== */
-@media (min-width: 1200px) {
-  .container { max-width: 1140px; } /* Alinhado com o padrão XL do Bootstrap */
-  .header-container { width: 70%; height: 7.5rem; margin-left: 2rem; }
-  .main-title { font-size: 4.2rem; }
-  .btn-menu img { width: 5rem; height: 5rem; }
-  
-  /* Linha 1: 4 cards em linha — herda estrutura flex do bloco 9.1 */
-  .gallery-row-first {
-    display: flex !important;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2vw;
-    margin-bottom: 0 !important;
-  }
+@media (min-width: 1400px) and (max-width: 1799px) {
+  .container { max-width: 1320px; }
 
-  /* Linha 2: 3 cards centralizados — herda estrutura flex do bloco 9.1 */
-  .gallery-row-second {
-    display: flex !important;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2vw;
-    margin-top: 3vh !important;
-  }
-
-  /* cards: 4 em 1140px container, ~200px cada */
-  .category-grid-item { flex: 0 0 auto; width: auto; max-width: clamp(160px, 17vw, 220px); }
-  .category-card { width: clamp(150px, 16vw, 210px); height: clamp(130px, 20vh, 190px); }
-  .category-title { font-size: clamp(0.6rem, 1.1vw, 0.9rem); bottom: -1.8rem; width: 90%; white-space: normal; text-align: center; line-height: 1.1; padding: 0.3rem 0.6rem; }
-  .category-title.long-title { font-size: clamp(0.55rem, 0.95vw, 0.8rem); bottom: -2.2rem; }
-  main { align-items: center; padding: 0 3vw; }
-  .open-word-logo-global { width: 8.5rem; bottom: 2rem; right: 2rem; }
-
-  /* Menu Modal adaptado para 1200px */
-  #menuModal .custom-popup-content { width: 100vw; max-width: none; padding-inline: 4rem; }
-  .popup-row {
+  .header-container {
     width: 100%;
-    max-width: 960px;
-    padding: 4rem;
-    gap: 4rem;
-    margin: 0 auto;
-    background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.35rem solid #fff;
-    border-radius: 1.4rem;
+    max-width: 100%;
+    height: 9rem;
+    margin-left: 0;
+    margin-top: 0;
+    border-radius: 0;
   }
-  .popup-caixa { padding: 2rem; font-size: 1.35rem; line-height: 1.4; }
-  .custom-popup-title, .custom-popup-title-utilizar { font-size: 1.8rem; padding: 0.6rem 2.2rem; border-width: 0.3rem; }
-  #menuModal .btn-close-custom-styled { top: 3.2rem; right: 13.5rem; }
+  .main-title { font-size: 4.6rem; }
+  .btn-menu img { width: 6rem; height: 6rem; }
 
-  /* ==========================================================================
-     ADAPTAÇÃO COMPLETA DO GALLERY MODAL PARA 1200px (Proporcional)
-     ========================================================================== */
-  #galleryModal .gallery-frame {
-    width: min(560px, 65vw);       /* Reduzido para encaixar de forma segura em 1200px */
-    min-height: 380px;             /* Altura reduzida para evitar cortes verticais */
-    padding: 34px 18px 14px;       /* Margens internas mais compactas */
-    border-radius: 16px;           
+  body { overflow: hidden; }
+
+  .container main {
+    height: calc(100vh - 10rem);
+    overflow: hidden;
+    padding: 0 2vw;
   }
 
-  #galleryModal .card-title-wrapper {
-    top: -22px;                    /* Reajustado para a nova moldura */
-    width: 65%;                    /* Ligeiramente mais largo para comportar o texto */
-    padding: 5px;                 
-  }
-
-  #galleryModal .card-title {
-    font-size: 2.3rem;             /* Dimensão de texto ideal para esta escala */
-  }
-
-  #galleryModal .image-wrapper {
-    max-width: 500px;              /* Encaixe otimizado para a imagem central */
-    padding: 8px;                 
-    border-radius: 12px;          
-  }
-
-  #galleryModal .image-wrapper img {
-    border-radius: 10px;          
-  }
-
-  #galleryModal .card-description-wrapper {
-    margin-top: 12px;             
-    padding: 20px 12px;                
-    border-radius: 0 0 12px 12px; 
-  }
-
-  #galleryModal .card-description-wrapper p {
-    font-size: 1.15rem;            /* Texto de leitura nítida e sem ocupar muito espaço */
-  }
-
-  /* SETAS DE NAVEGAÇÃO: Adaptadas para monitores standard */
-  #galleryModal .nav-arrow {
-    width: 90px; 
-  }
-  
-  #galleryModal .nav-arrow img {
-    width: 45px;                   /* Reduzido de 70px para 55px */
-    height: 45px;                  
-    max-width: none; 
-  }
-  
-  /* Posicionamento aproximado para garantir que ficam visíveis na área útil */
-  #galleryModal .nav-arrow.left { left: -130px; top: 15px; }
-  #galleryModal .nav-arrow.right { right: -130px; top: 15px; }
-
-  /* BOTÃO DE FECHAR: Redimensionado para manter a proporção com a quina */
-  #galleryModal .close-btn { top: -26px; right: -26px; }
-  
-  #galleryModal .close-btn img {
-    width: 50px;                   /* Reduzido de 60px para 50px */
-    height: 50px;                  
-  }
-
-  #galleryModal .vertical-label {
-    font-size: 0.75rem;
-  }
-}
-
-/* ==========================================================================
-   15. MEDIA QUERIES: DESKTOP GRANDE (DE 1440px EM DIANTE)
-   ========================================================================== */
-@media (min-width: 1440px) {
-  .container { max-width: 1320px; } /* Ajustado para o padrão de telas de 1440px */
-  .header-container { width: 65%; height: 8.5rem; margin-left: 3rem; }
-  .main-title { font-size: 5.2rem; }
-  .btn-menu img { width: 5.8rem; height: 5.8rem; }
-  
-  /* Linha 1: 4 cards em linha — herda estrutura flex do bloco 9.1 */
-  .gallery-row-first {
-    display: flex !important;
+  .container main .gallery-row-first {
+    display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    gap: 2vw;
-    margin-bottom: 0 !important;
+    gap: 2.5vw;
+    margin-bottom: 0;
+    margin-top: 0;
   }
-
-  /* Linha 2: 3 cards centralizados — herda estrutura flex do bloco 9.1 */
-  .gallery-row-second {
-    display: flex !important;
+  .container main .gallery-row-second {
+    display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    gap: 2vw;
-    margin-top: 3vh !important;
+    gap: 2.5vw;
+    margin-top: 6vh;
   }
 
-  /* cards: 4 em 1320px container, ~240px cada */
-  .category-grid-item { flex: 0 0 auto; width: auto; max-width: clamp(190px, 17vw, 260px); }
-  .category-card { width: clamp(180px, 16vw, 250px); height: clamp(155px, 20vh, 220px); }
-  .category-title { font-size: clamp(0.65rem, 1.1vw, 0.95rem); bottom: -1.8rem; width: 90%; white-space: normal; text-align: center; line-height: 1.1; padding: 0.3rem 0.6rem; }
-  .category-title.long-title { font-size: clamp(0.6rem, 0.95vw, 0.85rem); bottom: -2.2rem; }
-  main { align-items: center; padding: 0 3vw; }
+  .container main .category-grid-item { flex: 0 0 auto; width: auto; max-width: clamp(200px, 18vw, 280px); }
+  .category-card { width: clamp(190px, 17vw, 265px); height: clamp(175px, 26vh, 240px); }
+  .category-title { font-size: clamp(0.8rem, 1.3vw, 1.15rem); bottom: -2.6rem; width: 90%; white-space: normal; text-align: center; line-height: 1.2; padding: 0.5rem 0.8rem; }
+  .category-title.long-title { font-size: clamp(0.75rem, 1.15vw, 1.05rem); bottom: -3.4rem; }
+  .container main { align-items: center; }
   .open-word-logo-global { width: 10rem; bottom: 2.5rem; right: 2.5rem; }
 
-  /* Menu Modal adaptado para 1440px */
-  #menuModal .custom-popup-content { width: 100vw; max-width: none; padding-inline: 6rem; }
-  .popup-row {
-    width: 100%;
-    max-width: 105rem;
-    padding: 5rem;
-    gap: 6rem;
-    margin: 0 auto;
-    background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.4rem solid #fff;
-    border-radius: 1.6rem;
-  }
-  .popup-caixa { padding: 2.4rem; font-size: 1.5rem; line-height: 1.5; }
-  .custom-popup-title, .custom-popup-title-utilizar { font-size: 2rem; padding: 0.8rem 2.5rem; border-width: 0.35rem; }
-  #menuModal .btn-close-custom-styled { top: 3.8rem; right: 18.5rem; }
+  /* Menu Modal — herdado do bloco 7B */
+  #menuModal { overflow: hidden; }
+  #menuModal .btn-close-custom-styled img { width: 6rem; height: 6rem; }
 
-  /* ==========================================================================
-     ADAPTAÇÃO COMPLETA DO GALLERY MODAL PARA 1440px (Proporcional -20%)
-     ========================================================================== */
-  #galleryModal .gallery-frame {
-    width: min(680px, 60vw);       /* Reduzido para encaixar perfeitamente na viewport */
-    min-height: 440px;             /* Altura reduzida proporcionalmente */
-    padding: 42px 22px 18px;       /* Espaçamentos internos menores */
-    border-radius: 20px;           /* Cantos ligeiramente mais suaves */
-  }
-
-  #galleryModal .card-title-wrapper {
-    top: -26px;                    /* Ajustado para o frame menor */
-    width: 60%;                   
-    padding: 6px;                 
-  }
-
-  #galleryModal .card-title {
-    font-size: 2.2rem;             /* Tipografia equilibrada para 1440px */
-  }
-
-  #galleryModal .image-wrapper {
-    max-width: 610px;              /* Limite interno da imagem reduzido */
-    padding: 10px;                
-    border-radius: 16px;          
-  }
-
-  #galleryModal .image-wrapper img {
-    border-radius: 13px;          
-  }
-
-  #galleryModal .card-description-wrapper {
-    margin-top: 14px;             
-    padding: 22px 14px;                
-    border-radius: 0 0 16px 16px; 
-  }
-
-  #galleryModal .card-description-wrapper p {
-    font-size: 1.3rem;             /* Parágrafo confortável para leitura em notebooks */
-  }
-
-  /* SETAS DE NAVEGAÇÃO: Escaladas para manter a harmonia visual */
-  #galleryModal .nav-arrow {
-    width: 110px; 
-  }
-  
-  #galleryModal .nav-arrow img {
-    width: 60px;                   /* Ajustado de 85px para 70px */
-    height: 60px;                  /* Ajustado de 85px para 70px */
-    max-width: none; 
-  }
-  
-  /* Posicionamento mais próximo para evitar que sumam para fora da tela */
-  #galleryModal .nav-arrow.left { left: -175px; top: 20px; }
-  #galleryModal .nav-arrow.right { right: -175px; top: 20px; }
-
-  /* BOTÃO DE FECHAR: Escalado para harmonizar com as quinas do novo frame */
+  /* Gallery Modal */
+  #galleryModal .gallery-frame { width: min(680px, 60vw); min-height: 460px; padding: 45px 22px 18px; border-radius: 20px; }
+  #galleryModal .card-title-wrapper { top: -28px; width: 60%; padding: 6px; }
+  #galleryModal .card-title { font-size: 2.2rem; }
+  #galleryModal .image-wrapper { max-width: 620px; padding: 12px; border-radius: 18px; }
+  #galleryModal .image-wrapper img { border-radius: 15px; }
+  #galleryModal .card-description-wrapper { margin-top: 14px; padding: 24px 16px; border-radius: 0 0 18px 18px; }
+  #galleryModal .card-description-wrapper p { font-size: 1.4rem; }
+  #galleryModal .nav-arrow { width: 120px; }
+  #galleryModal .nav-arrow img { width: 65px; height: 65px; max-width: none; }
+  #galleryModal .nav-arrow.left { left: -155px; top: 20px; }
+  #galleryModal .nav-arrow.right { right: -155px; top: 20px; }
   #galleryModal .close-btn { top: -30px; right: -30px; }
-  
-  #galleryModal .close-btn img {
-    width: 60px;                   /* Ajustado de 75px para 60px */
-    height: 60px;                  /* Ajustado de 75px para 60px */
-  }
-
-  #galleryModal .vertical-label {
-    font-size: 0.85rem;
-  }
+  #galleryModal .close-btn img { width: 60px; height: 60px; }
+  #galleryModal .vertical-label { font-size: 0.85rem; }
 }
 
 /* ==========================================================================
-   16. MEDIA QUERIES: ULTRA-WIDE / ECRÃS MUITO GRANDES (DE 1800px EM DIANTE)
+   16. ULTRA-WIDE (1800px EM DIANTE)
    ========================================================================== */
 @media (min-width: 1800px) {
   .container { max-width: 1600px; }
-  .header-container { width: 60%; height: 10rem; margin-left: 4rem; }
-  .main-title { font-size: 6.4rem; }
+
+  .header-container {
+    width: 100%;
+    max-width: 100%;
+    height: 11rem;
+    margin-left: 0;
+    margin-top: 0;
+    border-radius: 0;
+  }
+  .main-title { font-size: 5.8rem; }
   .btn-menu img { width: 7rem; height: 7rem; }
-  
-  /* Linha 1: 4 cards em linha — herda estrutura flex do bloco 9.1 */
-  .gallery-row-first {
-    display: flex !important;
+
+  body { overflow: hidden; }
+
+  .container main {
+    height: calc(100vh - 13rem);
+    overflow: hidden;
+    padding: 0 3vw;
+    align-items: center;
+  }
+
+  .container main .gallery-row-first {
+    display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    gap: 2vw;
-    margin-bottom: 0 !important;
+    gap: 2.5vw;
+    margin-bottom: 0;
+    margin-top: 0;
   }
-
-  /* Linha 2: 3 cards centralizados — herda estrutura flex do bloco 9.1 */
-  .gallery-row-second {
-    display: flex !important;
+  .container main .gallery-row-second {
+    display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    gap: 2vw;
-    margin-top: 3vh !important;
+    gap: 2.5vw;
+    margin-top: 6vh;
   }
 
-  /* cards: max 1600px container, ~280px cada */
-  .category-grid-item { flex: 0 0 auto; width: auto; max-width: clamp(220px, 16vw, 310px); }
-  .category-card { width: clamp(210px, 15vw, 295px); height: clamp(180px, 19vh, 265px); }
-  .category-title { font-size: clamp(0.65rem, 1vw, 1rem); bottom: -1.8rem; width: 90%; white-space: normal; text-align: center; line-height: 1.1; padding: 0.3rem 0.6rem; }
-  .category-title.long-title { font-size: clamp(0.6rem, 0.9vw, 0.9rem); bottom: -2.2rem; }
-  main { align-items: center; padding: 0 3vw; }
+  .container main .category-grid-item { flex: 0 0 auto; width: auto; max-width: clamp(240px, 17vw, 340px); }
+  .category-card { width: clamp(230px, 16vw, 320px); height: clamp(210px, 26vh, 300px); }
+  .category-title { font-size: clamp(0.85rem, 1.1vw, 1.2rem); bottom: -2.4rem; width: 90%; white-space: normal; text-align: center; line-height: 1.2; padding: 0.5rem 0.8rem; }
+  .category-title.long-title { font-size: clamp(0.8rem, 1vw, 1.1rem); bottom: -3.4rem; }
   .open-word-logo-global { width: 12rem; bottom: 3rem; right: 3rem; }
 
-  #menuModal .custom-popup-content { width: 100vw; max-width: none; padding-inline: 8rem; }
-  .popup-row {
-    width: 100%;
-    max-width: 120rem;
-    padding: 6rem;
-    gap: 8rem;
-    margin: 0 auto;
-    background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.5rem solid #fff;
-    border-radius: 2rem;
-  }
-  .popup-caixa { padding: 3rem; font-size: 1.7rem; line-height: 1.6; }
-  .custom-popup-title, .custom-popup-title-utilizar { font-size: 2.4rem; padding: 1rem 3.2rem; border-width: 0.4rem; }
-  #menuModal .btn-close-custom-styled { top: 4.6rem; right: 26.6rem; }
+  /* Menu Modal — herdado do bloco 7B */
+  #menuModal { overflow: hidden; }
+  #menuModal .btn-close-custom-styled img { width: 7rem; height: 7rem; }
 
-  /* ==========================================================================
-     ADAPTAÇÃO COMPLETA DO GALLERY MODAL PARA 1800px
-     ========================================================================== */
-  #galleryModal .gallery-frame {
-    width: min(805px, 55vw);       /* Estrutura adaptada proporcionalmente */
-    min-height: 546px;             /* Altura proporcional estável */
-    padding: 52px 28px 21px;       /* Espaçamento interno */
-    border-radius: 25px;           /* Bordas arredondadas do frame */
-  }
-
-  #galleryModal .card-title-wrapper {
-    top: -32px;                    /* Alinhamento superior do título */
-    width: 55%;                   
-    padding: 8px;                 
-  }
-
-  #galleryModal .card-title {
-    font-size: 2.8rem;             /* Tamanho do título legível em 1800px */
-  }
-
-  #galleryModal .image-wrapper {
-    max-width: 735px;              /* Encaixe da imagem interna */
-    padding: 13px;                
-    border-radius: 20px;          
-  }
-
-  #galleryModal .image-wrapper img {
-    border-radius: 17px;          
-  }
-
-  #galleryModal .card-description-wrapper {
-    margin-top: 17px;             
-    padding: 27px 17px;                
-    border-radius: 0 0 20px 20px; 
-  }
-
-  /* SETAS DE NAVEGAÇÃO (Dimensões mantidas conforme seu padrão de 1800px) */
-  #galleryModal .nav-arrow {
-    width: 132px; 
-  }
-  
-  #galleryModal .nav-arrow img {
-    width: 75px;                  /* Mantido seus 100px */
-    height: 75px;                 /* Mantido seus 100px */
-    max-width: none; 
-  }
-  
-  /* Ajustado de -180px para -140px para não ficarem longe demais do frame menor */
+  /* Gallery Modal */
+  #galleryModal .gallery-frame { width: min(805px, 55vw); min-height: 546px; padding: 52px 28px 21px; border-radius: 25px; }
+  #galleryModal .card-title-wrapper { top: -32px; width: 55%; padding: 8px; }
+  #galleryModal .card-title { font-size: 2.8rem; }
+  #galleryModal .image-wrapper { max-width: 735px; padding: 13px; border-radius: 20px; }
+  #galleryModal .image-wrapper img { border-radius: 17px; }
+  #galleryModal .card-description-wrapper { margin-top: 17px; padding: 27px 17px; border-radius: 0 0 20px 20px; }
+  #galleryModal .nav-arrow { width: 132px; }
+  #galleryModal .nav-arrow img { width: 75px; height: 75px; max-width: none; }
   #galleryModal .nav-arrow.left { left: -200px; top: 25px; }
   #galleryModal .nav-arrow.right { right: -200px; top: 25px; }
-
-  /* BOTÃO DE FECHAR (Dimensões mantidas conforme seu padrão de 1800px) */
-  /* Ajustado de -40px para -35px para casar milimetricamente com a nova borda */
   #galleryModal .close-btn { top: -35px; right: -35px; }
-  
-  #galleryModal .close-btn img {
-    width: 75px;                   /* Mantido seus 75px */
-    height: 75px;                  /* Mantido seus 75px */
-  }
-
-  #galleryModal .card-description-wrapper p {
-    font-size: 1.5rem;             /* Parágrafo ajustado */
-  }
-
-  #galleryModal .vertical-label {
-    font-size: 1rem;
-  }
+  #galleryModal .close-btn img { width: 75px; height: 75px; }
+  #galleryModal .card-description-wrapper p { font-size: 1.5rem; }
+  #galleryModal .vertical-label { font-size: 1rem; }
 }
 
 /* ==========================================================================
@@ -1402,108 +1340,45 @@ main {
 }
 
 /* ==========================================================================
-   18. MEDIA QUERIES: TELAS GIGANTES / ULTRA 4K+ (DE 2500px EM DIANTE)
+   18. TELAS GIGANTES / ULTRA 4K+ (2500px EM DIANTE)
    ========================================================================== */
-
 @media (min-width: 2500px) {
 
-  main { align-items: center; padding: 0 3vw; }
+  .container main { align-items: center; padding: 0 3vw; height: calc(100vh - 15rem); overflow: hidden; }
 
-  /* Layout 4+3 — cards maiores para 4K */
-  .gallery-row-first {
-    display: flex !important;
+  .container main .gallery-row-first {
+    display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     gap: 2vw;
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
   }
-  .gallery-row-second {
-    display: flex !important;
+  .container main .gallery-row-second {
+    display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     gap: 2vw;
-    margin-top: 3vh !important;
+    margin-top: 3vh;
   }
-  .category-grid-item { flex: 0 0 auto; width: auto; max-width: clamp(280px, 14vw, 380px); }
-  .category-card { width: clamp(265px, 13vw, 360px); height: clamp(230px, 18vh, 320px); }
+  .container main .category-grid-item { flex: 0 0 auto; width: auto; max-width: clamp(280px, 14vw, 380px); }
+  .category-card { width: clamp(265px, 13vw, 360px); height: clamp(200px, 18vh, 300px); }
   .category-title { font-size: clamp(0.7rem, 0.9vw, 1.1rem); bottom: -2rem; width: 90%; white-space: normal; text-align: center; line-height: 1.1; padding: 0.35rem 0.7rem; }
   .category-title.long-title { font-size: clamp(0.65rem, 0.8vw, 1rem); bottom: -2.4rem; }
 
-  #galleryModal .gallery-frame {
-    width: min(805px, 55vw);      /* Reduzido 30% (De 1150px para 805px) */
-    min-height: 546px;            /* Reduzido 30% (De 780px para 546px) */
-    padding: 52px 28px 21px;      /* Reduzido 30% */
-    border-radius: 25px;          /* Reduzido 30% */
-  }
-
-  #galleryModal .card-title-wrapper {
-    top: -32px;                   /* Reduzido 30% */
-    width: 55%;                   
-    padding: 8px;                 /* Reduzido 30% */
-  }
-
-  #galleryModal .card-title {
-    font-size: 3.5rem;            /* Reduzido 30% (De 2.6rem para 1.8rem) */
-  }
-
-  #galleryModal .image-wrapper {
-    max-width: 735px;             /* Reduzido 30% (De 1050px para 735px) */
-    padding: 13px;                /* Reduzido 30% */
-    border-radius: 20px;          /* Reduzido 30% */
-  }
-
-  #galleryModal .image-wrapper img {
-    border-radius: 17px;          /* Reduzido 30% */
-  }
-
-  #galleryModal .card-description-wrapper {
-    margin-top: 17px;             /* Reduzido 30% */
-    padding: 27px 17px;           /* Reduzido 30% */
-    border-radius: 0 0 20px 20px; /* Reduzido 30% */
-  }
-
-  #galleryModal .card-description-wrapper p {
-    font-size: 1.5rem;            /* Reduzido 30% (De 2.2rem para 1.5rem) */
-  }
-
-  /* SETAS DE NAVEGAÇÃO: DIMENSÕES MANTIDAS INTEGRALMENTE */
-  #galleryModal .nav-arrow {
-    width: 140px;                 /* Tamanho preservado */
-  }
-
-  #galleryModal .nav-arrow img {
-    width: 10px;                 /* Tamanho de 110px preservado */
-    height: 100px;                /* Tamanho de 110px preservado */
-    max-width: none;             
-    border: none;       
-             
-  }
-
-  #galleryModal .nav-arrow.left {
-    left: -250px;                 /* Reposicionado para harmonizar com o frame menor */
-    top: 30px;
-  }
-
-  #galleryModal .nav-arrow.right {
-    right: -250px;                /* Reposicionado para harmonizar com o frame menor */
-    top: 30px;
-  }
-
-  /* BOTÃO DE FECHAR: DIMENSÕES MANTIDAS INTEGRALMENTE */
-  #galleryModal .close-btn {
-    top: -35px;                   /* Ajustado a posição para casar com a nova quina */
-    right: -35px;
-  }
-
-  #galleryModal .close-btn img {
-    width: 85px;                  /* Tamanho de 85px preservado */
-    height: 85px;                 /* Tamanho de 85px preservado */
-  }
-
-  #galleryModal .vertical-label {
-    font-size: 1rem; /* Reduzido 30% */
-  }
-
+  #galleryModal .gallery-frame { width: min(805px, 55vw); min-height: 546px; padding: 52px 28px 21px; border-radius: 25px; }
+  #galleryModal .card-title-wrapper { top: -32px; width: 55%; padding: 8px; }
+  #galleryModal .card-title { font-size: 3.5rem; }
+  #galleryModal .image-wrapper { max-width: 735px; padding: 13px; border-radius: 20px; }
+  #galleryModal .image-wrapper img { border-radius: 17px; }
+  #galleryModal .card-description-wrapper { margin-top: 17px; padding: 27px 17px; border-radius: 0 0 20px 20px; }
+  #galleryModal .card-description-wrapper p { font-size: 1.5rem; }
+  #galleryModal .nav-arrow { width: 140px; }
+  #galleryModal .nav-arrow img { width: 100px; height: 100px; max-width: none; border: none; }
+  #galleryModal .nav-arrow.left { left: -250px; top: 30px; }
+  #galleryModal .nav-arrow.right { right: -250px; top: 30px; }
+  #galleryModal .close-btn { top: -35px; right: -35px; }
+  #galleryModal .close-btn img { width: 85px; height: 85px; }
+  #galleryModal .vertical-label { font-size: 1rem; }
 }
