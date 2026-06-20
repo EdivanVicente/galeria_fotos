@@ -629,7 +629,7 @@ main {
   #galleryModal .nav-arrow img { width: 30px; height: 30px; }
   #galleryModal .nav-arrow.left { left: -80px; top: 20px; }
   #galleryModal .nav-arrow.right { right: -80px; top: 20px; }
-  #galleryModal .close-btn { top: -16px; right: -17px; }
+  #galleryModal .close-btn { top: -10px; right: -10px; }
   #galleryModal .close-btn img { width: 28px; height: 28px; }
   #galleryModal .vertical-label { font-size: 0.56rem; }
 
@@ -1203,30 +1203,124 @@ position: absolute;
   #galleryModal .close-btn img { width: 28px; height: 28px; }
   #galleryModal .vertical-label { font-size: 0.64rem; }
 
-  /* Menu Modal — crédito -30% centralizado */
+  /* Menu Modal A51 landscape — estrutura igual ao iPhone SE, escalada para 914px */
   #menuModal { overflow: hidden; }
+  #menuModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    left: 0;
+  }
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
   #menuModal .custom-popup-content {
-    width: 63svw;
+    width: 66svw;
     max-width: none;
-    padding: 1.26rem;
+    padding: 1.28rem;
     background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.245rem solid #fff;
-    border-radius: 1.26rem;
+    border: 0.3rem solid #fff;
+    border-radius: 1.53rem;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    max-height: 86svh;
-    overflow: hidden;
+    max-height: 88svh;
+    overflow: visible;
     transform: none;
     min-height: unset;
     margin: auto;
   }
-  #menuModal .custom-popup-content .popup-row { gap: 0.84rem; }
-  #menuModal .custom-popup-content .popup-caixa { font-size: 0.504rem; padding: 0.56rem; max-height: calc(86svh - 4.9rem); }
+  #menuModal .custom-popup-content .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.02rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
+  }
+  #menuModal .custom-popup-content .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #menuModal .custom-popup-content .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+  }
   #menuModal .custom-popup-content .custom-popup-title,
-  #menuModal .custom-popup-content .custom-popup-title-utilizar { font-size: 0.595rem; padding: 0.21rem 0.7rem; }
-  #menuModal .btn-close-custom-styled img { width: 2.66rem; height: 2.66rem; }
+  #menuModal .custom-popup-content .custom-popup-title-utilizar {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.255rem 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.21rem solid #fff;
+    border-bottom: none;
+    border-radius: 0.85rem 0.85rem 0 0;
+    z-index: 2;
+  }
+  #menuModal .custom-popup-content .popup-caixa {
+    margin-top: 1.87rem;
+    padding: 0.68rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.21rem solid #fff;
+    border-top: none;
+    border-radius: 0 0.85rem 0.85rem 0.85rem;
+    font-size: 0.61rem;
+    line-height: 1.4;
+    overflow-y: auto;
+    max-height: calc(88svh - 6rem);
+    position: relative;
+    flex: 1;
+  }
+  #menuModal .custom-popup-content .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    height: 0;
+    border-top: 0.21rem solid #fff;
+  }
+  #menuModal .custom-popup-content .popup-caixa-creditos::before { width: calc(100% - 5.95rem); }
+  #menuModal .custom-popup-content .popup-caixa-utilizar::before { width: calc(100% - 7.65rem); }
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -3rem;
+    right: -3rem;
+    z-index: 1000;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #menuModal .btn-close-custom-styled img { width: 3.23rem; height: 3.23rem; }
 }
 
 /* ==========================================================================
@@ -1276,6 +1370,153 @@ position: absolute;
 
   #menuModal .modal-dialog { max-width: none; width: 100%; margin: 0; }
   #menuModal .modal-content { width: 100%; }
+}
+
+/* ==========================================================================
+   12B. GALAXY A51 LANDSCAPE — OVERRIDE GALLERY + MENU MODAL
+   O bloco (min-width: 768px) acima não tem orientation, sobrescrevendo
+   as regras do bloco 12. Este bloco restaura os valores corretos para o A51.
+   ========================================================================== */
+@media (min-width: 812px) and (max-width: 991.98px) and (orientation: landscape) {
+
+  /* Gallery Modal */
+  #galleryModal .gallery-frame {
+    width: min(400px, 44vw);
+    min-height: 300px;
+    padding: 36px 16px 13px;
+    border-radius: 22px;
+  }
+  #galleryModal .image-wrapper { max-height: 42vh; border-radius: 16px; padding: 10px; max-width: none; }
+  #galleryModal .image-wrapper img { border-radius: 14px; }
+  #galleryModal .card-title-wrapper { top: -22px; padding: 5px; width: 55%; }
+  #galleryModal .card-title { font-size: 1rem; }
+  #galleryModal .card-description-wrapper { margin-top: 10px; padding: 16px 10px; border-radius: 0 0 16px 16px; max-width: none; }
+  #galleryModal .card-description-wrapper p { font-size: 0.9rem; }
+  #galleryModal .nav-arrow img { width: 42px; height: 42px; }
+  #galleryModal .nav-arrow.left { left: -90px; top: 20px; }
+  #galleryModal .nav-arrow.right { right: -90px; top: 20px; }
+  #galleryModal .close-btn { top: -14px; right: -12px; }
+  #galleryModal .close-btn img { width: 34px; height: 34px; }
+  #galleryModal .vertical-label { font-size: 0.7rem; }
+
+  /* Menu Modal */
+  #menuModal { overflow: hidden; }
+  #menuModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    left: 0;
+  }
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+  #menuModal .custom-popup-content {
+    width: 66svw;
+    max-width: none;
+    padding: 1.28rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.3rem solid #fff;
+    border-radius: 1.53rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 88svh;
+    overflow: visible;
+    transform: none;
+    min-height: unset;
+    margin: auto;
+  }
+  #menuModal .custom-popup-content .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.02rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
+  }
+  #menuModal .custom-popup-content .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #menuModal .custom-popup-content .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #menuModal .custom-popup-content .custom-popup-title,
+  #menuModal .custom-popup-content .custom-popup-title-utilizar {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.255rem 0.85rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.21rem solid #fff;
+    border-bottom: none;
+    border-radius: 0.85rem 0.85rem 0 0;
+    z-index: 2;
+  }
+  #menuModal .custom-popup-content .popup-caixa {
+    margin-top: 1.87rem;
+    padding: 0.68rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.21rem solid #fff;
+    border-top: none;
+    border-radius: 0 0.85rem 0.85rem 0.85rem;
+    font-size: 0.61rem;
+    line-height: 1.4;
+    overflow-y: auto;
+    max-height: calc(88svh - 6rem);
+    position: relative;
+    flex: 1;
+  }
+  #menuModal .custom-popup-content .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0; right: 0;
+    height: 0;
+    border-top: 0.21rem solid #fff;
+  }
+  #menuModal .custom-popup-content .popup-caixa-creditos::before { width: calc(100% - 5.95rem); }
+  #menuModal .custom-popup-content .popup-caixa-utilizar::before { width: calc(100% - 7.65rem); }
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -3rem;
+    right: -3rem;
+    z-index: 1000;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #menuModal .btn-close-custom-styled img { width: 3.23rem; height: 3.23rem; }
 }
 
 /* ==========================================================================
@@ -1344,7 +1585,7 @@ position: absolute;
     width: 100%;
     height: 100%;
     margin: 0;
-    left: 9rem;
+    left: 0;
   }
   #menuModal .modal-content {
     width: auto;
@@ -1537,7 +1778,7 @@ position: absolute;
     flex-direction: column;
     align-items: stretch;
     max-height: 88svh;
-    overflow: hidden;
+    overflow: visible;
     transform: none;
     min-height: unset;
     margin: auto;
@@ -1573,10 +1814,27 @@ position: absolute;
     display: flex;
     flex-direction: column;
   }
-  #menuModal .custom-popup-content .custom-popup-title,
+  #menuModal .custom-popup-content .custom-popup-title {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.4rem solid #fff;
+    border-bottom: none;
+    border-radius: 2rem 2rem 0 0;
+    z-index: 2;
+    height: auto;
+  } 
   #menuModal .custom-popup-content .custom-popup-title-utilizar {
     position: absolute;
-    top: 4px;
+    top: -5px;
     left: 0;
     width: auto;
     white-space: nowrap;
@@ -1615,15 +1873,17 @@ position: absolute;
     height: 0;
     border-top: 0.4rem solid #fff;
   }
-  #menuModal .custom-popup-content .popup-caixa-creditos::before { width: calc(100% - 9rem); }
-  #menuModal .custom-popup-content .popup-caixa-utilizar::before { width: calc(100% - 14rem); }
+  #menuModal .custom-popup-content .popup-caixa-creditos::before { width: calc(100% - 9.4rem); }
+  #menuModal .custom-popup-content .popup-caixa-utilizar::before { width: calc(100% - 13.6rem); }
   #menuModal .btn-close-custom-styled {
     position: absolute;
-    top: -2.2rem;
-    right: -2.2rem;
+            top: -5.2rem;
+        right: -5.2rem;
     z-index: 1200;
     width: auto;
     height: auto;
+    
+
   }
   #menuModal .btn-close-custom-styled img { width: 5rem; height: 5rem; }
   #menuModal .creditos-texto-formatado { margin-bottom: 1.2rem; }
