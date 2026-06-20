@@ -1,4 +1,7 @@
 /* ==========================================================================
+   BLOCO I — GLOBAL: TOKENS, RESET E BASE (todos os tamanhos)
+   ========================================================================== */
+/* ==========================================================================
    1. VARIÁVEIS (DESIGN TOKENS) & CONFIGURAÇÕES GLOBAIS
    ========================================================================== */
 :root {
@@ -41,6 +44,18 @@ body {
   font-size: 1.6rem;
   color: var(--color-foreground);
   background: #000 url("../assets/img_bg.png") center / cover no-repeat fixed;
+}
+
+/* Wrappers novos do HTML (app-shell/app-wrapper) — repassam o mesmo
+   comportamento flex que antes era feito direto no body, para não alterar
+   nenhum tamanho/breakpoint já existente. */
+.app-shell,
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
 }
 
 /* ==========================================================================
@@ -148,6 +163,7 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  
 }
 
 .btn-menu img {
@@ -161,7 +177,7 @@ main {
    ========================================================================== */
 .category-card {
   width: 22rem;
-  height: 22rem;
+  height: 19rem;
   position: relative;
   cursor: pointer;
   border-radius: 1.2rem;
@@ -172,12 +188,13 @@ main {
   box-shadow:
     0 0.4rem 1.5rem rgba(0, 0, 0, 0.5),
     inset 0 0 1.5rem rgba(0, 0, 0, 0.4);
+   
 }
 
 .category-grid-item {
   width: 100%;
   max-width: 24rem;
-  margin-top: 1rem;
+  margin-top: 3rem;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
@@ -222,7 +239,7 @@ main {
   color: #fff;
   padding: 0.7rem 1.8rem;
   border-radius: 0.8rem;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   text-transform: uppercase;
   font-weight: bold;
   white-space: nowrap;
@@ -231,12 +248,12 @@ main {
 }
 
 .category-title.long-title {
-  width: 85%;
-  font-size: 1.6rem;
+  width: 75%;
+  font-size: 1.2rem;
   white-space: normal;
   text-align: center;
   line-height: 1.2;
-  bottom: -3.8rem;
+  bottom: -2.8rem;
 }
 
 /* ==========================================================================
@@ -406,10 +423,11 @@ main {
   width: 100%;
   max-width: 85rem;
   padding: 2.4rem;
-  padding-top: 18rem;
+  padding-top: 15rem;
   position: relative;
   display: flex;
   flex-direction: column;
+  
 }
 
 .popup-row {
@@ -417,7 +435,8 @@ main {
   flex-direction: column;
   gap: 4rem;
   position: relative;
-  margin-top: 15px;
+  margin-top: 7rem;
+  
 }
 
 .box-wrapper {
@@ -474,8 +493,8 @@ main {
 
 #menuModal .btn-close-custom-styled {
   position: absolute;
-  top: 20.4rem;
-  right: 1.6rem;
+  top: 1.4rem;
+  right: -1.4rem;
   z-index: 1100;
 }
 
@@ -514,150 +533,8 @@ main {
 }
 
 /* ==========================================================================
-   7B. LANDSCAPE PANEL — painel centralizado com borda branca (todas as telas landscape)
+   BLOCO II — GLOBAL: VERTICAL / PORTRAIT (ajustes finos mobile pequeno)
    ========================================================================== */
-@media (orientation: landscape) and (min-width: 568px) {
-
-  #menuModal .modal-dialog {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-  }
-
-  #menuModal .modal-content {
-    width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: none;
-  }
-
-  /* Painel principal: borda branca, cantos arredondados, fundo nebulosa */
-  #menuModal .custom-popup-content {
-    width: clamp(38rem, 46vw, 82rem);
-    max-width: none;
-    padding: 2.2rem;
-    background: url("../assets/background.jpg") center / cover no-repeat;
-    border: 0.45rem solid #fff;
-    border-radius: 2.5rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    max-height: 88svh;
-    overflow: hidden;
-  }
-
-  /* Linha das colunas */
-  .popup-row {
-    display: flex;
-    flex-direction: row;
-    gap: 1.8rem;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background: none;
-    border-radius: 0;
-    position: relative;
-    align-items: flex-start;
-    flex: 1;
-    min-height: 0;
-  }
-
-  /* Créditos: coluna maior (flex 1.5) */
-  .box-wrapper-creditos {
-    flex: 1.5;
-    min-width: 0;
-    position: relative;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Como utilizar: coluna menor (flex 1) */
-  .box-wrapper-utilizar {
-    flex: 1;
-    min-width: 0;
-    position: relative;
-    padding: 0;
-    margin-left: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Aba título estilo etiqueta encaixada */
-  .custom-popup-title,
-  .custom-popup-title-utilizar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: auto;
-    white-space: nowrap;
-    padding: 0.4rem 1.4rem;
-    font-size: clamp(0.85rem, 1.1vw, 1.4rem);
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    color: #fff;
-    background-color: #8a2be2;
-    border: 0.3rem solid #fff;
-    border-bottom: none;
-    border-radius: 1.5rem 1.5rem 0 0;
-    z-index: 2;
-    height: auto;
-  }
-
-  /* Caixa conteúdo */
-  .popup-caixa {
-    margin-top: 2.4rem;
-    padding: 1rem 1.4rem;
-    background-color: rgba(255, 230, 255, 0.82);
-    color: #663399;
-    border: 0.3rem solid #fff;
-    border-top: none;
-    border-radius: 0 1.5rem 1.5rem 1.5rem;
-    font-size: clamp(0.75rem, 0.9vw, 1.15rem);
-    line-height: 1.5;
-    overflow-y: auto;
-    max-height: calc(88svh - 7rem);
-    position: relative;
-    flex: 1;
-  }
-
-  /* Linha branca que completa a borda superior */
-  .popup-caixa::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 0;
-    border-top: 0.3rem solid #fff;
-  }
-  .popup-caixa-creditos::before  { width: calc(100% - 8rem); }
-  .popup-caixa-utilizar::before  { width: calc(100% - 13.5rem); }
-
-  /* Botão fechar: sobreposto no canto superior direito do PAINEL */
-  #menuModal .btn-close-custom-styled {
-    position: absolute;
-    top: -2.2rem;
-    right: -2.2rem;
-    z-index: 1200;
-    width: auto;
-    height: auto;
-  }
-
-  #menuModal .btn-close-custom-styled img {
-    width: 5.5rem;
-    height: 5.5rem;
-  }
-
-  .creditos-texto-formatado { margin-bottom: 1.2rem; }
-  .popup-item { margin-bottom: 0.4rem; }
-}
-
 /* ==========================================================================
    8. MEDIA QUERIES: SMARTPHONES PORTRAIT LIGEIRAMENTE MAIORES (MIN-WIDTH: 376px)
    ========================================================================== */
@@ -668,19 +545,8 @@ main {
 }
 
 /* ==========================================================================
-   8B. GALAXY A51 PORTRAIT (min-width: 400px, portrait)
+   BLOCO III — GLOBAL: LANDSCAPE (iPhone SE e telas de telefone landscape em geral)
    ========================================================================== */
-@media (min-width: 400px) and (max-width: 567px) and (orientation: portrait) {
-  .category-grid-item {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  #menuModal .popup-row {
-    margin-top: 20px;
-  }
-}
-
 /* ==========================================================================
    9. LAYOUT LANDSCAPE — BASE IPHONE SE (568px)
    iPhone SE landscape está correto e não é alterado.
@@ -786,9 +652,9 @@ main {
     border: none;
   }
   #menuModal .custom-popup-content {
-    width: 90svw;
+    width: 85svw;
     max-width: none;
-    padding: 1.8rem;
+    padding: 1.5rem;
     background: url("../assets/background.jpg") center / cover no-repeat;
     border: 0.35rem solid #fff;
     border-radius: 1.8rem;
@@ -796,11 +662,14 @@ main {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    max-height: 86svh;
-    overflow: hidden;
+    max-height: 90svh;
+    overflow: visible;
     transform: none;
     min-height: unset;
     margin: auto;
+    
+    transform: translateX(18%);
+  
   }
   .popup-row {
     display: flex;
@@ -831,9 +700,26 @@ main {
     display: flex;
     flex-direction: column;
   }
-  .custom-popup-title, .custom-popup-title-utilizar {
+  .custom-popup-title {
     position: absolute;
-    top: 0;
+    top: 3.5px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.3rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.25rem solid #fff;
+    border-bottom: none;
+    border-radius: 1rem 1rem 0 0;
+    z-index: 2;
+  }  
+  .custom-popup-title-utilizar {
+    position: absolute;
+    top: 3px;
     left: 0;
     width: auto;
     white-space: nowrap;
@@ -870,90 +756,366 @@ main {
     height: 0;
     border-top: 0.25rem solid #fff;
   }
-  .popup-caixa-creditos::before  { width: calc(100% - 5.5rem); }
+  .popup-caixa-creditos::before  { width: calc(100% - 7.0rem); }
   .popup-caixa-utilizar::before  { width: calc(100% - 9rem); }
-  #menuModal .btn-close-custom-styled {
-    position: absolute;
-    top: -1.6rem;
-    right: -1.6rem;
-    z-index: 1200;
+ #menuModal .btn-close-custom-styled {
+position: absolute;
+    top: -4rem;          /* Ajuste fino para não bater na borda superior */
+    right: -4rem;        /* Ajuste fino para não bater na borda lateral */
+    width: 32px;       /* Tamanho fixo menor para não ser cortado */
+    height: 32px;
+    z-index: 1000;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   #menuModal .btn-close-custom-styled img { width: 3.8rem; height: 3.8rem; }
 }
 
 /* ==========================================================================
-   10. MEDIA QUERIES: ECRÃS MÉDIOS / BASE GERAL TABLETS PORTRAIT (DE 768px EM DIANTE)
-   Aplica apenas em portrait (sem landscape override aqui)
+   7B. LANDSCAPE PANEL — painel centralizado com borda branca
+   EXCLUSIVO para o intervalo 768px–811.98px landscape (gap entre o bloco 9
+   [568–767.98] e o bloco 12 [812–991.98]). NÃO se sobrepõe a nenhum outro
+   breakpoint landscape.
    ========================================================================== */
-@media (min-width: 768px) {
-  .header-container {
+@media (min-width: 768px) and (max-width: 811.98px) and (orientation: landscape) {
+
+  #menuModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 100%;
-    height: 8rem;
-    margin-left: 0;
-    margin-top: 0;
+    height: 100%;
+    margin: 0;
+    
+    left: 9rem;
+
+  }
+
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    
+  }
+
+  /* Painel principal: borda branca, cantos arredondados, fundo nebulosa */
+  #menuModal .custom-popup-content {
+    width: clamp(38rem, 46vw, 82rem);
+    max-width: none;
+    padding: 2.2rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.45rem solid #fff;
+    border-radius: 2.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 88svh;
+   
+    
+  }
+
+  /* Linha das colunas */
+  .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.8rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
     border-radius: 0;
-  }
-  .main-title { font-size: 3.8rem; }
-  .btn-menu img { width: 4.8rem; height: 4.8rem; }
-
-  .category-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;
-    max-width: 88rem;
-    padding: 4rem 4rem 0 4rem;
-  }
-  .container main .category-grid-item { max-width: 32rem; }
-
-  /* iPad portrait: etiquetas grandes e proporcionais como na imagem */
-  .category-title { font-size: 1.8rem; width: 85%; white-space: normal; text-align: center; line-height: 1.2; padding: 0.7rem 1.8rem; bottom: -3rem; }
-  .category-title.long-title { font-size: 1.6rem; width: 85%; bottom: -3.8rem; }
-
-  .gallery-row-second .category-grid-item:nth-child(3) {
-    grid-column: 1 / -1;
-    justify-self: center;
+    position: relative;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0;
+   
+    
+    
   }
 
-  #galleryModal .gallery-frame {
-    width: min(700px, 63vw);
-    min-height: 490px;
-    padding: 55px 30px 20px;
+  /* Créditos: coluna maior (flex 1.5) */
+  .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    
+    
   }
-  #galleryModal .card-title { font-size: 1.8rem; }
-  #galleryModal .card-description-wrapper p { font-size: 1.4rem; }
-  #galleryModal .vertical-label { font-size: 1.1rem; }
 
-  #menuModal .modal-dialog { max-width: none; width: 100%; margin: 0; }
-  #menuModal .modal-content { width: 100%; }
+  /* Como utilizar: coluna menor (flex 1) */
+  .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Aba título estilo etiqueta encaixada */
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.4rem 1.4rem;
+    font-size: clamp(0.85rem, 1.1vw, 1.4rem);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.3rem solid #fff;
+    border-bottom: none;
+    border-radius: 1.5rem 1.5rem 0 0;
+    z-index: 2;
+    height: auto;
+  }
+
+  /* Caixa conteúdo */
+  .popup-caixa {
+    margin-top: 2.4rem;
+    padding: 1rem 1.4rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.3rem solid #fff;
+    border-top: none;
+    border-radius: 0 1.5rem 1.5rem 1.5rem;
+    font-size: clamp(0.75rem, 0.9vw, 1.15rem);
+    line-height: 1.5;
+    overflow-y: auto;
+    max-height: calc(88svh - 7rem);
+    position: relative;
+    flex: 1;
+  }
+
+  /* Linha branca que completa a borda superior */
+  .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.3rem solid #fff;
+  }
+  .popup-caixa-creditos::before  { width: calc(100% - 8rem); }
+  .popup-caixa-utilizar::before  { width: calc(100% - 13.5rem); }
+
+  /* Botão fechar: sobreposto no canto superior direito do PAINEL */
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -2.2rem;
+    right: -2.2rem;
+    z-index: 1200;
+    width: auto;
+    height: auto;
+  }
+
+  #menuModal .btn-close-custom-styled img {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  .creditos-texto-formatado { margin-bottom: 1.2rem; }
+  .popup-item { margin-bottom: 0.4rem; }
 }
 
 /* ==========================================================================
-   11. IPAD VERTICAL (768px ATÉ 1024px PORTRAIT)
+   17. COMPORTAMENTOS GERAIS PARA ORIENTAÇÃO LANDSCAPE
    ========================================================================== */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-  /* Card height -10px */
-  .category-card { height: calc(22rem - 10px); }
-
-  .category-title { font-size: 1.8rem; width: 82%; white-space: normal; text-align: center; line-height: 1.2; padding: 0.7rem 1.6rem; bottom: -3rem; }
-  .category-title.long-title { font-size: 1.8rem; width: 86%; bottom: -3.8rem; }
-
-  /* Credits modal: subir 30px no margin-top do conteúdo */
-  #menuModal .custom-popup-content {
-    padding-top: calc(18rem - 30px);
-  }
-
-  #galleryModal .nav-arrow img { width: 58px; height: 58px; }
-  #galleryModal .nav-arrow.left { left: -100px; top: 20px; }
-  #galleryModal .nav-arrow.right { right: -100px; top: 20px; }
-  #galleryModal .close-btn { top: -25px; right: -25px; }
-  #galleryModal .close-btn img { width: 50px; height: 50px; }
+@media (orientation: landscape) {
+  main { padding-bottom: 0; }
+  .category-grid { margin-bottom: 0; }
 }
 
+/* ==========================================================================
+   BLOCO IV — GALAXY A51: VERTICAL / PORTRAIT
+   ========================================================================== */
+/* ==========================================================================
+   8B. GALAXY A51 PORTRAIT (min-width: 400px, portrait)
+   ========================================================================== */
+@media (min-width: 400px) and (max-width: 567px) and (orientation: portrait) {
+  .category-grid-item {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  #menuModal .popup-row {
+    margin-top: 20px;
+  }
+
+  /* --- Popup de créditos replicado EXATAMENTE do padrão "iPhone SE" vertical
+     (sem painel com borda/background -- igual ao modal base), apenas
+     redimensionado para a largura do A51 em retrato. --- */
+  #menuModal .custom-popup-content {
+    max-width: 50rem;
+    padding: 2.6rem;
+    padding-top: 12rem;
+  }
+  .popup-row {
+    gap: 4.5rem;
+    margin-top: 7.5rem;
+  }
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    width: 14rem;
+    padding: 0.7rem 1.1rem;
+    font-size: 1rem;
+  }
+  .popup-caixa {
+    padding: 1.4rem;
+    font-size: 1rem;
+    max-height: 55rem;
+  }
+  .popup-caixa::before {
+    width: calc(100% - 13.4rem);
+  }
+  #menuModal .btn-close-custom-styled img {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+}
+
+/* ==========================================================================
+   BLOCO V — GALAXY A51: LANDSCAPE
+   ========================================================================== */
 /* ==========================================================================
    12. LANDSCAPE GERAL: GALAXY A51 E SIMILARES (812px ATÉ 991px landscape)
    Layout igual à foto de referência: 4+3, sem scroll, header 20px esquerda
    ========================================================================== */
 @media (min-width: 812px) and (max-width: 991.98px) and (orientation: landscape) {
+
+  /* Painel do menu (estrutura própria deste breakpoint — não depende de outro bloco) */
+  #menuModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    left: 9rem;
+  }
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+  #menuModal .custom-popup-content {
+    width: clamp(38rem, 46vw, 82rem);
+    max-width: none;
+    padding: 2.2rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.45rem solid #fff;
+    border-radius: 2.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 88svh;
+  }
+  .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.8rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0;
+  }
+  .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.4rem 1.4rem;
+    font-size: clamp(0.85rem, 1.1vw, 1.4rem);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.3rem solid #fff;
+    border-bottom: none;
+    border-radius: 1.5rem 1.5rem 0 0;
+    z-index: 2;
+    height: auto;
+  }
+  .popup-caixa {
+    margin-top: 2.4rem;
+    padding: 1rem 1.4rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.3rem solid #fff;
+    border-top: none;
+    border-radius: 0 1.5rem 1.5rem 1.5rem;
+    font-size: clamp(0.75rem, 0.9vw, 1.15rem);
+    line-height: 1.5;
+    overflow-y: auto;
+    max-height: calc(88svh - 7rem);
+    position: relative;
+    flex: 1;
+  }
+  .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.3rem solid #fff;
+  }
+  .popup-caixa-creditos::before  { width: calc(100% - 8rem); }
+  .popup-caixa-utilizar::before  { width: calc(100% - 13.5rem); }
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -2.2rem;
+    right: -2.2rem;
+    z-index: 1200;
+    width: auto;
+    height: auto;
+  }
+  #menuModal .btn-close-custom-styled img {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+  .creditos-texto-formatado { margin-bottom: 1.2rem; }
+  .popup-item { margin-bottom: 0.4rem; }
 
   /* Header: da borda esquerda, wide como na imagem */
   .header-container {
@@ -1068,10 +1230,209 @@ main {
 }
 
 /* ==========================================================================
+   BLOCO VI — IPAD: VERTICAL / PORTRAIT
+   ========================================================================== */
+/* ==========================================================================
+   10. MEDIA QUERIES: ECRÃS MÉDIOS / BASE GERAL TABLETS PORTRAIT (DE 768px EM DIANTE)
+   Aplica apenas em portrait (sem landscape override aqui)
+   ========================================================================== */
+@media (min-width: 768px) {
+  .header-container {
+    width: 100%;
+    max-width: 100%;
+    height: 8rem;
+    margin-left: 0;
+    margin-top: 0;
+    border-radius: 0;
+  }
+  .main-title { font-size: 3.8rem; }
+  .btn-menu img { width: 4.8rem; height: 4.8rem; }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    max-width: 88rem;
+    padding: 4rem 4rem 0 4rem;
+  }
+  .container main .category-grid-item { max-width: 32rem; }
+
+  /* iPad portrait: etiquetas grandes e proporcionais como na imagem */
+  .category-title { font-size: 1.8rem; width: 85%; white-space: normal; text-align: center; line-height: 1.2; padding: 0.7rem 1.8rem; bottom: -3rem; }
+  .category-title.long-title { font-size: 1.6rem; width: 85%; bottom: -3.8rem; }
+
+  .gallery-row-second .category-grid-item:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  #galleryModal .gallery-frame {
+    width: min(700px, 63vw);
+    min-height: 490px;
+    padding: 55px 30px 20px;
+  }
+  #galleryModal .card-title { font-size: 1.8rem; }
+  #galleryModal .card-description-wrapper p { font-size: 1.4rem; }
+  #galleryModal .vertical-label { font-size: 1.1rem; }
+
+  #menuModal .modal-dialog { max-width: none; width: 100%; margin: 0; }
+  #menuModal .modal-content { width: 100%; }
+}
+
+/* ==========================================================================
+   11. IPAD VERTICAL (768px ATÉ 1024px PORTRAIT)
+   ========================================================================== */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  /* Card height -10px */
+  .category-card { height: calc(22rem - 10px); }
+
+  .category-title { font-size: 1.8rem; width: 82%; white-space: normal; text-align: center; line-height: 1.2; padding: 0.7rem 1.6rem; bottom: -3rem; }
+  .category-title.long-title { font-size: 1.8rem; width: 86%; bottom: -3.8rem; }
+
+  #galleryModal .nav-arrow img { width: 58px; height: 58px; }
+  #galleryModal .nav-arrow.left { left: -100px; top: 20px; }
+  #galleryModal .nav-arrow.right { right: -100px; top: 20px; }
+  #galleryModal .close-btn { top: -25px; right: -25px; }
+  #galleryModal .close-btn img { width: 50px; height: 50px; }
+
+  /* --- Popup de créditos replicado EXATAMENTE do padrão "iPhone SE" vertical
+     (sem painel com borda/background -- igual ao modal base), apenas
+     redimensionado para a largura do iPad em retrato. Substitui o antigo
+     ajuste isolado de padding-top por esta versão completa. --- */
+  #menuModal .custom-popup-content {
+    max-width: 70rem;
+    padding: 3.2rem;
+    padding-top: 16rem;
+  }
+  .popup-row {
+    gap: 5rem;
+    margin-top: 9rem;
+  }
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    width: 17rem;
+    padding: 0.8rem 1.4rem;
+    font-size: 1.3rem;
+  }
+  .popup-caixa {
+    padding: 1.8rem;
+    font-size: 1.3rem;
+    max-height: 65rem;
+  }
+  .popup-caixa::before {
+    width: calc(100% - 16.6rem);
+  }
+  #menuModal .btn-close-custom-styled img {
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+}
+
+/* ==========================================================================
+   BLOCO VII — IPAD: LANDSCAPE
+   ========================================================================== */
+/* ==========================================================================
    13. IPAD LANDSCAPE (992px ATÉ 1199px landscape)
    Layout 4+3, sem scroll, header 20px esquerda, créditos igual à foto
    ========================================================================== */
 @media (min-width: 992px) and (max-width: 1199.98px) and (orientation: landscape) {
+
+  /* Estrutura própria do painel do menu (não depende de outro bloco) */
+  #menuModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    left: 9rem;
+  }
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+  .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.8rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0;
+  }
+  .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .custom-popup-title,
+  .custom-popup-title-utilizar {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.3rem solid #fff;
+    border-bottom: none;
+    border-radius: 1.5rem 1.5rem 0 0;
+    z-index: 2;
+    height: auto;
+  }
+  .popup-caixa {
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.3rem solid #fff;
+    border-top: none;
+    border-radius: 0 1.5rem 1.5rem 1.5rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    position: relative;
+    flex: 1;
+  }
+  .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.3rem solid #fff;
+  }
+  .popup-caixa-creditos::before  { width: calc(100% - 8rem); }
+  .popup-caixa-utilizar::before  { width: calc(100% - 13.5rem); }
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -2.2rem;
+    right: -2.2rem;
+    z-index: 1200;
+    width: auto;
+    height: auto;
+  }
+  .creditos-texto-formatado { margin-bottom: 1.2rem; }
+  .popup-item { margin-bottom: 0.4rem; }
 
   /* Header: da borda esquerda, wide como na imagem */
   .header-container {
@@ -1145,25 +1506,133 @@ main {
   #galleryModal .close-btn { top: -25px; right: -25px; }
   #galleryModal .close-btn img { width: 50px; height: 50px; }
 
-  /* Menu Modal crédito — -30% centralizado, herdado do bloco 7B */
+  /* Menu Modal crédito — replicado EXATAMENTE do padrão "iPhone SE" landscape,
+     proporcional ao espaço do iPad landscape (992–1199.98px). */
   #menuModal { overflow: hidden; }
-  #menuModal .custom-popup-content {
-    width: clamp(26.6rem, 32.2vw, 57.4rem);
-    padding: 1.54rem;
+  #menuModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
   }
-  #menuModal .custom-popup-content .popup-caixa {
-    font-size: clamp(0.525rem, 0.63vw, 0.805rem);
-    padding: 0.7rem 0.98rem;
-    max-height: calc(88svh - 4.9rem);
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+  #menuModal .custom-popup-content {
+    width: clamp(52rem, 68vw, 82rem);
+    max-width: none;
+    padding: 2rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.4rem solid #fff;
+    border-radius: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 88svh;
+    overflow: hidden;
+    transform: none;
+    min-height: unset;
+    margin: auto;
+  }
+  #menuModal .custom-popup-content .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.8rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0;
+  }
+  #menuModal .custom-popup-content .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #menuModal .custom-popup-content .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
   }
   #menuModal .custom-popup-content .custom-popup-title,
   #menuModal .custom-popup-content .custom-popup-title-utilizar {
-    font-size: clamp(0.595rem, 0.77vw, 0.98rem);
-    padding: 0.28rem 0.98rem;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.5rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.4rem solid #fff;
+    border-bottom: none;
+    border-radius: 2rem 2rem 0 0;
+    z-index: 2;
+    height: auto;
   }
-  #menuModal .btn-close-custom-styled img { width: 2.94rem; height: 2.94rem; }
+  #menuModal .custom-popup-content .popup-caixa {
+    margin-top: 2.4rem;
+    padding: 1.2rem 1.6rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.4rem solid #fff;
+    border-top: none;
+    border-radius: 0 2rem 2rem 2rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    max-height: calc(88svh - 6rem);
+    position: relative;
+    flex: 1;
+  }
+  #menuModal .custom-popup-content .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.4rem solid #fff;
+  }
+  #menuModal .custom-popup-content .popup-caixa-creditos::before { width: calc(100% - 9rem); }
+  #menuModal .custom-popup-content .popup-caixa-utilizar::before { width: calc(100% - 14rem); }
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -2.2rem;
+    right: -2.2rem;
+    z-index: 1200;
+    width: auto;
+    height: auto;
+  }
+  #menuModal .btn-close-custom-styled img { width: 5rem; height: 5rem; }
+  #menuModal .creditos-texto-formatado { margin-bottom: 1.2rem; }
+  #menuModal .popup-item { margin-bottom: 0.4rem; }
 }
 
+/* ==========================================================================
+   BLOCO VIII — DESKTOPS, LAPTOPS E TELAS GRANDES (1200px EM DIANTE)
+   ========================================================================== */
 /* ==========================================================================
    14. LAPTOPS / DESKTOP MÉDIO (1200px EM DIANTE)
    Layout 4+3, sem scroll, header 20px esquerda, créditos igual à foto
@@ -1228,28 +1697,128 @@ main {
   .category-title.long-title { font-size: clamp(0.75rem, 1.15vw, 1rem); bottom: -3.2rem; }
   .open-word-logo-global { width: 8.5rem; bottom: 2rem; right: 2rem; }
 
-  /* Menu Modal — crédito -30% centralizado */
-  #menuModal .custom-popup-content {
-    width: 70vw;
-    max-width: none;
-    padding: 1.4rem 2.8rem;
+  /* Popup de créditos — replicado do padrão "iPhone SE" landscape, tamanho 1200px+ */
+  #menuModal { overflow: hidden; }
+  #menuModal .modal-dialog {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    left: 9rem;
   }
-  #menuModal .custom-popup-content .popup-row { width: 100%; }
-  #menuModal .custom-popup-content .popup-caixa {
-    font-size: clamp(0.525rem, 0.63vw, 0.805rem);
-    padding: 0.7rem 0.98rem;
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+  #menuModal .custom-popup-content {
+    width: clamp(50rem, 55vw, 92rem);
+    max-width: none;
+    padding: 2.3rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.45rem solid #fff;
+    border-radius: 2.3rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 88svh;
+    overflow: hidden;
+    transform: none;
+    min-height: unset;
+    margin: auto;
+  }
+  #menuModal .custom-popup-content .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.8rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0;
+  }
+  #menuModal .custom-popup-content .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #menuModal .custom-popup-content .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
   }
   #menuModal .custom-popup-content .custom-popup-title,
   #menuModal .custom-popup-content .custom-popup-title-utilizar {
-    font-size: clamp(0.595rem, 0.77vw, 0.98rem);
-    padding: 0.28rem 0.98rem;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.5rem 1.6rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.45rem solid #fff;
+    border-bottom: none;
+    border-radius: 2.3rem 2.3rem 0 0;
+    z-index: 2;
+    height: auto;
   }
-  #menuModal { overflow: hidden; }
-  #menuModal .btn-close-custom-styled img { width: 4.2rem; height: 4.2rem; }
+  #menuModal .custom-popup-content .popup-caixa {
+    margin-top: 2.4rem;
+    padding: 1.2rem 1.6rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.45rem solid #fff;
+    border-top: none;
+    border-radius: 0 2.3rem 2.3rem 2.3rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    max-height: calc(88svh - 6rem);
+    position: relative;
+    flex: 1;
+  }
+  #menuModal .custom-popup-content .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.45rem solid #fff;
+  }
+  #menuModal .custom-popup-content .popup-caixa-creditos::before { width: calc(100% - 9rem); }
+  #menuModal .custom-popup-content .popup-caixa-utilizar::before { width: calc(100% - 14rem); }
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -2.2rem;
+    right: -2.2rem;
+    z-index: 1200;
+    width: auto;
+    height: auto;
+  }
+  #menuModal .btn-close-custom-styled img { width: 5.2rem; height: 5.2rem; }
+  #menuModal .creditos-texto-formatado { margin-bottom: 1.2rem; }
+  #menuModal .popup-item { margin-bottom: 0.4rem; }
 
   /* Gallery Modal 1200px */
   #galleryModal .gallery-frame { width: min(560px, 65vw); min-height: 380px; padding: 34px 18px 14px; border-radius: 16px; }
@@ -1318,22 +1887,128 @@ main {
   .container main { align-items: center; }
   .open-word-logo-global { width: 10rem; bottom: 2.5rem; right: 2.5rem; }
 
-  /* Menu Modal crédito — -30% centralizado */
+  /* Popup de créditos — replicado do padrão "iPhone SE" landscape, tamanho 1400-1799px (1440px) */
   #menuModal { overflow: hidden; }
-  #menuModal .btn-close-custom-styled img { width: 4.2rem; height: 4.2rem; }
-  #menuModal .custom-popup-content {
-    width: clamp(26.6rem, 32.2vw, 57.4rem);
-    padding: 1.54rem;
+  #menuModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    left: 9rem;
   }
-  #menuModal .custom-popup-content .popup-caixa {
-    font-size: clamp(0.525rem, 0.63vw, 0.805rem);
-    padding: 0.7rem 0.98rem;
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+  #menuModal .custom-popup-content {
+    width: clamp(56rem, 58vw, 98rem);
+    max-width: none;
+    padding: 2.4rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.48rem solid #fff;
+    border-radius: 2.4rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 88svh;
+    overflow: hidden;
+    transform: none;
+    min-height: unset;
+    margin: auto;
+  }
+  #menuModal .custom-popup-content .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0;
+  }
+  #menuModal .custom-popup-content .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #menuModal .custom-popup-content .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
   }
   #menuModal .custom-popup-content .custom-popup-title,
   #menuModal .custom-popup-content .custom-popup-title-utilizar {
-    font-size: clamp(0.595rem, 0.77vw, 0.98rem);
-    padding: 0.28rem 0.98rem;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.55rem 1.7rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.48rem solid #fff;
+    border-bottom: none;
+    border-radius: 2.4rem 2.4rem 0 0;
+    z-index: 2;
+    height: auto;
   }
+  #menuModal .custom-popup-content .popup-caixa {
+    margin-top: 2.4rem;
+    padding: 1.3rem 1.7rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.48rem solid #fff;
+    border-top: none;
+    border-radius: 0 2.4rem 2.4rem 2.4rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    max-height: calc(88svh - 6rem);
+    position: relative;
+    flex: 1;
+  }
+  #menuModal .custom-popup-content .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.48rem solid #fff;
+  }
+  #menuModal .custom-popup-content .popup-caixa-creditos::before { width: calc(100% - 9.5rem); }
+  #menuModal .custom-popup-content .popup-caixa-utilizar::before { width: calc(100% - 14.5rem); }
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -2.2rem;
+    right: -2.2rem;
+    z-index: 1200;
+    width: auto;
+    height: auto;
+  }
+  #menuModal .btn-close-custom-styled img { width: 5.6rem; height: 5.6rem; }
+  #menuModal .creditos-texto-formatado { margin-bottom: 1.2rem; }
+  #menuModal .popup-item { margin-bottom: 0.4rem; }
 
   /* Gallery Modal */
   #galleryModal .gallery-frame { width: min(680px, 60vw); min-height: 460px; padding: 45px 22px 18px; border-radius: 20px; }
@@ -1402,23 +2077,128 @@ main {
   .category-title.long-title { font-size: clamp(0.8rem, 1vw, 1.1rem); bottom: -3.4rem; }
   .open-word-logo-global { width: 12rem; bottom: 3rem; right: 3rem; }
 
-  /* Menu Modal crédito — -30% centralizado */
+  /* Popup de créditos — replicado do padrão "iPhone SE" landscape, tamanho 1800px+ */
   #menuModal { overflow: hidden; }
-  #menuModal .btn-close-custom-styled img { width: 4.9rem; height: 4.9rem; }
-  #menuModal .custom-popup-content {
-    width: clamp(26.6rem, 32.2vw, 57.4rem);
-    padding: 1.54rem;
+  #menuModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    left: 9rem;
   }
-  #menuModal .custom-popup-content .popup-caixa {
-    font-size: clamp(0.525rem, 0.63vw, 0.805rem);
-    padding: 0.7rem 0.98rem;
-    max-height: calc(88svh - 4.9rem);
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+  #menuModal .custom-popup-content {
+    width: clamp(62rem, 60vw, 104rem);
+    max-width: none;
+    padding: 2.6rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.5rem solid #fff;
+    border-radius: 2.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 88svh;
+    overflow: hidden;
+    transform: none;
+    min-height: unset;
+    margin: auto;
+  }
+  #menuModal .custom-popup-content .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 2.2rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0;
+  }
+  #menuModal .custom-popup-content .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #menuModal .custom-popup-content .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
   }
   #menuModal .custom-popup-content .custom-popup-title,
   #menuModal .custom-popup-content .custom-popup-title-utilizar {
-    font-size: clamp(0.595rem, 0.77vw, 0.98rem);
-    padding: 0.28rem 0.98rem;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.6rem 1.8rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.5rem solid #fff;
+    border-bottom: none;
+    border-radius: 2.5rem 2.5rem 0 0;
+    z-index: 2;
+    height: auto;
   }
+  #menuModal .custom-popup-content .popup-caixa {
+    margin-top: 2.4rem;
+    padding: 1.4rem 1.8rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.5rem solid #fff;
+    border-top: none;
+    border-radius: 0 2.5rem 2.5rem 2.5rem;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    max-height: calc(88svh - 6.5rem);
+    position: relative;
+    flex: 1;
+  }
+  #menuModal .custom-popup-content .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.5rem solid #fff;
+  }
+  #menuModal .custom-popup-content .popup-caixa-creditos::before { width: calc(100% - 10rem); }
+  #menuModal .custom-popup-content .popup-caixa-utilizar::before { width: calc(100% - 15rem); }
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -2.2rem;
+    right: -2.2rem;
+    z-index: 1200;
+    width: auto;
+    height: auto;
+  }
+  #menuModal .btn-close-custom-styled img { width: 6rem; height: 6rem; }
+  #menuModal .creditos-texto-formatado { margin-bottom: 1.2rem; }
+  #menuModal .popup-item { margin-bottom: 0.4rem; }
 
   /* Gallery Modal */
   #galleryModal .gallery-frame { width: min(805px, 55vw); min-height: 546px; padding: 52px 28px 21px; border-radius: 25px; }
@@ -1438,19 +2218,134 @@ main {
 }
 
 /* ==========================================================================
-   17. COMPORTAMENTOS GERAIS PARA ORIENTAÇÃO LANDSCAPE
-   ========================================================================== */
-@media (orientation: landscape) {
-  main { padding-bottom: 0; }
-  .category-grid { margin-bottom: 0; }
-}
-
-/* ==========================================================================
    18. TELAS GIGANTES / ULTRA 4K+ (2500px EM DIANTE)
    ========================================================================== */
 @media (min-width: 2500px) {
 
   .container { max-width: 1400px; }
+
+  /* Popup de créditos — replicado do padrão "iPhone SE" landscape, tamanho 2500px+ (2560px) */
+  #menuModal { overflow: hidden; }
+  #menuModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    left: 9rem;
+  }
+  #menuModal .modal-content {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+  }
+  #menuModal .custom-popup-content {
+    width: clamp(68rem, 58vw, 110rem);
+    max-width: none;
+    padding: 2.8rem;
+    background: url("../assets/background.jpg") center / cover no-repeat;
+    border: 0.55rem solid #fff;
+    border-radius: 2.6rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-height: 88svh;
+    overflow: hidden;
+    transform: none;
+    min-height: unset;
+    margin: auto;
+  }
+  #menuModal .custom-popup-content .popup-row {
+    display: flex;
+    flex-direction: row;
+    gap: 2.4rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    position: relative;
+    align-items: flex-start;
+    flex: 1;
+    min-height: 0;
+  }
+  #menuModal .custom-popup-content .box-wrapper-creditos {
+    flex: 1.5;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #menuModal .custom-popup-content .box-wrapper-utilizar {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    padding: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  #menuModal .custom-popup-content .custom-popup-title,
+  #menuModal .custom-popup-content .custom-popup-title-utilizar {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: auto;
+    white-space: nowrap;
+    padding: 0.65rem 1.9rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #fff;
+    background-color: #8a2be2;
+    border: 0.55rem solid #fff;
+    border-bottom: none;
+    border-radius: 2.6rem 2.6rem 0 0;
+    z-index: 2;
+    height: auto;
+  }
+  #menuModal .custom-popup-content .popup-caixa {
+    margin-top: 2.4rem;
+    padding: 1.5rem 1.9rem;
+    background-color: rgba(255, 230, 255, 0.82);
+    color: #663399;
+    border: 0.55rem solid #fff;
+    border-top: none;
+    border-radius: 0 2.6rem 2.6rem 2.6rem;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    overflow-y: auto;
+    max-height: calc(88svh - 6.5rem);
+    position: relative;
+    flex: 1;
+  }
+  #menuModal .custom-popup-content .popup-caixa::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0;
+    border-top: 0.55rem solid #fff;
+  }
+  #menuModal .custom-popup-content .popup-caixa-creditos::before { width: calc(100% - 10.5rem); }
+  #menuModal .custom-popup-content .popup-caixa-utilizar::before { width: calc(100% - 15.5rem); }
+  #menuModal .btn-close-custom-styled {
+    position: absolute;
+    top: -2.2rem;
+    right: -2.2rem;
+    z-index: 1200;
+    width: auto;
+    height: auto;
+  }
+  #menuModal .btn-close-custom-styled img { width: 6.5rem; height: 6.5rem; }
+  #menuModal .creditos-texto-formatado { margin-bottom: 1.2rem; }
+  #menuModal .popup-item { margin-bottom: 0.4rem; }
 
   .container main { align-items: center; padding: 0 3vw; height: calc(100vh - 15rem); overflow: hidden; }
 
