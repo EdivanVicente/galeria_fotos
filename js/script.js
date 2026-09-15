@@ -1,479 +1,310 @@
-// =========================================================
-//  DADOS DAS GALERIAS
-// =========================================================
+/* =========================================================================
+   GALERIA DE CONTEÚDO — LÓGICA DA GALERIA
+   - Abre um modal por tema (card)
+   - Navega por setas, teclado (← →) e swipe
+   - Pré-carrega imagens vizinhas
+   - Esconde a seta quando não há mais imagens naquela direção
+   ========================================================================= */
+"use strict";
+
+/* =========================================================
+   1. DADOS DAS GALERIAS
+   ========================================================= */
 const galleryData = {
-  galaxias: {
-    title: "CATEGORIA UM",
+  montanhas: {
+    title: "MONTANHAS",
     images: [
-      {
-        src: "./assets/imagem1.jpg",
-        caption: "IMAGEM GENÉRICA DE EXEMPLO, REPRESENTAÇÃO ILUSTRATIVA DO OBJETO EM DESTAQUE. ELA TEM FORMATO CARACTERÍSTICO COM DOIS ELEMENTOS PRINCIPAIS E OUTROS COMPONENTES MENORES.",
-        credit: "Instituição A / Organização B",
-      },
-      {
-        src: "./assets/imagem2.webp",
-        caption:
-          "O OBJETO APRESENTADO É O MAIS REPRESENTATIVO DO GRUPO DE ELEMENTOS QUE INCLUI ESTA COLEÇÃO. EM FORMA DEFINIDA, ESTÁ A DETERMINADA DISTÂNCIA DO PONTO DE REFERÊNCIA.",
-        credit: "Instituição A / Organização B / Centro de Pesquisa",
-      },
-      {
-        src: "./assets/imagem3.webp",
-        caption:
-          "OBJETO DE EXEMPLO, TAMBÉM POSSUI FORMA CARACTERÍSTICA E ESTÁ A DETERMINADA DISTÂNCIA DO PONTO DE REFERÊNCIA PRINCIPAL.",
-        credit: "Organização A, Organização B / Acervo Digital",
-      },
-      {
-        src: "./assets/imagem4.webp",
-        caption:
-          "O ELEMENTO REPRESENTADO É DO TIPO ILUSTRATIVO LOCALIZADO A DETERMINADA DISTÂNCIA DO PONTO DE REFERÊNCIA.",
-        credit: "Organização A / Organização B",
-      },
-      {
-        src: "./assets/imagem5.webp",
-        caption: "O OBJETO DE EXEMPLO É PEQUENO E DE FORMATO IRREGULAR.",
-        credit: "Organização A / Organização B, Pesquisador C",
-      },
-      {
-        src: "./assets/imagem6.webp",
-        caption:
-          "DOIS ELEMENTOS SE ENCONTRAM: O MENOR E O MAIOR. ESSA IMAGEM FOI GERADA COM DADOS DE INSTRUMENTO DIGITAL E DE EQUIPAMENTO DE CAPTURA.",
-        credit: "Organização A, Organização B, Organização C / Acervo Digital",
-      },
+      { src: "./assets/imagem1.jpg",  caption: "Pico nevado ao amanhecer, com a primeira luz dourada tocando os cumes e um vale coberto por um leve nevoeiro.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem2.webp", caption: "Cadeia de montanhas refletida em um lago de águas calmas, cercada por pinheiros e céu limpo.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem3.webp", caption: "Trilha entre encostas rochosas, com nuvens baixas passando entre os picos ao fundo.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem4.webp", caption: "Vista panorâmica do topo ao entardecer, com camadas de montanhas se perdendo no horizonte.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem5.webp", caption: "Formação rochosa iluminada pelo sol da tarde, contrastando com o céu azul profundo.", credit: "Foto: Nome Sobrenome" },
     ],
   },
-  estrelas: {
-    title: "CATEGORIA DOIS",
+  praias: {
+    title: "PRAIAS",
     images: [
-      {
-        src: "./assets/imagem7.webp",
-        caption:
-          "O ELEMENTO CENTRAL DO GRUPO PRINCIPAL. ESTA IMAGEM MOSTRA A LUZ BRILHANTE DE UMA OCORRÊNCIA REGISTRADA.",
-        credit: "Organização A / Departamento B / Instrumento C",
-      },
-      {
-        src: "./assets/imagem8.webp",
-        caption:
-          "A IMAGEM MOSTRA UM OBJETO EM FORMAÇÃO. COM APENAS CERCA DE DETERMINADO TEMPO, ESTE JOVEM ELEMENTO ESTÁ EM MEIO A UMA REGIÃO DE COMPOSIÇÃO VARIADA EM FORMA DE AMPULHETA.",
-        credit: "Organização A, Organização B, Organização C / Acervo Digital",
-      },
-      {
-        src: "./assets/imagem9.webp",
-        caption:
-          "ELEMENTO DE REFERÊNCIA É O MAIS PRÓXIMO DO PRINCIPAL, A POUCO MAIS DE DETERMINADA DISTÂNCIA. É DO TIPO MENOR E ESTÁ NA REGIÃO ESPECÍFICA, QUE É VISÍVEL NO HEMISFÉRIO INDICADO.",
-        credit: "Organização A / Organização B",
-      },
-      {
-        src: "./assets/imagem10.webp",
-        caption:
-          "OBJETO DE REFERÊNCIA É UM EXEMPLO DE ELEMENTO QUE PASSOU POR TRANSFORMAÇÃO. ELE ESTÁ LOCALIZADO A DETERMINADA DISTÂNCIA, NA REGIÃO ESPECÍFICA.",
-        credit:
-          "Tipo A: Organização A / Departamento B; Tipo B: Organização A / Organização B / Organização C / Pesquisador D (Instituição A), Pesquisador E (Instituição B), Pesquisador F (Instituição C); Processamento: Organização A / Departamento B / Setor C",
-      },
-      {
-        src: "./assets/imagem11.webp",
-        caption:
-          "OUTRO RESULTADO POSSÍVEL PARA UM ELEMENTO É SE TORNAR UM TIPO DIFERENTE. TEMOS UMA ILUSTRAÇÃO DE UM OBJETO COM CARACTERÍSTICAS ESPECÍFICAS.",
-        credit: "Organização A / Pesquisador B (Instituição C)",
-      },
+      { src: "./assets/imagem6.webp", caption: "Ondas suaves quebrando na areia clara ao pôr do sol, com tons alaranjados refletidos na água.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem7.webp", caption: "Enseada de águas turquesa cercada por falésias verdes e um céu de poucas nuvens.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem8.webp", caption: "Coqueiros inclinados sobre a faixa de areia, emoldurando o mar aberto ao horizonte.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem9.webp", caption: "Piscinas naturais formadas entre as rochas durante a maré baixa.", credit: "Foto: Nome Sobrenome" },
     ],
   },
-  sistemas: {
-    title: "CATEGORIA TRÊS",
+  florestas: {
+    title: "FLORESTAS",
     images: [
-      {
-        src: "./assets/imagem12.webp",
-        caption:
-          "NESTA ILUSTRAÇÃO, OS ELEMENTOS SÃO RETRATADOS MUITO MAIS PRÓXIMOS DO QUE REALMENTE ESTÃO.",
-        credit: "Organização A / Departamento B",
-      },
-      {
-        src: "./assets/imagem13.webp",
-        caption:
-          "CONCEITO ILUSTRATIVO DO CONJUNTO REFERENCIADO. UM GRUPO COM UM ELEMENTO SEMELHANTE AO PRINCIPAL, E COM OUTROS COMPONENTES EM SUA ÓRBITA. ESTÁ A CERCA DE DETERMINADA DISTÂNCIA.",
-        credit: "Organização A / Centro de Pesquisa B / Pesquisador C",
-      },
+      { src: "./assets/imagem10.webp", caption: "Raios de sol atravessando a copa densa de uma floresta úmida, iluminando a vegetação rasteira.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem11.webp", caption: "Trilha coberta de folhas em meio a árvores altas, envolta por um clima de neblina.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem12.webp", caption: "Riacho de águas cristalinas serpenteando entre pedras cobertas de musgo verde.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem13.webp", caption: "Floresta de outono com folhagem em tons de vermelho, laranja e amarelo.", credit: "Foto: Nome Sobrenome" },
     ],
   },
-  planetas: {
-    title: "CATEGORIA QUATRO",
+  desertos: {
+    title: "DESERTOS",
     images: [
-      {
-        src: "./assets/imagem14.webp",
-        caption:
-          "IMAGEM DO OBJETO PRINCIPAL, TERCEIRO ELEMENTO EM DISTÂNCIA DO CENTRO, CAPTURADA PELO INSTRUMENTO DE REFERÊNCIA.",
-        credit: "Instrumento A / Organização B",
-      },
-      {
-        src: "./assets/imagem15.webp",
-        caption:
-          "IMAGEM DO OBJETO SECUNDÁRIO, O ELEMENTO MAIS PRÓXIMO DO CENTRO, CAPTURADA PELA SONDA ESPACIAL DE REFERÊNCIA.",
-        credit:
-          "Organização A / Instituição de Pesquisa B / Instituição C",
-      },
-      {
-        src: "./assets/imagem16.webp",
-        caption:
-          "IMAGEM DO TERCEIRO OBJETO, CAPTURADA PELA SONDA ESPACIAL DE REFERÊNCIA. MAS, AO CONTRÁRIO DE SUA APARÊNCIA SERENA, O ELEMENTO É TOMADO POR CONDIÇÕES EXTREMAS E CARACTERÍSTICAS PARTICULARES.",
-        credit: "Organização A / Departamento B",
-      },
-      {
-        src: "./assets/imagem17.webp",
-        caption:
-          "OBJETO VIZINHO, EM IMAGEM CAPTURADA PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
-        credit:
-          "Organização A / Equipe de Pesquisa B / Pesquisador C, Pesquisador D, Pesquisador E, Pesquisador F, Pesquisador G",
-      },
-      {
-        src: "./assets/imagem18.webp",
-        caption:
-          "OBJETO DE GRANDE PORTE, O MAIOR DO GRUPO PRINCIPAL. IMAGEM CAPTADA PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
-        credit:
-          "Organização A, Organização B, Organização C, Organização D, Pesquisador E (Instituição F), Pesquisador G (Instituição H), Pesquisador I (Instituição J), Pesquisador K (Instituição L), Pesquisador M (Instituição N)",
-      },
-      {
-        src: "./assets/imagem19.webp",
-        caption:
-          "OBJETO COM ESTRUTURA CARACTERÍSTICA, COM IMAGENS CAPTURADAS PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
-        credit:
-          "Organização A, Organização B, Organização C, Organização D, Pesquisador E (Instituição F), Pesquisador G (Instituição H), Pesquisador I (Instituição J), Pesquisador K (Instituição L), Pesquisador M (Instituição N). Processamento: Pesquisador N / Acervo Digital",
-      },
-      {
-        src: "./assets/imagem20.webp",
-        caption:
-          "OBJETO DE BAIXA TEMPERATURA. O TIPO GELADO É CERCADO POR ELEMENTOS MENORES E COMPONENTES NATURAIS. IMAGEM CAPTURADA PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
-        credit:
-          "Organização A, Organização B, Organização C, Organização D / Processamento: Pesquisador E (Instituição F)",
-      },
-      {
-        src: "./assets/imagem21.webp",
-        caption:
-          "O OBJETO REFERENCIADO ESTÁ A DETERMINADO NÚMERO DE VEZES MAIS DISTANTE DO CENTRO DO QUE O PONTO DE PARTIDA. IMAGEM CAPTURADA PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
-        credit: "Organização A, Organização B, Organização C / Acervo Digital",
-      },
-      {
-        src: "./assets/imagem22.webp",
-        caption:
-          "OBJETO RECLASSIFICADO QUE ANTES ERA CONSIDERADO O NONO DO GRUPO E EM DATA ESPECÍFICA FOI REDEFINIDO COMO DO TIPO MENOR, APÓS DESCOBRIREM OUTROS ELEMENTOS NA MESMA REGIÃO.",
-        credit: "Organização A / Departamento B / Equipe C",
-      },
-      {
-        src: "./assets/imagem23.webp",
-        caption:
-          "ELEMENTO ÚNICO DO TIPO MENOR QUE ESTÁ NO GRUPO INTERNO. ELE FICA LOCALIZADO NA REGIÃO INTERMEDIÁRIA ENTRE DOIS OBJETOS PRINCIPAIS.",
-        credit: "Organização A / Departamento B / Equipe C / Setor D",
-      },
-      {
-        src: "./assets/imagem24.webp",
-        caption:
-          "O OBJETO EXTERNO TEM CERCA DE DETERMINADO NÚMERO DE VEZES A MASSA DO ELEMENTO DE REFERÊNCIA, SUA ESTRELA É PARECIDA COM O TIPO COMUM E ESTÁ A DETERMINADA DISTÂNCIA.",
-        credit: "Organização A / Departamento B / Pesquisador C",
-      },
-      {
-        src: "./assets/imagem25.webp",
-        caption:
-          "O OBJETO DO TIPO AMPLIADO, REPRESENTADO COM SUA ESTRELA NESTA CONCEPÇÃO ILUSTRATIVA, PROVAVELMENTE TEM UMA CAMADA MAIS ESPESSA QUE A DO ELEMENTO DE REFERÊNCIA, DE ACORDO COM UM ESTUDO PUBLICADO.",
-        credit: "Organização A / Departamento B",
-      },
+      { src: "./assets/imagem14.webp", caption: "Dunas onduladas ao entardecer, com o vento desenhando linhas suaves sobre a areia dourada.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem15.webp", caption: "Céu estrelado sobre o deserto, com a Via Láctea visível acima do horizonte plano.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem16.webp", caption: "Formações rochosas avermelhadas esculpidas pela erosão ao longo de milhares de anos.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem17.webp", caption: "Oásis isolado com algumas palmeiras cercadas pela imensidão árida.", credit: "Foto: Nome Sobrenome" },
     ],
   },
-  satelites: {
-    title: "CATEGORIA CINCO",
+  cachoeiras: {
+    title: "CACHOEIRAS",
     images: [
-      {
-        src: "./assets/imagem26.webp",
-        caption:
-          "O ELEMENTO É O ÚNICO COMPONENTE NATURAL DO OBJETO PRINCIPAL E EXERCE INFLUÊNCIA SOBRE ELE, COMO A REGULAÇÃO DE FENÔMENOS PERIÓDICOS.",
-        credit:
-          "Organização A / Instituição de Pesquisa B / Instituição C",
-      },
-      {
-        src: "./assets/imagem27.webp",
-        caption:
-          "OBJETO SECUNDÁRIO É O MAIOR DOS DOIS COMPONENTES DO ELEMENTO DE REFERÊNCIA. ELE ORBITA O ELEMENTO PRINCIPAL TRÊS VEZES POR PERÍODO.",
-        credit: "Organização A / Departamento B / Instituição C",
-      },
-      {
-        src: "./assets/imagem28.webp",
-        caption:
-          "ELEMENTO ESPECÍFICO É O QUARTO MAIOR DOS COMPONENTES DO OBJETO PRINCIPAL. E É CONSIDERADO UM DOS LUGARES MAIS PROMISSORES DO NOSSO GRUPO PARA ENCONTRAR AMBIENTES ADEQUADOS PARA DIFERENTES CONDIÇÕES.",
-        credit:
-          "Dados: Organização A / Departamento B / Equipe C Processamento: Pesquisador D",
-      },
-      {
-        src: "./assets/imagem29.webp",
-        caption:
-          "COMPONENTE ESPECÍFICO É UM DOS SATÉLITES DO OBJETO PRINCIPAL E POSSUI A SUPERFÍCIE MAIS CARACTERÍSTICA DO GRUPO. COMO REFLETE DETERMINADA QUANTIDADE DE LUZ, A TEMPERATURA DA SUPERFÍCIE É EXTREMAMENTE BAIXA.",
-        credit: "Organização A / Departamento B / Instrumento C",
-      },
-      {
-        src: "./assets/imagem30.webp",
-        caption:
-          "ELEMENTO ESPECÍFICO É UMA DAS MAIORES PARTES DO OBJETO DE REFERÊNCIA, ACREDITA-SE QUE É FORMADO POR DIFERENTES COMPOSTOS E MATERIAIS.",
-        credit: "Organização A / Departamento B",
-      },
-      {
-        src: "./assets/imagem31.webp",
-        caption:
-          "COMPONENTE ESPECÍFICO É O MAIOR DOS ELEMENTOS DO OBJETO DE REFERÊNCIA. É INCOMUM PORQUE É O ÚNICO GRANDE COMPONENTE DO NOSSO GRUPO QUE ORBITA NA DIREÇÃO OPOSTA À ROTAÇÃO DO SEU OBJETO PRINCIPAL.",
-        credit: "Organização A / Departamento B",
-      },
+      { src: "./assets/imagem18.webp", caption: "Queda d'água imponente despencando entre paredões de rocha cobertos de vegetação.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem19.webp", caption: "Cachoeira em longa exposição, com a água em efeito sedoso caindo sobre uma piscina natural.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem20.webp", caption: "Pequenas quedas em cascata formando degraus naturais no meio da mata.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem21.webp", caption: "Arco-íris se formando na névoa criada pela força da queda d'água.", credit: "Foto: Nome Sobrenome" },
     ],
   },
-  corpos: {
-    title: "CATEGORIA SEIS",
+  campos: {
+    title: "CAMPOS",
     images: [
-      {
-        src: "./assets/imagem32.webp",
-        caption:
-          "IMAGEM DO OBJETO DE REFERÊNCIA PASSANDO PELA REGIÃO ESPECÍFICA. NO MOMENTO DESTA IMAGEM, O ELEMENTO ESTAVA A DETERMINADA DISTÂNCIA DO PONTO DE REFERÊNCIA.",
-        credit: "Organização A / Departamento B",
-      },
-      {
-        src: "./assets/imagem33.webp",
-        caption:
-          "IMAGEM DO SEGUNDO OBJETO DE REFERÊNCIA PASSANDO PRÓXIMO AO ELEMENTO PRINCIPAL, EM IMAGEM CAPTURADA PELO INSTRUMENTO ESPACIAL DE REFERÊNCIA.",
-        credit: "Organização A, Organização B, Organização C, Organização D, Organização E",
-      },
-      {
-        src: "./assets/imagem34.webp",
-        caption:
-          "IMAGEM DE OBJETO DO TIPO ROCHOSO DO NOSSO GRUPO PRINCIPAL. ÀS VEZES CHAMADOS DE ELEMENTOS MENORES, SÃO REMANESCENTES ROCHOSOS E SEM COMPOSIÇÃO DEFINIDA DA FORMAÇÃO INICIAL DO SISTEMA.",
-        credit: "Organização A / Departamento B / Equipe C / Setor D",
-      },
+      { src: "./assets/imagem22.webp", caption: "Campo de flores silvestres se estendendo até o horizonte sob um céu de verão.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem23.webp", caption: "Plantação ondulada balançando ao vento, com uma árvore solitária ao centro.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem24.webp", caption: "Colinas verdes ao amanhecer, cobertas por uma fina camada de orvalho.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem25.webp", caption: "Estrada de terra cortando um vasto campo dourado no fim da tarde.", credit: "Foto: Nome Sobrenome" },
     ],
   },
-  exploracao: {
-    title: "CATEGORIA SETE",
+  auroras: {
+    title: "AURORAS",
     images: [
-      {
-        src: "./assets/imagem35.webp",
-        caption:
-          "EM DATA ESPECÍFICA, A SONDA DE REFERÊNCIA FOI A PRIMEIRA A POUSAR NA REGIÃO INDICADA DO OBJETO PRINCIPAL.",
-        credit: "Organização A / Pesquisador B / Pesquisador C",
-      },
-      {
-        src: "./assets/imagem36.webp",
-        caption:
-          "O INSTRUMENTO ESPACIAL DE REFERÊNCIA, EM ÓRBITA AO REDOR DO OBJETO PRINCIPAL DESDE DATA ESPECÍFICA, MUDOU A COMPREENSÃO DA HUMANIDADE SOBRE O TEMA. TRAZENDO INFORMAÇÕES DESDE A COMPOSIÇÃO DE ELEMENTOS À DESCOBERTA DE FENÔMENOS.",
-        credit: "Organização A / Departamento B",
-      },
-      {
-        src: "./assets/imagem37.webp",
-        caption:
-          "TESTES DO EQUIPAMENTO DE REFERÊNCIA, NO ANO ESPECÍFICO. OS PRINCIPAIS OBJETIVOS DA MISSÃO SÃO CARACTERIZAR O AMBIENTE DO SISTEMA E ESTUDAR O ESPAÇO CORRESPONDENTE.",
-        credit: "Organização A / Departamento B",
-      },
-      {
-        src: "./assets/imagem38.webp",
-        caption:
-          "O VEÍCULO DE EXPLORAÇÃO DE REFERÊNCIA ESTÁ NO OBJETO INDICADO E BUSCA SINAIS DE CONDIÇÕES ANTERIORES E COLETA AMOSTRAS DE MATERIAIS PARA POSSÍVEL ANÁLISE.",
-        credit: "Organização A / Departamento B / Equipe C",
-      },
-      {
-        src: "./assets/imagem39.webp",
-        caption:
-          "NA IMAGEM, A SONDA ESPACIAL DE REFERÊNCIA ESTÁ SENDO PREPARADA PARA TESTES DE VERIFICAÇÃO. A MISSÃO É A PRIMEIRA DO TIPO A COLETAR UMA AMOSTRA DE UM ELEMENTO ESPECÍFICO.",
-        credit: "Pesquisador A / Organização B",
-      },
-      {
-        src: "./assets/imagem40.webp",
-        caption:
-          "O INSTRUMENTO ESPACIAL DE REFERÊNCIA ESTUDA TODAS AS FASES DA HISTÓRIA DO NOSSO GRUPO E FOI LANÇADO EM DATA ESPECÍFICA. SUA ÓRBITA É AO REDOR DO ELEMENTO CENTRAL.",
-        credit: "Organização A / Departamento B",
-      },
+      { src: "./assets/imagem26.webp", caption: "Aurora boreal em tons de verde e violeta dançando sobre um lago congelado.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem27.webp", caption: "Cortinas de luz colorindo o céu noturno acima de montanhas nevadas.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem28.webp", caption: "Reflexo da aurora nas águas calmas de um fiorde, sob um céu repleto de estrelas.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem29.webp", caption: "Cabana isolada na neve iluminada pela luz verde da aurora ao fundo.", credit: "Foto: Nome Sobrenome" },
     ],
   },
 };
 
-// =========================================================
-//  ESTADO
-// =========================================================
+/* Imagem exibida caso o arquivo real não seja encontrado */
+const FALLBACK_IMAGE = "./assets/placeholder.svg";
+
+/* =========================================================
+   2. ESTADO
+   ========================================================= */
 let currentTheme = null;
 let currentIndex = 0;
 
-// =========================================================
-//  PRELOAD (Antecipação de Imagens Adjacentes)
-// =========================================================
-function preloadAdjacentImages(theme, index) {
-  if (!galleryData[theme]) return;
-  const images = galleryData[theme].images;
-  if (images.length <= 1) return;
-  if (index + 1 < images.length) new Image().src = images[index + 1].src;
-  if (index - 1 >= 0) new Image().src = images[index - 1].src;
+/* =========================================================
+   3. REFERÊNCIAS DO DOM (cacheadas uma vez)
+   ========================================================= */
+const dom = {};
+
+function cacheDom() {
+  dom.modal = document.getElementById("galleryModal");
+  dom.image = document.getElementById("galleryImage");
+  dom.title = document.getElementById("galleryTitle");
+  dom.caption = document.getElementById("galleryCaption");
+  dom.credit = document.getElementById("galleryCredit");
+  dom.leftArrow = document.querySelector("#galleryModal .nav-arrow.left");
+  dom.rightArrow = document.querySelector("#galleryModal .nav-arrow.right");
 }
 
-// =========================================================
-//  UPDATE GALERIA
-// =========================================================
+/* =========================================================
+   4. PRELOAD DAS IMAGENS VIZINHAS
+   ========================================================= */
+function preloadAdjacentImages(theme, index) {
+  const data = galleryData[theme];
+  if (!data || data.images.length <= 1) return;
+  const next = data.images[index + 1];
+  const prev = data.images[index - 1];
+  if (next) new Image().src = next.src;
+  if (prev) new Image().src = prev.src;
+}
+
+/* =========================================================
+   5. ATUALIZA A GALERIA
+   ========================================================= */
 function updateGallery() {
-  if (!currentTheme || !galleryData[currentTheme]) return;
+  const data = galleryData[currentTheme];
+  if (!data) return;
 
-  const themeData = galleryData[currentTheme];
-  const item = themeData.images[currentIndex];
-  const totalImages = themeData.images.length;
+  const item = data.images[currentIndex];
+  const total = data.images.length;
 
-  // Imagem principal
-  const img = document.getElementById("galleryImage");
-  if (img) {
-    img.src = item.src;
-    img.alt =
+  // Imagem principal + fallback se não carregar
+  if (dom.image) {
+    dom.image.onerror = () => {
+      dom.image.onerror = null;
+      dom.image.src = FALLBACK_IMAGE;
+    };
+    dom.image.src = item.src;
+    dom.image.alt =
       item.alt ||
       (item.caption ? item.caption.split(".")[0] : "") ||
-      `${themeData.title}, imagem ${currentIndex + 1} de ${totalImages}`;
+      `${data.title}, imagem ${currentIndex + 1} de ${total}`;
   }
 
-  // Título da categoria
-  const title = document.getElementById("galleryTitle");
-  if (title) {
-    title.textContent = themeData.title;
-  }
+  if (dom.title) dom.title.textContent = data.title;
 
-  // Legenda / descrição
-  const caption = document.getElementById("galleryCaption");
-  if (caption) {
-    caption.textContent = item.caption || "";
-    caption.setAttribute(
+  if (dom.caption) {
+    dom.caption.textContent = item.caption || "";
+    dom.caption.setAttribute(
       "aria-label",
-      `Imagem ${currentIndex + 1} de ${totalImages}. ${item.caption || ""}`
+      `Imagem ${currentIndex + 1} de ${total}. ${item.caption || ""}`
     );
   }
 
-  // Créditos da imagem
-  const credit = document.getElementById("galleryCredit");
-  if (credit) {
-    credit.textContent = item.credit || "";
-  }
+  if (dom.credit) dom.credit.textContent = item.credit || "";
 
-  // Controle de visibilidade das setas — some na primeira e na última
-  const leftArrow = document.querySelector("#galleryModal .nav-arrow.left");
-  const rightArrow = document.querySelector("#galleryModal .nav-arrow.right");
+  // Setas: escondidas nos extremos (mas ocupam espaço para não "pular")
+  if (dom.leftArrow) dom.leftArrow.style.visibility = currentIndex === 0 ? "hidden" : "visible";
+  if (dom.rightArrow) dom.rightArrow.style.visibility = currentIndex === total - 1 ? "hidden" : "visible";
 
-  if (leftArrow)  leftArrow.style.visibility  = currentIndex === 0               ? "hidden" : "visible";
-  if (rightArrow) rightArrow.style.visibility = currentIndex === totalImages - 1 ? "hidden" : "visible";
-
-  // Pré-carregamento em segundo plano
   preloadAdjacentImages(currentTheme, currentIndex);
 }
 
-// =========================================================
-//  NAVEGAÇÃO
-// =========================================================
+/* =========================================================
+   6. NAVEGAÇÃO
+   ========================================================= */
 function goPrev() {
-  if (!currentTheme || !galleryData[currentTheme]) return;
-  if (currentIndex === 0) return;
+  if (!galleryData[currentTheme] || currentIndex === 0) return;
   currentIndex--;
   updateGallery();
 }
 
 function goNext() {
-  if (!currentTheme || !galleryData[currentTheme]) return;
-  const total = galleryData[currentTheme].images.length;
-  if (currentIndex === total - 1) return;
+  const data = galleryData[currentTheme];
+  if (!data || currentIndex === data.images.length - 1) return;
   currentIndex++;
   updateGallery();
 }
 
-// =========================================================
-//  ABERTURA DO MODAL DA GALERIA
-// =========================================================
+/* =========================================================
+   7. ABERTURA DO MODAL
+   ========================================================= */
+function openGallery(theme) {
+  if (!galleryData[theme]) return;
+  currentTheme = theme;
+  currentIndex = 0;
+  updateGallery();
+
+  if (!dom.modal || typeof bootstrap === "undefined") {
+    console.warn("Bootstrap não carregou — o modal não pode ser aberto.");
+    return;
+  }
+  const instance = bootstrap.Modal.getOrCreateInstance(dom.modal, {
+    keyboard: true,
+    focus: true,
+  });
+  instance.show();
+}
+
+/* =========================================================
+   8. INICIALIZAÇÃO
+   ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
+  cacheDom();
 
-  // Abertura por clique nos cards
-  document.querySelectorAll(".open-gallery").forEach(card => {
-    card.addEventListener("click", function (e) {
+  // Clique nos cards + fallback das miniaturas
+  document.querySelectorAll(".open-gallery").forEach((card) => {
+    const thumb = card.querySelector("img");
+    if (thumb) {
+      thumb.addEventListener("error", function handleErr() {
+        thumb.removeEventListener("error", handleErr);
+        thumb.src = FALLBACK_IMAGE;
+      });
+    }
+    card.addEventListener("click", (e) => {
       e.preventDefault();
-      const theme = this.dataset.tema || this.getAttribute("data-tema");
-      if (!galleryData[theme]) return;
-
-      currentTheme = theme;
-      currentIndex = 0;
-      updateGallery();
-
-      const modalEl = document.getElementById("galleryModal");
-      if (modalEl) {
-        let modalInstance = bootstrap.Modal.getInstance(modalEl);
-        if (!modalInstance) {
-          modalInstance = new bootstrap.Modal(modalEl, {
-            keyboard: true,
-            focus: true,
-          });
-        }
-        modalInstance.show();
-        setTimeout(() => modalEl.focus(), 150);
-      }
+      openGallery(card.dataset.tema);
     });
   });
 
-  // Botão fullscreen
+  // Setas de navegação (delegação de evento)
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".nav-arrow.left")) {
+      e.stopPropagation();
+      goPrev();
+    } else if (e.target.closest(".nav-arrow.right")) {
+      e.stopPropagation();
+      goNext();
+    }
+  });
+
+  // Teclado — só quando o modal está aberto
+  document.addEventListener("keydown", (e) => {
+    if (!dom.modal || !dom.modal.classList.contains("show")) return;
+    if (e.key === "ArrowLeft") { e.preventDefault(); goPrev(); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); goNext(); }
+    // ESC é tratado nativamente pelo Bootstrap (keyboard: true)
+  });
+
+  // Limpa o estado ao fechar o modal
+  if (dom.modal) {
+    dom.modal.addEventListener("hidden.bs.modal", () => {
+      currentTheme = null;
+      currentIndex = 0;
+      if (dom.image) dom.image.removeAttribute("src");
+    });
+  }
+
+  // Botão de tema (claro/escuro)
+  const btnTheme = document.getElementById("btnTheme");
+  if (btnTheme) {
+    btnTheme.addEventListener("click", () => {
+      const atual = document.documentElement.getAttribute("data-theme");
+      const novo = atual === "light" ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", novo);
+      try {
+        localStorage.setItem("tema", novo);
+      } catch (e) {
+        /* localStorage indisponível — ignora */
+      }
+      btnTheme.setAttribute(
+        "aria-label",
+        novo === "light" ? "Ativar tema escuro" : "Ativar tema claro"
+      );
+    });
+  }
+
+  // Botão de tela cheia
   const btnFullscreen = document.getElementById("btnFullscreen");
   if (btnFullscreen) {
     btnFullscreen.addEventListener("click", () => {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(() => {});
-        btnFullscreen.setAttribute("aria-pressed", "true");
       } else {
         document.exitFullscreen().catch(() => {});
-        btnFullscreen.setAttribute("aria-pressed", "false");
       }
     });
-
     document.addEventListener("fullscreenchange", () => {
-      const isFullscreen = !!document.fullscreenElement;
-      btnFullscreen.setAttribute("aria-pressed", String(isFullscreen));
+      btnFullscreen.setAttribute("aria-pressed", String(!!document.fullscreenElement));
     });
   }
+
+  initSwipe();
 });
 
-// =========================================================
-//  EVENTOS GLOBAIS — Cliques e Teclado
-// =========================================================
-document.addEventListener("click", e => {
-  const leftBtn = e.target.closest(".nav-arrow.left");
-  const rightBtn = e.target.closest(".nav-arrow.right");
+/* =========================================================
+   9. SWIPE (toque) DENTRO DO MODAL
+   ========================================================= */
+function initSwipe() {
+  let startX = 0;
+  let startY = 0;
 
-  if (leftBtn) {
-    e.stopPropagation();
-    goPrev();
-  }
-  if (rightBtn) {
-    e.stopPropagation();
-    goNext();
-  }
-});
+  document.addEventListener(
+    "touchstart",
+    (e) => {
+      startX = e.changedTouches[0].clientX;
+      startY = e.changedTouches[0].clientY;
+    },
+    { passive: true }
+  );
 
-document.addEventListener("keydown", e => {
-  const modal = document.getElementById("galleryModal");
-  if (!modal || !modal.classList.contains("show")) return;
-
-  if (e.key === "ArrowLeft") { e.preventDefault(); goPrev(); }
-  if (e.key === "ArrowRight") { e.preventDefault(); goNext(); }
-  if (e.key === "Escape") {
-    const instance = bootstrap.Modal.getInstance(modal);
-    if (instance) instance.hide();
-  }
-});
-
-// Touch swipe na galeria
-(function initSwipe() {
-  let touchStartX = 0;
-  let touchStartY = 0;
-
-  document.addEventListener("touchstart", e => {
-    touchStartX = e.changedTouches[0].clientX;
-    touchStartY = e.changedTouches[0].clientY;
-  }, { passive: true });
-
-  document.addEventListener("touchend", e => {
-    const modal = document.getElementById("galleryModal");
-    if (!modal || !modal.classList.contains("show")) return;
-
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
-
-    // Só dispara se for um swipe horizontal significativo
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-      if (dx < 0) goNext();
-      else goPrev();
-    }
-  }, { passive: true });
-})();
+  document.addEventListener(
+    "touchend",
+    (e) => {
+      if (!dom.modal || !dom.modal.classList.contains("show")) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      // Só um swipe horizontal claro dispara a navegação
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        if (dx < 0) goNext();
+        else goPrev();
+      }
+    },
+    { passive: true }
+  );
+}
