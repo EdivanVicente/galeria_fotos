@@ -4,6 +4,7 @@
    - Navega por setas, teclado (← →) e swipe
    - Pré-carrega imagens vizinhas
    - Esconde a seta quando não há mais imagens naquela direção
+   - Devolve o foco ao card ao fechar o modal (acessibilidade)
    ========================================================================= */
 "use strict";
 
@@ -14,7 +15,7 @@ const galleryData = {
   montanhas: {
     title: "MONTANHAS",
     images: [
-      { src: "./assets/imagem1.jpg",  caption: "Pico nevado ao amanhecer, com a primeira luz dourada tocando os cumes e um vale coberto por um leve nevoeiro.", credit: "Foto: Nome Sobrenome" },
+      { src: "./assets/imagem1.jpg", caption: "Pico nevado ao amanhecer, com a primeira luz dourada tocando os cumes e um vale coberto por um leve nevoeiro.", credit: "Foto: Nome Sobrenome" },
       { src: "./assets/imagem2.webp", caption: "Cadeia de montanhas refletida em um lago de águas calmas, cercada por pinheiros e céu limpo.", credit: "Foto: Nome Sobrenome" },
       { src: "./assets/imagem3.webp", caption: "Trilha entre encostas rochosas, com nuvens baixas passando entre os picos ao fundo.", credit: "Foto: Nome Sobrenome" },
       { src: "./assets/imagem4.webp", caption: "Vista panorâmica do topo ao entardecer, com camadas de montanhas se perdendo no horizonte.", credit: "Foto: Nome Sobrenome" },
@@ -85,6 +86,7 @@ const FALLBACK_IMAGE = "./assets/placeholder.svg";
    ========================================================= */
 let currentTheme = null;
 let currentIndex = 0;
+let lastTrigger = null;          // card que abriu a galeria (para devolver o foco)
 
 /* =========================================================
    3. REFERÊNCIAS DO DOM (cacheadas uma vez)
@@ -97,6 +99,7 @@ function cacheDom() {
   dom.title = document.getElementById("galleryTitle");
   dom.caption = document.getElementById("galleryCaption");
   dom.credit = document.getElementById("galleryCredit");
+  dom.counter = document.getElementById("galleryCounter");
   dom.leftArrow = document.querySelector("#galleryModal .nav-arrow.left");
   dom.rightArrow = document.querySelector("#galleryModal .nav-arrow.right");
 }
@@ -107,10 +110,18 @@ function cacheDom() {
 function preloadAdjacentImages(theme, index) {
   const data = galleryData[theme];
   if (!data || data.images.length <= 1) return;
+
   const next = data.images[index + 1];
   const prev = data.images[index - 1];
   if (next) new Image().src = next.src;
   if (prev) new Image().src = prev.src;
+}
+
+/* Troca a imagem quebrada pelo placeholder (sem entrar em loop se ele também faltar) */
+function applyFallback(img) {
+  if (!img || img.dataset.fallbackApplied) return;
+  img.dataset.fallbackApplied = "1";
+  img.src = FALLBACK_IMAGE;
 }
 
 /* =========================================================
@@ -125,10 +136,8 @@ function updateGallery() {
 
   // Imagem principal + fallback se não carregar
   if (dom.image) {
-    dom.image.onerror = () => {
-      dom.image.onerror = null;
-      dom.image.src = FALLBACK_IMAGE;
-    };
+    delete dom.image.dataset.fallbackApplied;
+    dom.image.onerror = () => applyFallback(dom.image);
     dom.image.src = item.src;
     dom.image.alt =
       item.alt ||
@@ -137,18 +146,13 @@ function updateGallery() {
   }
 
   if (dom.title) dom.title.textContent = data.title;
-
-  if (dom.caption) {
-    dom.caption.textContent = item.caption || "";
-    dom.caption.setAttribute(
-      "aria-label",
-      `Imagem ${currentIndex + 1} de ${total}. ${item.caption || ""}`
-    );
-  }
-
+  if (dom.caption) dom.caption.textContent = item.caption || "";
   if (dom.credit) dom.credit.textContent = item.credit || "";
 
-  // Setas: escondidas nos extremos (mas ocupam espaço para não "pular")
+  // Leitores de tela: anuncia "Imagem X de Y" (aria-label em <p> era ignorado)
+  if (dom.counter) dom.counter.textContent = `Imagem ${currentIndex + 1} de ${total}.`;
+
+  // Setas: escondidas nos extremos (visibility:hidden também as tira da ordem de tabulação)
   if (dom.leftArrow) dom.leftArrow.style.visibility = currentIndex === 0 ? "hidden" : "visible";
   if (dom.rightArrow) dom.rightArrow.style.visibility = currentIndex === total - 1 ? "hidden" : "visible";
 
@@ -174,16 +178,19 @@ function goNext() {
 /* =========================================================
    7. ABERTURA DO MODAL
    ========================================================= */
-function openGallery(theme) {
+function openGallery(theme, trigger) {
   if (!galleryData[theme]) return;
-  currentTheme = theme;
-  currentIndex = 0;
-  updateGallery();
 
   if (!dom.modal || typeof bootstrap === "undefined") {
     console.warn("Bootstrap não carregou — o modal não pode ser aberto.");
     return;
   }
+
+  lastTrigger = trigger || null;
+  currentTheme = theme;
+  currentIndex = 0;
+  updateGallery();
+
   const instance = bootstrap.Modal.getOrCreateInstance(dom.modal, {
     keyboard: true,
     focus: true,
@@ -197,28 +204,27 @@ function openGallery(theme) {
 document.addEventListener("DOMContentLoaded", () => {
   cacheDom();
 
-  // Clique nos cards + fallback das miniaturas
+  // Cards: clique + fallback das miniaturas
   document.querySelectorAll(".open-gallery").forEach((card) => {
     const thumb = card.querySelector("img");
     if (thumb) {
-      thumb.addEventListener("error", function handleErr() {
-        thumb.removeEventListener("error", handleErr);
-        thumb.src = FALLBACK_IMAGE;
-      });
+      thumb.addEventListener("error", () => applyFallback(thumb));
+      // Se a imagem já falhou ANTES deste script rodar, o evento "error" já passou
+      // e o listener acima nunca dispararia — por isso a checagem abaixo.
+      if (thumb.complete && thumb.naturalWidth === 0) applyFallback(thumb);
     }
+
     card.addEventListener("click", (e) => {
       e.preventDefault();
-      openGallery(card.dataset.tema);
+      openGallery(card.dataset.tema, card);
     });
   });
 
   // Setas de navegação (delegação de evento)
   document.addEventListener("click", (e) => {
     if (e.target.closest(".nav-arrow.left")) {
-      e.stopPropagation();
       goPrev();
     } else if (e.target.closest(".nav-arrow.right")) {
-      e.stopPropagation();
       goNext();
     }
   });
@@ -231,54 +237,87 @@ document.addEventListener("DOMContentLoaded", () => {
     // ESC é tratado nativamente pelo Bootstrap (keyboard: true)
   });
 
-  // Limpa o estado ao fechar o modal
+  // Limpa o estado ao fechar o modal e devolve o foco ao card que o abriu
   if (dom.modal) {
     dom.modal.addEventListener("hidden.bs.modal", () => {
       currentTheme = null;
       currentIndex = 0;
-      if (dom.image) dom.image.removeAttribute("src");
-    });
-  }
-
-  // Botão de tema (claro/escuro)
-  const btnTheme = document.getElementById("btnTheme");
-  if (btnTheme) {
-    btnTheme.addEventListener("click", () => {
-      const atual = document.documentElement.getAttribute("data-theme");
-      const novo = atual === "light" ? "dark" : "light";
-      document.documentElement.setAttribute("data-theme", novo);
-      try {
-        localStorage.setItem("tema", novo);
-      } catch (e) {
-        /* localStorage indisponível — ignora */
+      if (dom.image) {
+        dom.image.onerror = null;
+        dom.image.removeAttribute("src");
       }
-      btnTheme.setAttribute(
-        "aria-label",
-        novo === "light" ? "Ativar tema escuro" : "Ativar tema claro"
-      );
-    });
-  }
-
-  // Botão de tela cheia
-  const btnFullscreen = document.getElementById("btnFullscreen");
-  if (btnFullscreen) {
-    btnFullscreen.addEventListener("click", () => {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
-      } else {
-        document.exitFullscreen().catch(() => {});
+      if (lastTrigger) {
+        lastTrigger.focus();
+        lastTrigger = null;
       }
     });
-    document.addEventListener("fullscreenchange", () => {
-      btnFullscreen.setAttribute("aria-pressed", String(!!document.fullscreenElement));
-    });
   }
 
+  initThemeButton();
+  initFullscreenButton();
   initSwipe();
 });
 
 /* =========================================================
-   9. SWIPE (toque) DENTRO DO MODAL
+   9. TEMA CLARO / ESCURO
+   ========================================================= */
+function initThemeButton() {
+  const btnTheme = document.getElementById("btnTheme");
+  if (!btnTheme) return;
+
+  const updateLabel = () => {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+    btnTheme.setAttribute("aria-label", isLight ? "Ativar tema escuro" : "Ativar tema claro");
+  };
+  updateLabel();   // estado inicial correto (antes só mudava após o 1º clique)
+
+  btnTheme.addEventListener("click", () => {
+    const atual = document.documentElement.getAttribute("data-theme");
+    const novo = atual === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", novo);
+    try {
+      localStorage.setItem("tema", novo);
+    } catch (e) {
+      /* localStorage indisponível — ignora */
+    }
+    updateLabel();
+  });
+}
+
+/* =========================================================
+   10. TELA CHEIA
+   ========================================================= */
+function initFullscreenButton() {
+  const btnFullscreen = document.getElementById("btnFullscreen");
+  if (!btnFullscreen) return;
+
+  // iPhone/Safari iOS não suporta a Fullscreen API: sem este teste o clique
+  // gerava "requestFullscreen is not a function". Nesse caso, o botão some.
+  const root = document.documentElement;
+  const supported = !!(root.requestFullscreen && document.exitFullscreen);
+  if (!supported) {
+    btnFullscreen.hidden = true;
+    btnFullscreen.style.display = "none";
+    return;
+  }
+
+  btnFullscreen.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+      root.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
+  });
+
+  document.addEventListener("fullscreenchange", () => {
+    const active = !!document.fullscreenElement;
+    btnFullscreen.setAttribute("aria-pressed", String(active));
+    btnFullscreen.setAttribute("aria-label", active ? "Sair da tela cheia" : "Ativar tela cheia");
+  });
+}
+
+/* =========================================================
+   11. SWIPE (toque) DENTRO DO MODAL
    ========================================================= */
 function initSwipe() {
   let startX = 0;

@@ -1,7 +1,6 @@
 /* ==========================================================================
-   GALERIA DE CONTEÚDO — FOLHA DE ESTILO
-   responsiva (mobile-first) usando clamp() em vez de
-   dezenas de media queries por dispositivo.
+   GALERIA DE PAISAGENS — FOLHA DE ESTILO  (versão v3)
+   Responsiva usando clamp()/min() em vez de dezenas de media queries.
    Ordem: 1) Tokens/Reset  2) Layout base  3) Header  4) Cards (grid 4+3)
           5) Modal Galeria  6) Modal Menu/Créditos  7) Ajustes por breakpoint
    ========================================================================== */
@@ -19,59 +18,82 @@
 
   /* --- Métricas --- */
   --header-height: 6rem;
-  --card-width: clamp(6.6rem, 21vw, 18rem);
-  --card-ratio: 22 / 19;
-  --row-gap: clamp(0.6rem, 2vw, 2.5rem);
+  --header-top: 2.4rem;
+  /* Tamanho do card = o MENOR entre: o que cabe na altura (2 linhas + header),
+     o que cabe na largura (4 cards) e um teto. Assim o 4+3 sempre cabe na
+     tela sem precisar de overflow:hidden. */
+  --card-size: clamp(
+    9rem,
+    min(calc((100svh - 22rem) / 2), calc((92vw - 9rem) / 4), 36rem),
+    36rem
+  );
+  --row-gap: clamp(1.4rem, 2.6vw, 3.6rem);
+  --board-gap: clamp(1.2rem, 3svh, 4rem);
 
   /* ======= TEMA ESCURO (padrão) ======= */
-  --bg-page: #05070f;
-  --bg-image: url("../assets/img_bg.png");
-  --bg-image-opacity: 1;
+  --bg-page: #0c0a1e;
+  --bg-light-opacity: 0;            /* camada clara escondida */
+  --bg-overlay: linear-gradient(
+    180deg,
+    rgba(8, 6, 22, 0.35) 0%,
+    rgba(8, 6, 22, 0.12) 50%,
+    rgba(8, 6, 22, 0.4) 100%
+  );
 
-  --text-strong: #ffffff;          /* títulos / destaques */
-  --text-body: #ece7ff;            /* corpo de texto (lavanda claro, confortável) */
-  --text-muted: #b9a7e6;           /* legendas / créditos */
-  --text-accent: #c9b6ff;          /* rótulos e subtítulos */
+  --text-strong: #ffffff;           /* títulos / destaques */
+  --text-body: #ece7ff;             /* corpo de texto (lavanda claro) */
+  --text-muted: #b9a7e6;            /* legendas / créditos */
+  --text-accent: #c9b6ff;           /* rótulos e subtítulos */
 
-  --surface: linear-gradient(160deg, #221a3d 0%, #14102a 55%, #0d0a1e 100%);
-  --surface-box: rgba(30, 22, 54, 0.72);
-  --surface-image: linear-gradient(145deg, #2a2148, #171232);
-  --border-soft: rgba(128, 69, 221, 0.32);
-  --border-frame: rgba(128, 69, 221, 0.45);
+  /* Componentes dos modais (moldura roxa + abas/rodapé) */
+  --frame-bg: linear-gradient(150deg, #3b2488 0%, #5a35b8 52%, #4a2a9a 100%);
+  --tab-bg: #1b1438;
+  --tab-text: #d9ccff;
+  --footer-bg: #1b1438;
+  --footer-text: #ece7ff;
+  --box-bg: rgba(27, 20, 56, 0.9);
+  --box-text: #ece7ff;
+  --media-bg: #07050f;
 
-  --overlay: rgba(8, 5, 18, 0.9);
-  --shadow-frame: 0 0 0 1px rgba(255, 255, 255, 0.03) inset,
-    0 1.4rem 4.5rem rgba(0, 0, 0, 0.65), 0 0 6rem rgba(128, 69, 221, 0.35);
+  --path-color: rgba(255, 255, 255, 0.7);
+  --overlay: rgba(8, 5, 18, 0.88);
+  --shadow-frame: 0 1.4rem 4.5rem rgba(0, 0, 0, 0.65), 0 0 6rem rgba(128, 69, 221, 0.35);
   --shadow-sm: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.3);
-
-  --scrollbar-thumb: rgba(128, 69, 221, 0.55);
+  --scrollbar-thumb: rgba(128, 69, 221, 0.7);
   --icon-floating: #ffffff;
   color-scheme: dark;
 }
 
 /* ======= TEMA CLARO ======= */
 [data-theme="light"] {
-  --bg-page: var(--bg-image) center / cover no-repeat fixed;
-  --bg-image: none;
-  --bg-image-opacity: 0;
+  --bg-page: #e9e3f7;
+  --bg-light-opacity: 1;            /* camada clara visível por cima da escura */
+  --bg-overlay: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.06) 55%,
+    rgba(255, 255, 255, 0.28) 100%
+  );
 
   --text-strong: #241b40;
-  --text-body: #2c2540;          /* cinza-arroxeado escuro: ótimo contraste */
+  --text-body: #2c2540;             /* cinza-arroxeado escuro: ótimo contraste */
   --text-muted: #6b5e8c;
   --text-accent: #6a2bd0;
 
-  --surface: linear-gradient(160deg, #ffffff 0%, #f4f1fb 60%, #ece7f7 100%);
-  --surface-box: rgba(245, 242, 252, 0.92);
-  --surface-image: linear-gradient(145deg, #ffffff, #e7e2f2);
-  --border-soft: rgba(128, 69, 221, 0.28);
-  --border-frame: rgba(128, 69, 221, 0.5);
+  --frame-bg: linear-gradient(150deg, #7a45e0 0%, #9a56e0 55%, #b765d8 100%);
+  --tab-bg: #ffffff;
+  --tab-text: #5a2fb0;
+  --footer-bg: #ffffff;
+  --footer-text: #4a2f8e;
+  --box-bg: rgba(246, 230, 255, 0.95);
+  --box-text: #4a2f8e;
+  --media-bg: #0b0818;
 
+  --path-color: rgba(106, 43, 208, 0.55);
   --overlay: rgba(40, 30, 70, 0.55);
-  --shadow-frame: 0 0 0 1px rgba(255, 255, 255, 0.6) inset,
-    0 1.4rem 4.5rem rgba(60, 40, 110, 0.25), 0 0 5rem rgba(128, 69, 221, 0.25);
+  --shadow-frame: 0 1.4rem 4.5rem rgba(60, 40, 110, 0.35), 0 0 5rem rgba(128, 69, 221, 0.25);
   --shadow-sm: 0 0.2rem 0.5rem rgba(60, 40, 110, 0.18);
-
-  --scrollbar-thumb: rgba(128, 69, 221, 0.45);
+  --scrollbar-thumb: rgba(128, 69, 221, 0.6);
   --icon-floating: #4a2f9e;
   color-scheme: light;
 }
@@ -96,21 +118,34 @@ body {
   flex-direction: column;
   font-family: var(--font-primary);
   font-size: 1.6rem;
-  line-height: 1.6;                 /* leitura mais confortável */
+  line-height: 1.6;
   color: var(--text-body);
   background-color: var(--bg-page);
   transition: background-color 0.35s ease, color 0.35s ease;
 }
-/* Imagem de fundo em camada própria (permite ligar/desligar por tema) */
-body::before {
+
+/* Fundos fixos em camadas próprias (o tema muda só a opacidade → transição suave).
+   ::before = fundo ESCURO | ::after = fundo CLARO por cima.
+   position:fixed funciona em todos os navegadores (background-attachment:fixed
+   falha no iOS). "center bottom" mantém as montanhas visíveis no recorte mobile. */
+body::before,
+body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: var(--bg-image) center / cover no-repeat fixed;
-  opacity: var(--bg-image-opacity);
-  transition: opacity 0.35s ease;
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
   pointer-events: none;
+}
+body::before {
+  background-image: var(--bg-overlay), url("../assets/img_bg_dark.webp");
+}
+body::after {
+  background-image: var(--bg-overlay), url("../assets/img_bg_light.webp");
+  opacity: var(--bg-light-opacity);
+  transition: opacity 0.35s ease;
 }
 
 img {
@@ -130,12 +165,20 @@ button {
   cursor: pointer;
 }
 
+/* Foco visível em TODOS os botões (anel de 2 cores: funciona em fundo claro e escuro) */
+button:focus-visible {
+  outline: 0.3rem solid #fff;
+  outline-offset: 0.2rem;
+  box-shadow: 0 0 0 0.6rem #2b1670;
+}
+
 /* ==========================================================================
    2. LAYOUT BASE
    ========================================================================== */
-.container {
+/* (antes ".container": o nome colidia com o .container do Bootstrap) */
+.page {
   width: 100%;
-  max-width: 1320px;
+  max-width: 1920px;
   margin: 0 auto;
   padding: 0 1.6rem;
   display: flex;
@@ -147,10 +190,9 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* centraliza verticalmente as 2 linhas */
+  justify-content: center;   /* centraliza verticalmente o tabuleiro */
   align-items: center;
-  gap: clamp(3rem, 6vh, 8rem);
-  padding: 3rem 0 4rem;
+  padding: 2rem 0 3rem;
 }
 
 /* Botões flutuantes ------------------------------------------------------- */
@@ -159,7 +201,7 @@ main {
   top: 1.2rem;
   right: 1.6rem;
   padding: 0.6rem;
-  z-index: 1055;
+  z-index: 1030;               /* abaixo do backdrop (1050): não cobre os modais */
 }
 .btn-fullscreen svg {
   width: clamp(3.2rem, 4vw, 4.8rem);
@@ -174,7 +216,7 @@ main {
   position: fixed;
   top: 1.2rem;
   right: clamp(6rem, 8vw, 8rem);
-  z-index: 1055;
+  z-index: 1030;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -190,6 +232,7 @@ main {
 .btn-theme:hover svg {
   transform: rotate(25deg) scale(1.08);
 }
+
 /* Mostra o sol no tema escuro (para ir p/ claro) e a lua no tema claro */
 .btn-theme .icon-sun { display: none; }
 .btn-theme .icon-moon { display: block; }
@@ -201,12 +244,12 @@ main {
   bottom: 1.6rem;
   right: 1.6rem;
   width: clamp(8rem, 9vw, 12rem);
-  z-index: 1056;
+  z-index: 1056;               /* acima dos modais, como no layout de referência */
   pointer-events: none;
 }
 
 /* ==========================================================================
-   3. HEADER
+   3. HEADER (faixa roxa com menu + título)
    ========================================================================== */
 .header-container {
   width: 100%;
@@ -214,7 +257,7 @@ main {
   margin-top: 1.6rem;
   display: flex;
   align-items: center;
-  padding-left: 1.6rem;
+  padding: 0 1.6rem;
   background: linear-gradient(
     to right,
     var(--color-primary) 0%,
@@ -233,6 +276,8 @@ main {
   display: flex;
   align-items: center;
   gap: 1.2rem;
+  /* o título não passa por baixo dos botões de tema/tela cheia (canto direito) */
+  padding-right: clamp(11rem, 16vw, 18rem);
 }
 
 .main-title {
@@ -243,23 +288,59 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
   text-shadow: 0.2rem 0.2rem 0 #00008b, 0.3rem 0.3rem 0 #00008b,
-    0.4rem 0.4rem 0.2rem rgba(0, 0, 139, 0.6);
+    0.4rem 0.4rem 0.2rem rgba(0, 0, 0, 0.6);
 }
 
 .btn-menu {
   flex: 0 0 auto;
   display: inline-flex;
+  border-radius: 50%;
 }
 .btn-menu img {
-  width: clamp(3.2rem, 4vw, 5rem);
-  height: clamp(3.2rem, 4vw, 5rem);
+  width: clamp(3.2rem, 4vw, 5.6rem);
+  height: clamp(3.2rem, 4vw, 5.6rem);
   border-radius: 50%;
 }
 
 /* ==========================================================================
-   4. CARDS DE CATEGORIA — grade horizontal 4 + 3 em TODAS as telas
+   4. CARDS DE CATEGORIA — tabuleiro 4 + 3
+        1  2  3  4
+          5  6  7
    ========================================================================== */
+.gallery-board {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--board-gap);
+  width: fit-content;            /* o tabuleiro tem a largura dos 4 cards: a linha curva se ajusta a eles */
+  max-width: 100%;
+}
+
+/* Linha curva decorativa atrás dos cards.
+   viewBox = coordenadas do tabuleiro de referência; overflow visível deixa a
+   curva "sair" das bordas, como no layout original. */
+.board-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 0;
+}
+.board-path path {
+  fill: none;
+  stroke: var(--path-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;   /* espessura constante, mesmo esticando o SVG */
+}
+
 .gallery-row {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-wrap: nowrap;              /* nunca quebra: mantém 4 e 3 na horizontal */
   justify-content: center;
@@ -273,40 +354,38 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* espaço reservado para a etiqueta de título que fica sob o card */
-  margin-bottom: clamp(2.4rem, 4vh, 4rem);
+  /* espaço para a metade do rótulo que "sai" por baixo do card */
+  margin-bottom: clamp(2.2rem, 3.4svh, 3.4rem);
 }
 
 .category-card {
   position: relative;
   display: block;
-  width: var(--card-width);
-  aspect-ratio: var(--card-ratio);
-  border-radius: 1.2rem;
-  border: 0.3rem solid #fff;
-  background: #111;
+  width: var(--card-size);
+  aspect-ratio: 1 / 1;            /* mesma proporção do card do layout de referência */
+  border-radius: 1.8rem;
+  border: 0.35rem solid #fff;
+  background: #0b0818;
   overflow: visible;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.5),
-    inset 0 0 1.5rem rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.45);
 }
-
 .category-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 0.9rem;
+  border-radius: 1.4rem;
 }
-
+/* Brilho sutil sobre a foto */
 .category-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 0.9rem;
+  border-radius: 1.4rem;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.12) 0%,
     rgba(255, 255, 255, 0) 50%,
     rgba(0, 0, 0, 0.15) 100%
   );
@@ -317,170 +396,176 @@ main {
 @media (hover: hover) {
   .category-card:hover {
     transform: translateY(-0.4rem) scale(1.04);
-    box-shadow: 0 0.8rem 2.5rem rgba(128, 69, 221, 0.45),
-      inset 0 0 1rem rgba(128, 69, 221, 0.4);
+    box-shadow: 0 0.8rem 2.5rem rgba(128, 69, 221, 0.5);
   }
 }
-.category-card:focus-visible {
-  outline: 0.3rem solid #fff;
-  outline-offset: 0.3rem;
-}
 
+/* Rótulo: centralizado EXATAMENTE sobre a borda inferior do card (metade dentro,
+   metade fora), com 1 ou 2 linhas — sem valores "mágicos" de bottom. */
 .category-title {
   position: absolute;
   left: 50%;
-  bottom: clamp(-3rem, -4vw, -2rem);
-  transform: translateX(-50%);
+  bottom: 0;
+  transform: translate(-50%, 50%);
   width: max-content;
-  max-width: 130%;
+  max-width: 118%;
   background: var(--color-primary);
-  border: 0.2rem solid #fff;
+  border: 0.3rem solid #fff;
   color: #fff;
-  padding: clamp(0.4rem, 0.8vw, 0.7rem) clamp(0.8rem, 1.6vw, 1.8rem);
-  border-radius: 0.8rem;
-  font-size: clamp(0.9rem, 1.4vw, 1.5rem);
+  padding: 0.55em 1.1em;
+  border-radius: 1rem;
+  font-size: clamp(1.1rem, 1.35vw, 2rem);
   line-height: 1.15;
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;
   white-space: normal;
   z-index: 10;
-  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.35);
 }
 
 /* ==========================================================================
-   5. MODAL DA GALERIA (#galleryModal) — DESIGN MODERNO (dark + roxo)
+   5. MODAL DA GALERIA (#galleryModal)
+   Estrutura do layout de referência:
+     aba do título (sobreposta, canto sup. esquerdo) → imagem com crédito
+     vertical → rodapé de texto → X (sup. direito) + setas laterais.
    ========================================================================== */
 #galleryModal {
   background: var(--overlay);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
+
+/* Margem vertical reserva espaço para a aba e o X que "sobram" da moldura;
+   margin-block:auto no frame centraliza sem cortar o topo se a tela for baixa. */
 #galleryModal .modal-content {
+  height: auto;
+  min-height: 100%;
   background: transparent;
   border: none;
+  border-radius: 0;
   align-items: center;
-  justify-content: center;
+  padding: 4rem 0;
 }
 
-/* Moldura principal: cartão translúcido com brilho roxo */
 #galleryModal .gallery-frame {
+  --frame-pad: clamp(1.2rem, 2.6vw, 4rem);
+  --tab-h: clamp(4.2rem, 4.6vw, 7.4rem);
+  --tab-rise: calc(var(--tab-h) * 0.45);
+  --arrow: clamp(4.2rem, 4.6vw, 7.2rem);
+  --hang: 1.6rem;                         /* o rodapé "pende" um pouco da moldura */
+
   position: relative;
-  width: min(72rem, 92vw);
-  margin: auto;
-  padding: clamp(3.5rem, 4vw, 5rem) clamp(1.6rem, 2vw, 3rem) clamp(1.6rem, 2vw, 2.2rem);
-  background: var(--surface);
-  border: 1px solid var(--border-frame);
-  border-radius: 2.6rem;
+  /* largura limitada pela ALTURA da tela (a imagem é 16:10) e por 1200px */
+  width: min(120rem, 90vw, calc((100svh - 24rem) * 1.6 + 2 * var(--frame-pad)));
+  margin-block: auto;
+  padding: calc(var(--tab-h) - var(--tab-rise)) var(--frame-pad) 0;
+  background: var(--frame-bg);
+  border: 0.45rem solid #fff;
+  border-radius: 2.8rem;
   box-shadow: var(--shadow-frame);
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-/* Fio de luz roxo no topo da moldura */
-#galleryModal .gallery-frame::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 15%;
-  right: 15%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-glow), transparent);
 }
 
-/* Título: pílula com gradiente roxo e brilho */
+/* Aba do título */
 #galleryModal .card-title-wrapper {
   position: absolute;
-  top: clamp(-2.4rem, -2vw, -1.6rem);
-  left: 50%;
-  transform: translateX(-50%);
-  width: max-content;
-  max-width: 82%;
-  text-align: center;
-  background: linear-gradient(135deg, #8a2be2, #6a2bd0);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 0.7rem 2rem;
-  border-radius: 999px;
-  box-shadow: 0 0.4rem 1.8rem rgba(128, 69, 221, 0.55);
-  z-index: 100;
+  top: calc(-1 * var(--tab-rise) - 0.45rem);
+  left: var(--frame-pad);
+  height: var(--tab-h);
+  max-width: calc(100% - 2 * var(--frame-pad) - var(--arrow));
+  padding: 0 clamp(1.6rem, 3vw, 4.4rem);
+  display: flex;
+  align-items: center;
+  background: var(--tab-bg);
+  border-radius: 1.8rem 1.8rem 0 0;
+  z-index: 5;
 }
 #galleryModal .card-title {
-  color: #fff;
-  font-size: clamp(1.2rem, 2vw, 2.4rem);
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  color: var(--tab-text);
+  font-size: clamp(1.8rem, 2.5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #galleryModal .gallery-stage {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  width: 100%;
 }
 
-/* Imagem: quadro com anel roxo interno */
+/* Imagem: caixa 16:10; a foto inteira aparece (contain) sobre fundo escuro */
 #galleryModal .image-wrapper {
-  flex: 1 1 auto;
-  min-width: 0;
-  max-width: 100%;
-  background: var(--surface-image);
-  padding: 1rem;
-  border-radius: 1.8rem;
-  box-shadow: inset 0 0 0 1px rgba(128, 69, 221, 0.4),
-    0 0.6rem 1.8rem rgba(0, 0, 0, 0.35);
-}
-#galleryModal .image-wrapper img {
+  position: relative;
   width: 100%;
-  max-height: 60vh;
+  aspect-ratio: 16 / 10;
+  background: var(--media-bg);
+  border-radius: 0 1.8rem 0 0;          /* só o canto sup. direito, como no PDF */
+  overflow: hidden;
+}
+#galleryModal .image-wrapper > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  border-radius: 1.2rem;
-  margin: 0 auto;
 }
 
-/* Descrição: painel translúcido com texto confortável */
+/* Rodapé de texto: largura total da imagem, cantos inferiores arredondados */
 #galleryModal .card-description-wrapper {
-  margin-top: 1.6rem;
-  width: 100%;
-  background: var(--surface-box);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  border: 1px solid var(--border-soft);
-  padding: clamp(1.2rem, 1.6vw, 2rem);
+  position: relative;
+  z-index: 2;
+  margin-bottom: calc(-1 * var(--hang));
+  padding: clamp(1.2rem, 1.6vw, 2.4rem) clamp(1.4rem, 2.4vw, 3.6rem);
+  background: var(--footer-bg);
+  border-radius: 0 0 1.8rem 1.8rem;
   text-align: center;
-  border-radius: 1.4rem;
+  box-shadow: 0 0.6rem 1.6rem rgba(0, 0, 0, 0.25);
+  min-height: 8rem;
+  display: flex;
+  flex-direction: column;          /* legenda em cima, crédito logo abaixo */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 #galleryModal .card-description-wrapper p {
   margin: 0;
-  color: var(--text-body);
-  font-weight: 500;
-  font-size: clamp(1.1rem, 1.6vw, 1.5rem);
-  line-height: 1.5;
+  color: var(--footer-text);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 1.5vw, 2.2rem);
+  line-height: 1.45;
 }
-#galleryModal .vertical-label {
-  font-size: clamp(0.78rem, 1vw, 1.05rem);
+/* Crédito da foto: horizontal, menor, logo abaixo da legenda */
+#galleryModal .card-description-wrapper .photo-credit {
   color: var(--text-muted);
-  margin-top: 0.7rem;
-  padding-top: 0.6rem;
-  border-top: 1px solid var(--border-soft);
-  word-break: break-word;
-  line-height: 1.5;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1vw, 1.5rem);
+  line-height: 1.3;
 }
+#galleryModal .card-description-wrapper .photo-credit:empty { display: none; }
 
-/* Setas — dentro do palco, com brilho roxo no hover */
+/* Setas — círculos roxos nas laterais do modal (fora da moldura no desktop) */
 #galleryModal .nav-arrow {
-  flex: 0 0 auto;
+  position: absolute;
+  top: 50%;
+  width: var(--arrow);
+  height: var(--arrow);
+  margin-top: calc(var(--arrow) / -2);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(3.6rem, 5vw, 6rem);
-  height: clamp(3.6rem, 5vw, 6rem);
   z-index: 50;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
+#galleryModal .nav-arrow.left  { left:  calc(-1 * var(--frame-pad) - var(--arrow) * 1.25); }
+#galleryModal .nav-arrow.right { right: calc(-1 * var(--frame-pad) - var(--arrow) * 1.25); }
 #galleryModal .nav-arrow:hover {
-  transform: scale(1.14);
+  transform: scale(1.12);
   filter: drop-shadow(0 0 0.9rem rgba(160, 110, 255, 0.85));
 }
 #galleryModal .nav-arrow img {
@@ -488,146 +573,118 @@ main {
   height: 100%;
 }
 
-#galleryModal .close-btn {
+/* Fechar (X) — canto superior direito da moldura.
+   Regra COMPARTILHADA pelos dois modais (galeria e créditos): a posição é
+   idêntica porque os dois leem o mesmo --arrow e os mesmos offsets. */
+#galleryModal .close-btn,
+#menuModal .btn-close-custom-styled {
   position: absolute;
-  top: clamp(-1.8rem, -1.5vw, -1.2rem);
-  right: clamp(-1.4rem, -1.2vw, -0.8rem);
+  top: calc(-1 * var(--arrow) * 0.5 - 0.45rem);
+  right: calc(-1 * var(--arrow) * 0.45 - 0.45rem);
+  border-radius: 50%;
+  line-height: 0;
   z-index: 100;
   transition: transform 0.15s ease, filter 0.15s ease;
 }
-#galleryModal .close-btn:hover {
+#galleryModal .close-btn:hover,
+#menuModal .btn-close-custom-styled:hover {
   transform: scale(1.08) rotate(90deg);
   filter: drop-shadow(0 0 0.8rem rgba(160, 110, 255, 0.8));
 }
-#galleryModal .close-btn img {
-  width: clamp(3.6rem, 4vw, 5.5rem);
-  height: clamp(3.6rem, 4vw, 5.5rem);
+#galleryModal .close-btn img,
+#menuModal .btn-close-custom-styled img {
+  width: var(--arrow);
+  height: var(--arrow);
 }
 
 /* ==========================================================================
-   6. MODAL MENU / CRÉDITOS (#menuModal) — DESIGN MODERNO (dark + roxo)
-   Mesmo estilo do modal de fotos: vidro escuro, borda roxa com brilho.
+   6. MODAL MENU / CRÉDITOS (#menuModal) — mesma moldura da galeria
    ========================================================================== */
 #menuModal {
   background: var(--overlay);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
+
 #menuModal .modal-dialog.custom-popup-dialog {
-  max-width: min(92rem, 94vw);
-  margin: auto;
+  max-width: min(110rem, 92vw);
+  margin: 0 auto;
   min-height: 100%;
   display: flex;
   align-items: center;
+  padding: 4.4rem 0;
 }
 
-/* Painel principal: mesmo cartão translúcido da moldura das fotos */
 #menuModal .custom-popup-content {
+  --arrow: clamp(4.2rem, 4.6vw, 7.2rem);   /* mesmo tamanho do X da galeria */
   width: 100%;
-  padding: clamp(1.8rem, 3vw, 3rem);
-  background: var(--surface);
-  border: 1px solid var(--border-frame);
-  border-radius: 2.6rem;
+  padding: clamp(1.8rem, 3vw, 4rem);
+  background: var(--frame-bg);
+  border: 0.45rem solid #fff;
+  border-radius: 2.8rem;
   box-shadow: var(--shadow-frame);
   position: relative;
   overflow: visible;
 }
-/* Fio de luz roxo no topo do painel */
-#menuModal .custom-popup-content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 15%;
-  right: 15%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-glow), transparent);
-}
+
 #menuModal .popup-body {
   padding: 0;
+  position: static;   /* Bootstrap põe position:relative no .modal-body; static faz o X
+                         ancorar na moldura (.custom-popup-content), como na galeria */
 }
 
 .popup-row {
   display: flex;
   flex-direction: column;   /* empilhado no mobile */
-  gap: clamp(3rem, 4vw, 4rem);
+  gap: clamp(2.4rem, 4vw, 4rem);
 }
 
 .box-wrapper {
-  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
-/* Etiquetas: pílula com gradiente roxo e brilho (igual ao título das fotos) */
+/* Abas "CRÉDITOS" / "COMO UTILIZAR": coladas no topo-esquerdo da caixa */
 .custom-popup-title,
 .custom-popup-title-utilizar {
-  position: absolute;
-  top: -0.2rem;
-  left: 0;
+  align-self: flex-start;
   margin: 0;
-  width: max-content;
-  padding: 0.6rem 1.6rem;
-  font-size: clamp(0.9rem, 1.2vw, 1.4rem);
+  padding: 0.7rem clamp(1.6rem, 2.4vw, 3rem) 0.9rem;
+  font-size: clamp(1.4rem, 1.9vw, 2.6rem);
   font-weight: 800;
-  letter-spacing: 0.5px;
-  text-align: center;
+  letter-spacing: 0.02em;
   color: #fff;
-  background: linear-gradient(135deg, #8a2be2, #6a2bd0);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 999px;
-  box-shadow: 0 0.4rem 1.6rem rgba(128, 69, 221, 0.55);
-  z-index: 2;
+  background: var(--color-primary-3);
+  border: 0.3rem solid #fff;
+  border-bottom: 0;
+  border-radius: 1.8rem 1.8rem 0 0;
   white-space: nowrap;
+  position: relative;
+  z-index: 2;
 }
 
-/* Caixa de conteúdo: painel translúcido com texto confortável */
+/* Caixa de conteúdo */
 .popup-caixa {
-  margin-top: 2.8rem;
+  margin-top: -0.3rem;               /* sobrepõe a borda para a aba "emendar" */
   padding: 1.8rem 2rem;
-  background: var(--surface-box);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  color: var(--text-body);
-  border: 1px solid var(--border-soft);
-  border-radius: 1.4rem;
-  font-size: clamp(1.05rem, 1.1vw, 1.35rem);
-  line-height: 1.65;               /* respiro maior para leitura confortável */
-  max-height: 60svh;
+  background: var(--box-bg);
+  color: var(--box-text);
+  border: 0.3rem solid #fff;
+  border-radius: 0 1.8rem 1.8rem 1.8rem;
+  font-size: clamp(1.25rem, 1.15vw, 1.7rem);
+  line-height: 1.6;
+  max-height: calc(100svh - 26rem);
+  min-height: 12rem;
   overflow-y: auto;
-}
-/* Barra de rolagem discreta em tom roxo */
-.popup-caixa::-webkit-scrollbar {
-  width: 0.8rem;
-}
-.popup-caixa::-webkit-scrollbar-track {
-  background: transparent;
-}
-.popup-caixa::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: 999px;
-}
-.popup-caixa {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
 }
-
-/* Botão fechar: mesmo comportamento (gira + glow) do modal de fotos */
-.btn-close-custom-styled {
-  position: absolute;
-  top: clamp(-2.4rem, -2vw, -1.6rem);
-  right: clamp(-2.4rem, -2vw, -1.6rem);
-  z-index: 1100;
-  line-height: 0;
-  transition: transform 0.15s ease, filter 0.15s ease;
-}
-.btn-close-custom-styled:hover {
-  transform: scale(1.08) rotate(90deg);
-  filter: drop-shadow(0 0 0.8rem rgba(160, 110, 255, 0.8));
-}
-.btn-close-custom-styled img {
-  width: clamp(3.6rem, 4vw, 5.6rem);
-  height: clamp(3.6rem, 4vw, 5.6rem);
+.popup-caixa::-webkit-scrollbar { width: 0.8rem; }
+.popup-caixa::-webkit-scrollbar-track { background: transparent; }
+.popup-caixa::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
 }
 
 .popup-item {
@@ -637,24 +694,23 @@ main {
 .popup-item.direitos-autorais {
   font-weight: 700;
   margin-bottom: 1rem;
-  color: var(--text-strong);
 }
 .creditos-texto-formatado {
   margin-bottom: 1.4rem;
 }
-/* Rótulos em destaque */
+/* Rótulos em destaque (o <br> do HTML é escondido: o strong já é display:block,
+   e o <br> extra criava uma linha em branco entre rótulo e nome) */
+.creditos-texto-formatado strong + br { display: none; }
 .creditos-texto-formatado strong {
   display: block;
   font-size: 0.85em;
   margin-bottom: 0.1rem;
-  color: var(--text-accent);
 }
 .popup-subtitle {
   font-weight: 700;
   margin: 0.8rem 0 0.2rem;
   text-transform: uppercase;
   font-size: 0.9em;
-  color: var(--text-accent);
 }
 
 /* ==========================================================================
@@ -666,43 +722,67 @@ main {
   .popup-row {
     flex-direction: row;
     align-items: flex-start;
-    gap: clamp(1.6rem, 2.5vw, 2.4rem);
+    gap: clamp(1.6rem, 2.5vw, 3.2rem);
   }
   .box-wrapper-creditos { flex: 1.5; }
   .box-wrapper-utilizar { flex: 1; }
-  .popup-caixa { flex: 1; }
 }
 
-/* --- Desktop: cards maiores para preencher o espaço ---------------------- */
-@media (min-width: 992px) {
-  :root {
-    /* na largura de desktop os cards crescem e ocupam melhor a tela,
-       mantendo a mesma estrutura 4 + 3 */
-    --card-width: clamp(15rem, 17vw, 22rem);
-  }
+/* --- Telas em formato paisagem (≥768px, mais largas que altas):
+       o header vira a faixa fixa do canto superior esquerdo, como no layout
+       de referência, e nada precisa rolar. --------------------------------- */
+@media (min-width: 768px) and (min-aspect-ratio: 1/1) {
+  .page { padding: 0 3rem; }
   .header-container {
-    padding-left: 0;
+    position: fixed;
+    top: var(--header-top);
+    left: 3rem;
+    width: min(calc(100vw - 20rem), 90rem);   /* nunca invade os botões de tema/tela cheia */
+    margin-top: 0;
+    padding-left: 1.2rem;
+    border-radius: 999px 0 0 999px;
   }
-  .header-row {
-    padding-left: 1.6rem;
+  .header-row { padding-right: 2rem; }
+  main {
+    /* reserva a faixa do header (fixa) em cima do tabuleiro */
+    padding-top: calc(var(--header-top) + var(--header-height) + 2.4rem);
+    padding-bottom: 3.6rem;
   }
 }
 
-/* --- Evita rolagem em telas altas de desktop (tudo cabe na viewport) ----- */
-@media (min-width: 1200px) and (min-height: 640px) {
-  body { overflow: hidden; }
-  main { padding-bottom: 2rem; }
+/* --- Setas quando falta espaço lateral (tablet e celular) -----------------
+   Em vez de entrarem na foto, ficam CENTRADAS sobre a borda externa da moldura:
+   metade para fora, metade sobre a borda roxa. Quase nada da foto é coberto.
+   Verticalmente ficam no meio da altura da imagem (top:50% + translateY(-50%)). */
+@media (max-width: 1100px) {
+  #galleryModal .nav-arrow { margin-top: 0; top: 50%; transform: translateY(-50%); }
+  #galleryModal .nav-arrow:hover { transform: translateY(-50%) scale(1.1); }
+  #galleryModal .nav-arrow.left  { left:  calc(-1 * (var(--frame-pad) + 0.45rem) - var(--arrow) / 2); }
+  #galleryModal .nav-arrow.right { right: calc(-1 * (var(--frame-pad) + 0.45rem) - var(--arrow) / 2); }
+  #galleryModal .gallery-frame,
+  #menuModal .custom-popup-content { --arrow: clamp(4rem, 6vw, 5.6rem); }
 }
 
 /* --- Mobile em paisagem: reduz respiros verticais ------------------------ */
 @media (max-height: 480px) and (orientation: landscape) {
-  main { gap: clamp(2rem, 5vh, 4rem); padding-top: 1.5rem; }
-  .header-container { min-height: 4.5rem; margin-top: 0.8rem; }
-  #galleryModal .image-wrapper img { max-height: 42vh; }
+  :root {
+    --header-height: 4.4rem;
+    --header-top: 1rem;
+    --card-size: clamp(7rem, min(calc((100svh - 14rem) / 2), 21vw), 22rem);
+    --board-gap: 0.8rem;
+  }
+  main { padding-bottom: 1.2rem; }
+  .category-grid-item { margin-bottom: 2rem; }
+  #galleryModal .modal-content { padding: 3.2rem 0; }
+  #galleryModal .gallery-frame {
+    width: min(120rem, 90vw, calc((100svh - 15rem) * 1.6 + 2 * var(--frame-pad)));
+  }
+  #galleryModal .card-description-wrapper { min-height: 5.6rem; padding-block: 0.8rem; }
+  .popup-caixa { max-height: calc(100svh - 17rem); }
 }
 
 /* ==========================================================================
-   7B. MODO RETRATO (VERTICAL) — layout original preservado
+   7B. MODO RETRATO (VERTICAL)
    Celular  = 1 card por linha (empilhado)
    iPad     = 2 colunas
    Paisagem e desktop continuam com o layout fluido 4 + 3.
@@ -710,12 +790,12 @@ main {
 
 /* --- Celular em retrato: cards empilhados (1 coluna) --------------------- */
 @media (orientation: portrait) and (max-width: 767.98px) {
-  body { overflow: auto; }
   main {
     justify-content: flex-start;
-    gap: 2rem;
-    padding-top: 2rem;
+    padding-top: 2.4rem;
   }
+  .gallery-board { gap: 0; }
+  .board-path { display: none; }          /* a linha curva só faz sentido no 4+3 */
   .gallery-row {
     flex-direction: column;
     flex-wrap: nowrap;
@@ -723,26 +803,33 @@ main {
     gap: 0;
   }
   .category-grid-item {
-    margin-top: 2rem;
-    margin-bottom: 2.6rem;
+    margin-top: 1.4rem;
+    margin-bottom: 3rem;
   }
   .category-card {
-    width: min(22rem, 78vw);
+    width: min(26rem, 72vw);
   }
-  .category-title {
-    font-size: 1.4rem;
-    bottom: -3rem;
+  .category-title { font-size: 1.4rem; }
+  .btn-menu img { width: 4rem; height: 4rem; }
+  /* título pode quebrar em 2 linhas em vez de virar "GALERIA DE PAI..." */
+  .main-title {
+    white-space: normal;
+    line-height: 1.1;
+    font-size: clamp(1.8rem, 5.6vw, 2.8rem);
   }
+  .header-row { padding-right: 9rem; }
+  /* folga no fim da página: o logotipo fixo não cobre o último card */
+  main { padding-bottom: 9rem; }
 }
 
 /* --- iPad em retrato: 2 colunas ----------------------------------------- */
 @media (orientation: portrait) and (min-width: 768px) and (max-width: 1024px) {
-  body { overflow: auto; }
   main {
     justify-content: flex-start;
-    gap: clamp(3rem, 5vh, 5rem);
     padding-top: 3rem;
   }
+  .gallery-board { gap: 0; }
+  .board-path { display: none; }
   .gallery-row {
     flex-wrap: wrap;
     justify-content: center;
@@ -755,13 +842,27 @@ main {
     width: min(30rem, 40%);
     margin-bottom: 4rem;
   }
-  .category-card {
-    width: 100%;
+  .category-card { width: 100%; }
+  .category-title { font-size: 1.8rem; }
+}
+
+/* --- Modal da galeria em retrato: imagem mais "alta" e moldura mais larga - */
+@media (orientation: portrait) {
+  /* moldura deixa meia seta de folga em cada lado: as setas (centradas na borda)
+     não saem da tela nem entram na foto */
+  #galleryModal .gallery-frame {
+    width: min(calc(100vw - var(--arrow) - 1.6rem), 72rem);
   }
-  .category-title {
-    font-size: 1.8rem;
-    bottom: -3rem;
+  #galleryModal .image-wrapper { aspect-ratio: 4 / 3; }
+  #galleryModal .close-btn,
+  #menuModal .btn-close-custom-styled {
+    top: calc(-1 * var(--arrow) * 0.45 - 0.45rem);
+    right: -0.9rem;
   }
+}
+@media (orientation: portrait) and (max-width: 575.98px) {
+  #galleryModal .gallery-frame { --arrow: 4.2rem; --frame-pad: 1.2rem; }
+  #menuModal .custom-popup-content { --arrow: 4.2rem; }
 }
 
 /* --- Acessibilidade: respeita "reduzir movimento" ------------------------ */
